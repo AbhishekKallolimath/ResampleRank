@@ -1,4 +1,5 @@
 import pandas as pd
+import sys
 
 
 def profile_dataset(data_path, target_path):
@@ -10,8 +11,6 @@ def profile_dataset(data_path, target_path):
     majority_count = class_counts.max()
     minority_count = class_counts.min()
 
-
-
     imbalance_ratio = majority_count / minority_count
 
     profile = {
@@ -19,8 +18,12 @@ def profile_dataset(data_path, target_path):
         "samples": X.shape[0],
         "features": X.shape[1],
         "feature_sample_ratio": round(X.shape[1] / X.shape[0], 4),
-        "numeric_features": int(X.select_dtypes(include="number").shape[1]),
-        "categorical_features": int(X.select_dtypes(exclude="number").shape[1]),
+        "numeric_features": int(
+            X.select_dtypes(include="number").shape[1]
+        ),
+        "categorical_features": int(
+            X.select_dtypes(exclude="number").shape[1]
+        ),
         "missing_values": int(X.isnull().sum().sum()),
         "duplicates": int(X.duplicated().sum()),
         "majority_class": class_counts.idxmax(),
@@ -35,18 +38,20 @@ def profile_dataset(data_path, target_path):
 
 
 if __name__ == "__main__":
-    result = profile_dataset(
-        "data/raw/pima.csv",
-        "data/raw/pima_target.csv"
-    )
+    if len(sys.argv) != 3:
+        print(
+            "Usage: python src\\dataset_profiler.py "
+            "<features.csv> <target.csv>"
+        )
+        sys.exit(1)
+
+    data_path = sys.argv[1]
+    target_path = sys.argv[2]
+
+    result = profile_dataset(data_path, target_path)
 
     print("Dataset Profile")
     print("----------------")
 
     for key, value in result.items():
         print(f"{key}: {value}")
-
-    profile_df = pd.DataFrame([result])
-    profile_df.to_csv("data/processed/dataset_profiles.csv", index=False)
-
-    print("\nProfile saved to data/processed/dataset_profiles.csv")
