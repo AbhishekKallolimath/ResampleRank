@@ -1,0 +1,2 @@
+dataset,resampling,classifier,samples,features,tn,fp,fn,tp,accuracy,balanced_accuracy,precision,recall,f1_class_0_math,f1_class_1_math,macro_f1_code,macro_f1_math,metric_error,execution_time_seconds
+pima,none,logistic_regression,768,8,442,58,115,153,0.7747395833333334,0.7274477611940299,0.7251184834123223,0.5708955223880597,0.836329233680227,0.6388308977035491,0.737580065691888,0.737580065691888,0.0,0.16457750000000004
