@@ -1,2 +1,4 @@
 dataset,original_source,repository,dataset_id,source_url,license,target_column,binary_or_multiclass
-pima,UCI Machine Learning Repository,UCI,768,https://archive.ics.uci.edu/dataset/34/diabetes,binary,Outcome,binary
+pima,UCI Machine Learning Repository,OpenML,37,https://www.openml.org/d/37,,Outcome,binary
+glass1,UCI Glass Identification,KEEL,glass1,https://sci2s.ugr.es/keel/imbalanced.php,,class,binary
+wisconsin,UCI Breast Cancer Wisconsin (Original),KEEL,wisconsin,https://sci2s.ugr.es/keel/dataset_smja.php?cod=1508,CC BY 4.0,Class,binary

@@ -1,2 +1,3 @@
 dataset,samples,features,feature_sample_ratio,numeric_features,categorical_features,missing_values,duplicates,majority_class,minority_class,majority_count,minority_count,minority_proportion,imbalance_ratio
 pima,768,8,0.0104,8,0,0,0,tested_negative,tested_positive,500,268,0.349,1.866
+glass1,214,9,0.0421,9,0,0,1,negative,positive,138,76,0.355,1.816

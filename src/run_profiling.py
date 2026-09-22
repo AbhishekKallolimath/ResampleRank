@@ -4,6 +4,7 @@ import pandas as pd
 
 datasets = [
     ("pima", "data/raw/pima.csv", "data/raw/pima_target.csv"),
+    ("glass1", "data/raw/glass1.csv", "data/raw/glass1_target.csv"),
 ]
 
 
