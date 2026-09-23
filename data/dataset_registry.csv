@@ -3,3 +3,5 @@ pima,UCI Machine Learning Repository,OpenML,37,https://www.openml.org/d/37,,Outc
 glass1,UCI Glass Identification,KEEL,glass1,https://sci2s.ugr.es/keel/imbalanced.php,,class,binary
 wisconsin,UCI Breast Cancer Wisconsin (Original),KEEL,wisconsin,https://sci2s.ugr.es/keel/dataset_smja.php?cod=1508,CC BY 4.0,Class,binary
 yeast1,Yeast,UCI/KEEL,yeast1,https://sci2s.ugr.es/keel/dataset.php?cod=153,,Class,binary
+zoo-3,UCI Zoo,KEEL,zoo-3,https://sci2s.ugr.es/keel/dataset.php?cod=154,,Class,binary
+abalone9-18,UCI Abalone,KEEL,abalone9-18,https://sci2s.ugr.es/keel/dataset.php?cod=155,,Class,binary

@@ -1,5 +1,6 @@
 from pathlib import Path
 from copy import deepcopy
+from xgboost import XGBRegressor
 
 import numpy as np
 import pandas as pd
@@ -11,6 +12,7 @@ from sklearn.compose import ColumnTransformer
 from sklearn.ensemble import (
     GradientBoostingRegressor,
     RandomForestRegressor,
+    
 )
 from sklearn.linear_model import Ridge
 from sklearn.metrics import (
@@ -65,7 +67,7 @@ CATEGORICAL_FEATURES = [
 ]
 
 
-TARGET = "target_macro_f1"
+TARGET = "delta_macro_f1_vs_baseline"
 GROUP = "dataset"
 
 CLASSIFIER_COLUMN = "classifier"
@@ -94,8 +96,17 @@ META_MODELS = {
         learning_rate=0.05,
         max_depth=2,
     ),
+    "xgboost": XGBRegressor(
+        n_estimators=200,
+        max_depth=3,
+        learning_rate=0.05,
+        subsample=1.0,
+        colsample_bytree=1.0,
+        random_state=RANDOM_STATE,
+        n_jobs=-1,
+        objective="reg:squarederror",
+    ),
 }
-
 
 def load_meta_dataset():
     if not META_DATASET_FILE.exists():
@@ -219,12 +230,20 @@ def evaluate_one_dataset_classifier(
     Evaluate ranking for one dataset and one classifier.
     """
 
+    actual_values = group[
+        "target_macro_f1"
+    ].to_numpy()
+
+    predicted_values = group[
+        "predicted_macro_f1"
+    ].to_numpy()
+
     actual_max = group[
-        TARGET
+        "target_macro_f1"
     ].max()
 
     actual_best = group[
-        group[TARGET] == actual_max
+        group["target_macro_f1"] == actual_max
     ][
         "resampling_code"
     ].tolist()
@@ -259,7 +278,9 @@ def evaluate_one_dataset_classifier(
 
     predicted_choice_actual_score = (
         float(
-            ranked.iloc[0][TARGET]
+            ranked.iloc[0][
+                "target_macro_f1"
+            ]
         )
     )
 
@@ -272,42 +293,27 @@ def evaluate_one_dataset_classifier(
         - predicted_choice_actual_score
     )
 
-    actual_values = group[
-        TARGET
-    ].to_numpy()
-
-    predicted_values = group[
-        "predicted_macro_f1"
-    ].to_numpy()
-
     spearman_value = np.nan
     kendall_value = np.nan
 
-    try:
-        spearman_result = spearmanr(
-            actual_values,
-            predicted_values,
-        )
-
+    if (
+        len(actual_values) >= 2
+        and len(np.unique(actual_values)) > 1
+        and len(np.unique(predicted_values)) > 1
+    ):
         spearman_value = float(
-            spearman_result.statistic
-        )
-
-    except Exception:
-        spearman_value = np.nan
-
-    try:
-        kendall_result = kendalltau(
-            actual_values,
-            predicted_values,
+            spearmanr(
+                actual_values,
+                predicted_values,
+            )[0]
         )
 
         kendall_value = float(
-            kendall_result.statistic
+            kendalltau(
+                actual_values,
+                predicted_values,
+            )[0]
         )
-
-    except Exception:
-        kendall_value = np.nan
 
     return {
         "dataset": group.iloc[0][
@@ -544,8 +550,23 @@ def evaluate_single_model(
         )
 
         classifier_df[
-            "predicted_macro_f1"
+            "predicted_delta_macro_f1"
         ] = predictions
+
+        classifier_df[
+             "predicted_macro_f1"
+        ] = (
+             classifier_df[
+                 "baseline_macro_f1"
+        ]
+        + classifier_df[
+             "predicted_delta_macro_f1"
+        ]
+).clip(
+    lower=0.0,
+    upper=1.0,
+)
+        
 
         ranking_df = (
             calculate_ranking_metrics(
@@ -558,7 +579,7 @@ def evaluate_single_model(
         ]
 
         y_pred = classifier_df[
-            "predicted_macro_f1"
+            "predicted_delta_macro_f1"
         ]
 
         mae = mean_absolute_error(
@@ -772,7 +793,7 @@ def evaluate_single_model(
 
     overall_pred = (
         combined_predictions[
-            "predicted_macro_f1"
+            "predicted_delta_macro_f1"
         ]
     )
 

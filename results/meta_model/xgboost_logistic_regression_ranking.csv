@@ -1,0 +1,13 @@
+dataset,classifier,number_of_resampling_strategies,actual_best_resampling,predicted_best_resampling,actual_best_macro_f1,predicted_choice_actual_macro_f1,regret,top1_correct,top3_correct,spearman,kendall,meta_model
+ecoli-0_vs_1,logistic_regression,7,smote_tomek,ros,0.9849695975951356,0.975099037917374,0.009870559677761626,False,True,0.07207499701564472,0.0,xgboost
+glass1,logistic_regression,7,smote_enn,none,0.61023457900858,0.5015185021376971,0.10871607687088292,False,False,-0.10714285714285716,-0.14285714285714288,xgboost
+haberman,logistic_regression,7,smote_enn,smote,0.6425233644859814,0.625339366515837,0.01718399797014436,False,False,0.39285714285714296,0.23809523809523814,xgboost
+iris0,logistic_regression,6,none|ros|rus|smote|smote_tomek|smote_enn,none,1.0,1.0,0.0,True,True,,,xgboost
+page-blocks0,logistic_regression,7,none,rus,0.847852850384496,0.8166609947249479,0.031191855659548073,False,False,-0.4642857142857144,-0.5238095238095238,xgboost
+pima,logistic_regression,7,none,rus,0.737580065691888,0.7216912081288213,0.015888857563066794,False,False,-0.07207499701564472,-0.09759000729485331,xgboost
+segment0,logistic_regression,7,none,smote,0.9946556506999986,0.9937886933150024,0.0008669573849962031,False,False,0.7092081432669753,0.5506887917539347,xgboost
+shuttle-c0-vs-c4,logistic_regression,6,none|ros|rus|smote|smote_tomek|smote_enn,none,0.9978126849919576,0.9978126849919576,0.0,True,True,,,xgboost
+vehicle2,logistic_regression,7,ros,none,0.9518336381687104,0.942049967139062,0.009783671029648389,False,False,0.4504687313477795,0.29277002188455997,xgboost
+vowel0,logistic_regression,7,none,smote,0.901351261399188,0.8874715261958999,0.013879735203288113,False,False,0.01801874925391118,0.09759000729485331,xgboost
+wisconsin,logistic_regression,7,smote_enn,smote,0.9680602319491208,0.9663060713908171,0.0017541605583036857,False,False,0.054056247761733546,0.09759000729485331,xgboost
+yeast1,logistic_regression,7,rus,rus,0.6832967627521116,0.6832967627521116,0.0,True,True,0.8571428571428573,0.7142857142857143,xgboost
