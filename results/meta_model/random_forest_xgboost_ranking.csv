@@ -1,0 +1,13 @@
+dataset,classifier,number_of_resampling_strategies,actual_best_resampling,predicted_best_resampling,actual_best_macro_f1,predicted_choice_actual_macro_f1,regret,top1_correct,top3_correct,spearman,kendall,meta_model
+ecoli-0_vs_1,xgboost,7,smote_enn,adasyn,0.9899488304093568,0.975099037917374,0.014849792491982816,False,False,,,random_forest
+glass1,xgboost,7,ros,smote_enn,0.8275665939899517,0.733424213223024,0.09414238076692771,False,True,,,random_forest
+haberman,xgboost,7,smote_enn,ros,0.6397174254317111,0.557703783267693,0.08201364216401807,False,False,,,random_forest
+iris0,xgboost,6,none|ros|rus|smote|smote_tomek|smote_enn,smote_enn,1.0,1.0,0.0,True,True,,,random_forest
+page-blocks0,xgboost,7,none,smote_tomek,0.9305993992368964,0.924544793534412,0.006054605702484395,False,False,,,random_forest
+pima,xgboost,7,none,smote_enn,0.7361390827659384,0.734670135583899,0.0014689471820393818,False,False,,,random_forest
+segment0,xgboost,7,none,ros,0.992910361224468,0.9920342467565786,0.0008761144678893773,False,True,,,random_forest
+shuttle-c0-vs-c4,xgboost,6,none|ros|smote|smote_tomek|smote_enn,ros,1.0,1.0,0.0,True,True,,,random_forest
+vehicle2,xgboost,7,ros,adasyn,0.9815166808677984,0.9737762907181342,0.007740390149664211,False,False,,,random_forest
+vowel0,xgboost,7,adasyn,ros,0.9850906182564474,0.9755506062855728,0.009540011970874618,False,False,,,random_forest
+wisconsin,xgboost,7,smote_enn,none,0.9680009744944807,0.9663060713908171,0.001694903103663603,False,False,,,random_forest
+yeast1,xgboost,7,smote_tomek,none,0.7104116832431071,0.6963947375929667,0.014016945650140444,False,False,,,random_forest

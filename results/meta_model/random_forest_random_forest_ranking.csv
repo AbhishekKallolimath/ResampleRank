@@ -1,0 +1,13 @@
+dataset,classifier,number_of_resampling_strategies,actual_best_resampling,predicted_best_resampling,actual_best_macro_f1,predicted_choice_actual_macro_f1,regret,top1_correct,top3_correct,spearman,kendall,meta_model
+ecoli-0_vs_1,random_forest,7,none|ros|smote_enn,ros,0.9899488304093568,0.9899488304093568,0.0,True,True,,,random_forest
+glass1,random_forest,7,ros,none,0.8572169916228037,0.8335967090576166,0.023620282565187112,False,True,,,random_forest
+haberman,random_forest,7,smote_enn,ros,0.655656819221685,0.5585256968641115,0.09713112235757349,False,True,,,random_forest
+iris0,random_forest,6,none|ros|rus|smote|smote_tomek|smote_enn,smote_enn,1.0,1.0,0.0,True,True,,,random_forest
+page-blocks0,random_forest,7,none,smote_tomek,0.9345174973488866,0.9258422617863128,0.008675235562573769,False,False,,,random_forest
+pima,random_forest,7,smote_enn,smote_enn,0.7431733533861193,0.7431733533861193,0.0,True,True,,,random_forest
+segment0,random_forest,7,adasyn,smote_tomek,0.9964641357967948,0.9920342467565786,0.004429889040216239,False,False,,,random_forest
+shuttle-c0-vs-c4,random_forest,6,none|ros|rus|smote|smote_tomek|smote_enn,smote_tomek,1.0,1.0,0.0,True,True,,,random_forest
+vehicle2,random_forest,7,none,adasyn,0.9860331250103184,0.9799465752550438,0.006086549755274562,False,False,,,random_forest
+vowel0,random_forest,7,adasyn,none,0.9939480809046026,0.9812878787878788,0.012660202116723807,False,False,,,random_forest
+wisconsin,random_forest,7,smote_tomek,ros,0.9760671661141908,0.9680009744944807,0.008066191619710006,False,True,,,random_forest
+yeast1,random_forest,7,smote_tomek,adasyn,0.7315821634877828,0.719338061465721,0.012244102022061831,False,True,,,random_forest

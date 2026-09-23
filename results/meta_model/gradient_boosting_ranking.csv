@@ -1,0 +1,13 @@
+dataset,actual_best_resampling,actual_best_classifier,actual_best_macro_f1,predicted_best_resampling,predicted_best_classifier,predicted_choice_actual_macro_f1,regret,top1_correct
+ecoli-0_vs_1,SMOTE-ENN,decision_tree,0.9899488304093568,No Resampling,random_forest,0.9899488304093568,0.0,False
+glass1,Random Oversampling,random_forest,0.8572169916228037,Random Oversampling,random_forest,0.8572169916228037,0.0,True
+haberman,SMOTE-ENN,random_forest,0.655656819221685,SMOTE-ENN,random_forest,0.655656819221685,0.0,True
+iris0,No Resampling,decision_tree,1.0,SMOTE-ENN,random_forest,1.0,0.0,False
+page-blocks0,No Resampling,random_forest,0.9345174973488866,No Resampling,random_forest,0.9345174973488866,0.0,True
+pima,SMOTE-ENN,random_forest,0.7431733533861193,SMOTE-ENN,random_forest,0.7431733533861193,0.0,True
+segment0,ADASYN,random_forest,0.9964641357967948,ADASYN,random_forest,0.9964641357967948,0.0,True
+shuttle-c0-vs-c4,No Resampling,decision_tree,1.0,No Resampling,random_forest,1.0,0.0,False
+vehicle2,No Resampling,random_forest,0.9860331250103184,No Resampling,random_forest,0.9860331250103184,0.0,True
+vowel0,ADASYN,random_forest,0.9939480809046026,ADASYN,random_forest,0.9939480809046026,0.0,True
+wisconsin,SMOTE-Tomek,random_forest,0.9760671661141908,SMOTE-Tomek,random_forest,0.9760671661141908,0.0,True
+yeast1,SMOTE-Tomek,random_forest,0.7315821634877828,SMOTE-Tomek,xgboost,0.7104116832431071,0.021170480244675716,False

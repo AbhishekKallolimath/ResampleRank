@@ -1,0 +1,8 @@
+dataset,resampling_code,resampling,classifier,samples,features,numeric_features,categorical_features,safe_k_neighbors,tn,fp,fn,tp,accuracy,balanced_accuracy,precision,recall,f1_class_0_math,f1_class_1_math,macro_f1_code,macro_f1_math,metric_error,verification,failure_reason,execution_time_seconds
+shuttle-c0-vs-c4,none,No Resampling,decision_tree,1829,9,9,0,5,1706.0,0.0,0.0,123.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,PASS,,0.23382089999999955
+shuttle-c0-vs-c4,ros,Random Oversampling,decision_tree,1829,9,9,0,5,1706.0,0.0,0.0,123.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,PASS,,0.10904700000000034
+shuttle-c0-vs-c4,rus,Random Undersampling,decision_tree,1829,9,9,0,5,1706.0,0.0,0.0,123.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,PASS,,0.11436439999999948
+shuttle-c0-vs-c4,smote,SMOTE,decision_tree,1829,9,9,0,5,1706.0,0.0,0.0,123.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,PASS,,0.16143679999999883
+shuttle-c0-vs-c4,smote_tomek,SMOTE-Tomek,decision_tree,1829,9,9,0,5,1706.0,0.0,0.0,123.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,PASS,,0.5454758000000002
+shuttle-c0-vs-c4,smote_enn,SMOTE-ENN,decision_tree,1829,9,9,0,5,1706.0,0.0,0.0,123.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,PASS,,0.9974951000000019
+shuttle-c0-vs-c4,adasyn,ADASYN,decision_tree,1829,9,9,0,5,,,,,,,,,,,,,,NOT_APPLICABLE,Not any neigbours belong to the majority class. This case will induce a NaN case with a division by zero. ADASYN is not suited for this specific dataset. Use SMOTE instead.,0.08205169999999917

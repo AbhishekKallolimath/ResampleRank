@@ -1,0 +1,13 @@
+dataset,classifier,number_of_resampling_strategies,actual_best_resampling,predicted_best_resampling,actual_best_macro_f1,predicted_choice_actual_macro_f1,regret,top1_correct,top3_correct,spearman,kendall,meta_model
+ecoli-0_vs_1,random_forest,7,none|ros|smote_enn,smote_tomek,0.9899488304093568,0.9849695975951356,0.004979232814221191,False,True,,,ridge
+glass1,random_forest,7,ros,smote_enn,0.8572169916228037,0.7792780121894045,0.07793897943339922,False,True,,,ridge
+haberman,random_forest,7,smote_enn,ros,0.655656819221685,0.5585256968641115,0.09713112235757349,False,False,,,ridge
+iris0,random_forest,6,none|ros|rus|smote|smote_tomek|smote_enn,ros,1.0,1.0,0.0,True,True,,,ridge
+page-blocks0,random_forest,7,none,smote_tomek,0.9345174973488866,0.9258422617863128,0.008675235562573769,False,False,,,ridge
+pima,random_forest,7,smote_enn,ros,0.7431733533861193,0.736935168812894,0.006238184573225336,False,False,,,ridge
+segment0,random_forest,7,adasyn,ros,0.9964641357967948,0.9920342467565786,0.004429889040216239,False,False,,,ridge
+shuttle-c0-vs-c4,random_forest,6,none|ros|rus|smote|smote_tomek|smote_enn,ros,1.0,1.0,0.0,True,True,,,ridge
+vehicle2,random_forest,7,none,ros,0.9860331250103184,0.9783065798246064,0.007726545185711919,False,False,,,ridge
+vowel0,random_forest,7,adasyn,ros,0.9939480809046026,0.98765169789154,0.0062963830130626786,False,False,,,ridge
+wisconsin,random_forest,7,smote_tomek,ros,0.9760671661141908,0.9680009744944807,0.008066191619710006,False,True,,,ridge
+yeast1,random_forest,7,smote_tomek,smote_enn,0.7315821634877828,0.692720050732675,0.03886211275510787,False,True,,,ridge

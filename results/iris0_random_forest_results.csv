@@ -1,0 +1,8 @@
+dataset,resampling_code,resampling,classifier,samples,features,numeric_features,categorical_features,safe_k_neighbors,tn,fp,fn,tp,accuracy,balanced_accuracy,precision,recall,f1_class_0_math,f1_class_1_math,macro_f1_code,macro_f1_math,metric_error,verification,failure_reason,execution_time_seconds
+iris0,none,No Resampling,random_forest,150,4,4,0,5,100.0,0.0,0.0,50.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,PASS,,4.362116699999998
+iris0,ros,Random Oversampling,random_forest,150,4,4,0,5,100.0,0.0,0.0,50.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,PASS,,4.764844499999995
+iris0,rus,Random Undersampling,random_forest,150,4,4,0,5,100.0,0.0,0.0,50.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,PASS,,4.0912462000000005
+iris0,smote,SMOTE,random_forest,150,4,4,0,5,100.0,0.0,0.0,50.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,PASS,,4.447962599999997
+iris0,smote_tomek,SMOTE-Tomek,random_forest,150,4,4,0,5,100.0,0.0,0.0,50.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,PASS,,2.9363501000000056
+iris0,smote_enn,SMOTE-ENN,random_forest,150,4,4,0,5,100.0,0.0,0.0,50.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,PASS,,3.1906508000000002
+iris0,adasyn,ADASYN,random_forest,150,4,4,0,5,,,,,,,,,,,,,,NOT_APPLICABLE,Not any neigbours belong to the majority class. This case will induce a NaN case with a division by zero. ADASYN is not suited for this specific dataset. Use SMOTE instead.,1.1585960000000028

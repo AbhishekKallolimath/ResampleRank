@@ -1,0 +1,2 @@
+dataset,resampling,classifier,samples,features,numeric_features,categorical_features,tn,fp,fn,tp,accuracy,balanced_accuracy,precision,recall,f1_class_0_math,f1_class_1_math,macro_f1_code,macro_f1_math,metric_error,verification,execution_time_seconds
+abalone9-18,none,logistic_regression,731,8,7,1,686,3,29,13,0.9562243502051984,0.6525848365471008,0.8125,0.30952380952380953,0.9772079772079771,0.4482758620689655,0.7127419196384713,0.7127419196384713,0.0,PASS,0.16052329999999992

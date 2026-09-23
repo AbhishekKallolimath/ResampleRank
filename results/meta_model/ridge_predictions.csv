@@ -1,0 +1,329 @@
+dataset,resampling_code,resampling,classifier,target_macro_f1,predicted_macro_f1
+ecoli-0_vs_1,smote_enn,SMOTE-ENN,decision_tree,0.9899488304093568,0.820851477678099
+ecoli-0_vs_1,ros,Random Oversampling,decision_tree,0.98001998001998,0.8208143961869143
+ecoli-0_vs_1,smote,SMOTE,decision_tree,0.98001998001998,0.8200507805530971
+ecoli-0_vs_1,none,No Resampling,decision_tree,0.9702058504875406,0.8174562014608135
+ecoli-0_vs_1,smote_tomek,SMOTE-Tomek,decision_tree,0.9702058504875406,0.8206921111147293
+ecoli-0_vs_1,adasyn,ADASYN,decision_tree,0.955436519547163,0.794053217438219
+ecoli-0_vs_1,rus,Random Undersampling,decision_tree,0.9461252476680246,0.8056573776694024
+ecoli-0_vs_1,smote_tomek,SMOTE-Tomek,logistic_regression,0.9849695975951356,0.8073660593949405
+ecoli-0_vs_1,rus,Random Undersampling,logistic_regression,0.98001998001998,0.7923313259496136
+ecoli-0_vs_1,smote,SMOTE,logistic_regression,0.98001998001998,0.8067247288333084
+ecoli-0_vs_1,none,No Resampling,logistic_regression,0.9798976608187132,0.8041301497410248
+ecoli-0_vs_1,ros,Random Oversampling,logistic_regression,0.975099037917374,0.8074883444671256
+ecoli-0_vs_1,adasyn,ADASYN,logistic_regression,0.9702058504875406,0.7807271657184303
+ecoli-0_vs_1,smote_enn,SMOTE-ENN,logistic_regression,0.9649290610553164,0.8075254259583102
+ecoli-0_vs_1,none,No Resampling,random_forest,0.9899488304093568,0.8507855292454222
+ecoli-0_vs_1,ros,Random Oversampling,random_forest,0.9899488304093568,0.854143723971523
+ecoli-0_vs_1,smote_enn,SMOTE-ENN,random_forest,0.9899488304093568,0.8541808054627076
+ecoli-0_vs_1,smote,SMOTE,random_forest,0.9849695975951356,0.8533801083377057
+ecoli-0_vs_1,smote_tomek,SMOTE-Tomek,random_forest,0.9849695975951356,0.8540214388993379
+ecoli-0_vs_1,rus,Random Undersampling,random_forest,0.98001998001998,0.838986705454011
+ecoli-0_vs_1,adasyn,ADASYN,random_forest,0.975099037917374,0.8273825452228276
+ecoli-0_vs_1,smote_enn,SMOTE-ENN,xgboost,0.9899488304093568,0.848549621268441
+ecoli-0_vs_1,ros,Random Oversampling,xgboost,0.9849695975951356,0.8485125397772564
+ecoli-0_vs_1,none,No Resampling,xgboost,0.98001998001998,0.8451543450511556
+ecoli-0_vs_1,rus,Random Undersampling,xgboost,0.98001998001998,0.8333555212597444
+ecoli-0_vs_1,smote,SMOTE,xgboost,0.98001998001998,0.8477489241434392
+ecoli-0_vs_1,smote_tomek,SMOTE-Tomek,xgboost,0.98001998001998,0.8483902547050713
+ecoli-0_vs_1,adasyn,ADASYN,xgboost,0.975099037917374,0.8217513610285611
+glass1,none,No Resampling,decision_tree,0.7609506833036244,1.222836196435617
+glass1,smote_tomek,SMOTE-Tomek,decision_tree,0.7507783719548425,1.2249374123202847
+glass1,ros,Random Oversampling,decision_tree,0.7420772775611486,1.2237589365966577
+glass1,adasyn,ADASYN,decision_tree,0.7330931263858094,1.2111263043678346
+glass1,rus,Random Undersampling,decision_tree,0.7275147586526218,1.2098021293167909
+glass1,smote,SMOTE,decision_tree,0.7202614379084967,1.2237281110198923
+glass1,smote_enn,SMOTE-ENN,decision_tree,0.6935513673318552,1.2287148913704815
+glass1,smote_enn,SMOTE-ENN,logistic_regression,0.61023457900858,1.2300714650827391
+glass1,ros,Random Oversampling,logistic_regression,0.6062384999561903,1.2251155103089153
+glass1,smote,SMOTE,logistic_regression,0.6052700922266141,1.22508468473215
+glass1,smote_tomek,SMOTE-Tomek,logistic_regression,0.5958717610891524,1.2262939860325424
+glass1,rus,Random Undersampling,logistic_regression,0.5751979480316717,1.2111587030290485
+glass1,adasyn,ADASYN,logistic_regression,0.5611950170874214,1.2124828780800923
+glass1,none,No Resampling,logistic_regression,0.5015185021376971,1.2241927701478745
+glass1,ros,Random Oversampling,random_forest,0.8572169916228037,1.2500417372025028
+glass1,smote,SMOTE,random_forest,0.8440687846109006,1.2500109116257374
+glass1,none,No Resampling,random_forest,0.8335967090576166,1.249118997041462
+glass1,smote_tomek,SMOTE-Tomek,random_forest,0.8220852895148669,1.2512202129261298
+glass1,adasyn,ADASYN,random_forest,0.8209290649580414,1.2374091049736797
+glass1,rus,Random Undersampling,random_forest,0.809530682446898,1.2360849299226362
+glass1,smote_enn,SMOTE-ENN,random_forest,0.7792780121894045,1.2549976919763268
+glass1,ros,Random Oversampling,xgboost,0.8275665939899517,1.245720528731913
+glass1,smote,SMOTE,xgboost,0.8255155875299761,1.2456897031551477
+glass1,rus,Random Undersampling,xgboost,0.8229942100909844,1.2317637214520463
+glass1,adasyn,ADASYN,xgboost,0.8194092827004219,1.2330878965030898
+glass1,none,No Resampling,xgboost,0.8174728889971976,1.2447977885708723
+glass1,smote_tomek,SMOTE-Tomek,xgboost,0.7959572845156369,1.24689900445554
+glass1,smote_enn,SMOTE-ENN,xgboost,0.733424213223024,1.250676483505737
+haberman,smote_enn,SMOTE-ENN,decision_tree,0.6397058823529411,1.0756441763853428
+haberman,adasyn,ADASYN,decision_tree,0.5668030391583869,1.0695122068533405
+haberman,none,No Resampling,decision_tree,0.5658193101802125,1.080742434714657
+haberman,smote_tomek,SMOTE-Tomek,decision_tree,0.5484388753689226,1.0809142964260643
+haberman,smote,SMOTE,decision_tree,0.5332196741485176,1.0812742102735629
+haberman,rus,Random Undersampling,decision_tree,0.5306268534614991,1.0645632292448295
+haberman,ros,Random Oversampling,decision_tree,0.5245187933086022,1.0824855446524582
+haberman,smote_enn,SMOTE-ENN,logistic_regression,0.6425233644859814,1.057910091244542
+haberman,rus,Random Undersampling,logistic_regression,0.6386395843174304,1.0468291441040285
+haberman,smote_tomek,SMOTE-Tomek,logistic_regression,0.6307435254803676,1.0631802112852635
+haberman,smote,SMOTE,logistic_regression,0.625339366515837,1.063540125132762
+haberman,ros,Random Oversampling,logistic_regression,0.6225868725868725,1.0647514595116574
+haberman,adasyn,ADASYN,logistic_regression,0.5930851063829787,1.0517781217125397
+haberman,none,No Resampling,logistic_regression,0.5344040574809805,1.0630083495738563
+haberman,smote_enn,SMOTE-ENN,random_forest,0.655656819221685,1.108323972985677
+haberman,rus,Random Undersampling,random_forest,0.6025974025974026,1.0972430258451638
+haberman,adasyn,ADASYN,random_forest,0.595867930696306,1.1021920034536747
+haberman,smote_tomek,SMOTE-Tomek,random_forest,0.5701550597006861,1.1135940930263986
+haberman,ros,Random Oversampling,random_forest,0.5585256968641115,1.1151653412527924
+haberman,smote,SMOTE,random_forest,0.5490765861921748,1.1139540068738971
+haberman,none,No Resampling,random_forest,0.529559748427673,1.1134222313149915
+haberman,smote_enn,SMOTE-ENN,xgboost,0.6397174254317111,1.1022967368326342
+haberman,adasyn,ADASYN,xgboost,0.6061776061776062,1.0961647673006318
+haberman,rus,Random Undersampling,xgboost,0.5720574074923197,1.0912157896921209
+haberman,smote,SMOTE,xgboost,0.5708389544124914,1.1079267707208542
+haberman,smote_tomek,SMOTE-Tomek,xgboost,0.5693286071726439,1.1075668568733557
+haberman,ros,Random Oversampling,xgboost,0.557703783267693,1.1091381050997495
+haberman,none,No Resampling,xgboost,0.550908090258668,1.1073949951619486
+iris0,none,No Resampling,decision_tree,1.0,0.7190596041628364
+iris0,ros,Random Oversampling,decision_tree,1.0,0.7226392460935207
+iris0,rus,Random Undersampling,decision_tree,1.0,0.7065077329490336
+iris0,smote,SMOTE,decision_tree,1.0,0.7217643436088863
+iris0,smote_tomek,SMOTE-Tomek,decision_tree,1.0,0.7222975739048012
+iris0,smote_enn,SMOTE-ENN,decision_tree,1.0,0.7227816188367395
+iris0,none,No Resampling,logistic_regression,1.0,0.7064673831053107
+iris0,ros,Random Oversampling,logistic_regression,1.0,0.7100470250359949
+iris0,rus,Random Undersampling,logistic_regression,1.0,0.6939155118915077
+iris0,smote,SMOTE,logistic_regression,1.0,0.7091721225513605
+iris0,smote_tomek,SMOTE-Tomek,logistic_regression,1.0,0.7097053528472753
+iris0,smote_enn,SMOTE-ENN,logistic_regression,1.0,0.7101893977792137
+iris0,none,No Resampling,random_forest,1.0,0.753292998414088
+iris0,ros,Random Oversampling,random_forest,1.0,0.7568726403447723
+iris0,rus,Random Undersampling,random_forest,1.0,0.7407411272002852
+iris0,smote,SMOTE,random_forest,1.0,0.7559977378601379
+iris0,smote_tomek,SMOTE-Tomek,random_forest,1.0,0.7565309681560527
+iris0,smote_enn,SMOTE-ENN,random_forest,1.0,0.7570150130879911
+iris0,none,No Resampling,xgboost,1.0,0.7474127735164494
+iris0,ros,Random Oversampling,xgboost,1.0,0.7509924154471337
+iris0,rus,Random Undersampling,xgboost,1.0,0.7348609023026466
+iris0,smote,SMOTE,xgboost,1.0,0.7501175129624994
+iris0,smote_tomek,SMOTE-Tomek,xgboost,1.0,0.7506507432584142
+iris0,smote_enn,SMOTE-ENN,xgboost,1.0,0.7511347881903525
+page-blocks0,none,No Resampling,decision_tree,0.9124443797226672,0.8158282363040079
+page-blocks0,ros,Random Oversampling,decision_tree,0.907908986073956,0.8199906810336548
+page-blocks0,smote_tomek,SMOTE-Tomek,decision_tree,0.9056200224051508,0.8200140782810534
+page-blocks0,smote_enn,SMOTE-ENN,decision_tree,0.9041625104634836,0.8211492446920995
+page-blocks0,smote,SMOTE,decision_tree,0.8996042385566727,0.8197947006688495
+page-blocks0,adasyn,ADASYN,decision_tree,0.897287077342479,0.7979082926966735
+page-blocks0,rus,Random Undersampling,decision_tree,0.8502371658819261,0.8071833592422722
+page-blocks0,none,No Resampling,logistic_regression,0.847852850384496,0.810003012671388
+page-blocks0,smote_enn,SMOTE-ENN,logistic_regression,0.8308658356928671,0.8153240210594794
+page-blocks0,ros,Random Oversampling,logistic_regression,0.8283485195244332,0.8141654574010347
+page-blocks0,smote,SMOTE,logistic_regression,0.8268462492184768,0.8139694770362296
+page-blocks0,smote_tomek,SMOTE-Tomek,logistic_regression,0.826752798388435,0.8141888546484334
+page-blocks0,rus,Random Undersampling,logistic_regression,0.8166609947249479,0.8013581356096522
+page-blocks0,adasyn,ADASYN,logistic_regression,0.7730531071623066,0.7920830690640536
+page-blocks0,none,No Resampling,random_forest,0.9345174973488866,0.8485267296859376
+page-blocks0,ros,Random Oversampling,random_forest,0.9336471989447792,0.8526891744155844
+page-blocks0,smote_tomek,SMOTE-Tomek,random_forest,0.9258422617863128,0.8527125716629831
+page-blocks0,smote,SMOTE,random_forest,0.9223859344965414,0.8524931940507793
+page-blocks0,adasyn,ADASYN,random_forest,0.9151290368262402,0.8306067860786032
+page-blocks0,smote_enn,SMOTE-ENN,random_forest,0.9108186285586148,0.8538477380740291
+page-blocks0,rus,Random Undersampling,random_forest,0.8858096828046744,0.8398818526242019
+page-blocks0,none,No Resampling,xgboost,0.9305993992368964,0.8426587053620859
+page-blocks0,ros,Random Oversampling,xgboost,0.9292832961964628,0.8468211500917328
+page-blocks0,smote_tomek,SMOTE-Tomek,xgboost,0.924544793534412,0.8468445473391314
+page-blocks0,smote,SMOTE,xgboost,0.9198000830756248,0.8466251697269276
+page-blocks0,adasyn,ADASYN,xgboost,0.9126112189393464,0.8247387617547515
+page-blocks0,smote_enn,SMOTE-ENN,xgboost,0.9076124348394996,0.8479797137501774
+page-blocks0,rus,Random Undersampling,xgboost,0.8968915464383742,0.8340138283003502
+pima,smote_enn,SMOTE-ENN,decision_tree,0.7012961643040045,0.8859836842435891
+pima,smote,SMOTE,decision_tree,0.6727250396830565,0.8853703699263241
+pima,ros,Random Oversampling,decision_tree,0.672168468981218,0.8862840909940735
+pima,none,No Resampling,decision_tree,0.6715751896474788,0.8824274684215097
+pima,rus,Random Undersampling,decision_tree,0.669339356295878,0.8705554104318153
+pima,smote_tomek,SMOTE-Tomek,decision_tree,0.6682263518132023,0.8860818872465255
+pima,adasyn,ADASYN,decision_tree,0.6617865135215293,0.865508180451085
+pima,none,No Resampling,logistic_regression,0.737580065691888,0.8649479411583162
+pima,smote,SMOTE,logistic_regression,0.7345373931140569,0.8678908426631307
+pima,smote_tomek,SMOTE-Tomek,logistic_regression,0.7312941855432118,0.8686023599833319
+pima,ros,Random Oversampling,logistic_regression,0.7257538594719376,0.86880456373088
+pima,rus,Random Undersampling,logistic_regression,0.7216912081288213,0.8530758831686218
+pima,adasyn,ADASYN,logistic_regression,0.7160610471606284,0.8480286531878916
+pima,smote_enn,SMOTE-ENN,logistic_regression,0.7090423757090424,0.8685041569803956
+pima,smote_enn,SMOTE-ENN,random_forest,0.7431733533861193,0.9147887066470234
+pima,adasyn,ADASYN,random_forest,0.7413054974030583,0.8943132028545193
+pima,smote_tomek,SMOTE-Tomek,random_forest,0.7390417940876657,0.9148869096499598
+pima,ros,Random Oversampling,random_forest,0.736935168812894,0.9150891133975078
+pima,none,No Resampling,random_forest,0.7354267425456938,0.911232490824944
+pima,smote,SMOTE,random_forest,0.7342173327019053,0.9141753923297584
+pima,rus,Random Undersampling,random_forest,0.733806849994401,0.8993604328352496
+pima,none,No Resampling,xgboost,0.7361390827659384,0.9059592413021793
+pima,smote_enn,SMOTE-ENN,xgboost,0.734670135583899,0.9095154571242587
+pima,ros,Random Oversampling,xgboost,0.7333994545003719,0.9098158638747431
+pima,adasyn,ADASYN,xgboost,0.7304530785692559,0.8890399533317546
+pima,smote,SMOTE,xgboost,0.7285240225075748,0.9089021428069938
+pima,rus,Random Undersampling,xgboost,0.7252920711470188,0.8940871833124849
+pima,smote_tomek,SMOTE-Tomek,xgboost,0.7234185404696195,0.909613660127195
+segment0,adasyn,ADASYN,decision_tree,0.989338507021434,1.0169480949643357
+segment0,ros,Random Oversampling,decision_tree,0.9876865762645723,1.0417135628874974
+segment0,smote_enn,SMOTE-ENN,decision_tree,0.9867904896103882,1.0419156840108532
+segment0,smote,SMOTE,decision_tree,0.98592751573094,1.0408776523074783
+segment0,smote_tomek,SMOTE-Tomek,decision_tree,0.98592751573094,1.041410882603393
+segment0,none,No Resampling,decision_tree,0.9849535772068706,1.0380781474272767
+segment0,rus,Random Undersampling,decision_tree,0.96510992100436,1.026791184095835
+segment0,none,No Resampling,logistic_regression,0.9946556506999986,1.0248690474783992
+segment0,smote,SMOTE,logistic_regression,0.9937886933150024,1.0276685523586009
+segment0,smote_tomek,SMOTE-Tomek,logistic_regression,0.9937886933150024,1.0282017826545158
+segment0,ros,Random Oversampling,logistic_regression,0.992910361224468,1.02850446293862
+segment0,smote_enn,SMOTE-ENN,logistic_regression,0.992910361224468,1.028706584061976
+segment0,rus,Random Undersampling,logistic_regression,0.9824970120549176,1.0135820841469578
+segment0,adasyn,ADASYN,logistic_regression,0.969473905420836,1.0037389950154585
+segment0,adasyn,ADASYN,random_forest,0.9964641357967948,1.0508713484898147
+segment0,none,No Resampling,random_forest,0.9946556506999986,1.0720014009527556
+segment0,ros,Random Oversampling,random_forest,0.9920342467565786,1.0756368164129764
+segment0,smote,SMOTE,random_forest,0.9920342467565786,1.0748009058329573
+segment0,smote_tomek,SMOTE-Tomek,random_forest,0.9920342467565786,1.075334136128872
+segment0,smote_enn,SMOTE-ENN,random_forest,0.9911379515305848,1.0758389375363322
+segment0,rus,Random Undersampling,random_forest,0.9851777136823574,1.060714437621314
+segment0,none,No Resampling,xgboost,0.992910361224468,1.0662727669871386
+segment0,ros,Random Oversampling,xgboost,0.9920342467565786,1.0699081824473593
+segment0,smote,SMOTE,xgboost,0.9911603394919876,1.06907227186734
+segment0,smote_tomek,SMOTE-Tomek,xgboost,0.9911603394919876,1.069605502163255
+segment0,smote_enn,SMOTE-ENN,xgboost,0.9911379515305848,1.0701103035707151
+segment0,adasyn,ADASYN,xgboost,0.9902640793691516,1.0451427145241976
+segment0,rus,Random Undersampling,xgboost,0.977469738383444,1.054985803655697
+shuttle-c0-vs-c4,none,No Resampling,decision_tree,1.0,1.0122707421471435
+shuttle-c0-vs-c4,ros,Random Oversampling,decision_tree,1.0,1.0158503840778277
+shuttle-c0-vs-c4,rus,Random Undersampling,decision_tree,1.0,0.9999096899213427
+shuttle-c0-vs-c4,smote,SMOTE,decision_tree,1.0,1.0149754815931933
+shuttle-c0-vs-c4,smote_tomek,SMOTE-Tomek,decision_tree,1.0,1.0155087118891082
+shuttle-c0-vs-c4,smote_enn,SMOTE-ENN,decision_tree,1.0,1.0159927568210465
+shuttle-c0-vs-c4,none,No Resampling,logistic_regression,0.9978126849919576,0.9998489612201145
+shuttle-c0-vs-c4,ros,Random Oversampling,logistic_regression,0.9978126849919576,1.0034286031507986
+shuttle-c0-vs-c4,rus,Random Undersampling,logistic_regression,0.9978126849919576,0.9874879089943137
+shuttle-c0-vs-c4,smote,SMOTE,logistic_regression,0.9978126849919576,1.0025537006661644
+shuttle-c0-vs-c4,smote_tomek,SMOTE-Tomek,logistic_regression,0.9978126849919576,1.0030869309620791
+shuttle-c0-vs-c4,smote_enn,SMOTE-ENN,logistic_regression,0.9978126849919576,1.0035709758940174
+shuttle-c0-vs-c4,none,No Resampling,random_forest,1.0,1.046504136398395
+shuttle-c0-vs-c4,ros,Random Oversampling,random_forest,1.0,1.0500837783290793
+shuttle-c0-vs-c4,rus,Random Undersampling,random_forest,1.0,1.0341430841725943
+shuttle-c0-vs-c4,smote,SMOTE,random_forest,1.0,1.0492088758444449
+shuttle-c0-vs-c4,smote_tomek,SMOTE-Tomek,random_forest,1.0,1.0497421061403598
+shuttle-c0-vs-c4,smote_enn,SMOTE-ENN,random_forest,1.0,1.050226151072298
+shuttle-c0-vs-c4,none,No Resampling,xgboost,1.0,1.0407354290911472
+shuttle-c0-vs-c4,ros,Random Oversampling,xgboost,1.0,1.0443150710218316
+shuttle-c0-vs-c4,smote,SMOTE,xgboost,1.0,1.0434401685371972
+shuttle-c0-vs-c4,smote_tomek,SMOTE-Tomek,xgboost,1.0,1.0439733988331121
+shuttle-c0-vs-c4,smote_enn,SMOTE-ENN,xgboost,1.0,1.0444574437650505
+shuttle-c0-vs-c4,rus,Random Undersampling,xgboost,0.991413145539906,1.0283743768653466
+vehicle2,none,No Resampling,decision_tree,0.9507111489807956,0.8063896985178429
+vehicle2,adasyn,ADASYN,decision_tree,0.9460100103020412,0.7885820281295961
+vehicle2,smote_tomek,SMOTE-Tomek,decision_tree,0.9398397257651316,0.8098163977817503
+vehicle2,ros,Random Oversampling,decision_tree,0.9374482432272566,0.8101133656178447
+vehicle2,smote,SMOTE,decision_tree,0.9369422270377974,0.8094161290672885
+vehicle2,smote_enn,SMOTE-ENN,decision_tree,0.9317872737665,0.8110274797874397
+vehicle2,rus,Random Undersampling,decision_tree,0.9204582651391162,0.7956463407375376
+vehicle2,ros,Random Oversampling,logistic_regression,0.9518336381687104,0.7970896774070241
+vehicle2,smote,SMOTE,logistic_regression,0.9428024453253436,0.7963924408564679
+vehicle2,smote_tomek,SMOTE-Tomek,logistic_regression,0.9428024453253436,0.7967927095709296
+vehicle2,none,No Resampling,logistic_regression,0.942049967139062,0.7933660103070223
+vehicle2,adasyn,ADASYN,logistic_regression,0.9417012547111304,0.7755583399187754
+vehicle2,smote_enn,SMOTE-ENN,logistic_regression,0.9330963205612388,0.798003791576619
+vehicle2,rus,Random Undersampling,logistic_regression,0.9291101055806938,0.7826226525267169
+vehicle2,none,No Resampling,random_forest,0.9860331250103184,0.8372457912014704
+vehicle2,smote_tomek,SMOTE-Tomek,random_forest,0.9845046998747188,0.8406724904653777
+vehicle2,smote_enn,SMOTE-ENN,random_forest,0.9830820609125795,0.8418835724710672
+vehicle2,smote,SMOTE,random_forest,0.9829293750126112,0.840272221750916
+vehicle2,adasyn,ADASYN,random_forest,0.9799465752550438,0.8194381208132235
+vehicle2,ros,Random Oversampling,random_forest,0.9783065798246064,0.8409694583014722
+vehicle2,rus,Random Undersampling,random_forest,0.959302791719449,0.826502433421165
+vehicle2,ros,Random Oversampling,xgboost,0.9815166808677984,0.8354315247747809
+vehicle2,smote_tomek,SMOTE-Tomek,xgboost,0.9799465752550438,0.8351345569386865
+vehicle2,smote,SMOTE,xgboost,0.978436127679098,0.8347342882242248
+vehicle2,none,No Resampling,xgboost,0.9767920335774832,0.8317078576747792
+vehicle2,adasyn,ADASYN,xgboost,0.9737762907181342,0.8139001872865324
+vehicle2,smote_enn,SMOTE-ENN,xgboost,0.9664111226611228,0.836345638944376
+vehicle2,rus,Random Undersampling,xgboost,0.965332007761012,0.8209644998944738
+vowel0,smote_enn,SMOTE-ENN,decision_tree,0.955700761934938,0.8974191392540584
+vowel0,adasyn,ADASYN,decision_tree,0.9543852629311008,0.8709162681103926
+vowel0,smote,SMOTE,decision_tree,0.952057453416149,0.8963999900212886
+vowel0,smote_tomek,SMOTE-Tomek,decision_tree,0.952057453416149,0.8969332203172034
+vowel0,none,No Resampling,decision_tree,0.949583476852029,0.8936867570948759
+vowel0,ros,Random Oversampling,decision_tree,0.9422213330460611,0.897533589683405
+vowel0,rus,Random Undersampling,decision_tree,0.8632552989560265,0.8884774276624942
+vowel0,none,No Resampling,logistic_regression,0.901351261399188,0.8861068154019798
+vowel0,adasyn,ADASYN,logistic_regression,0.8947250788106543,0.8633363264174965
+vowel0,smote_enn,SMOTE-ENN,logistic_regression,0.889589716801418,0.8898391975611623
+vowel0,smote,SMOTE,logistic_regression,0.8874715261958999,0.8888200483283923
+vowel0,smote_tomek,SMOTE-Tomek,logistic_regression,0.8874715261958999,0.8893532786243072
+vowel0,ros,Random Oversampling,logistic_regression,0.8862679992530422,0.8899536479905089
+vowel0,rus,Random Undersampling,logistic_regression,0.8288584791269704,0.8808974859695979
+vowel0,adasyn,ADASYN,random_forest,0.9939480809046026,0.9024934311784385
+vowel0,smote,SMOTE,random_forest,0.9877753031427864,0.9279771530893346
+vowel0,smote_tomek,SMOTE-Tomek,random_forest,0.9877753031427864,0.9285103833852493
+vowel0,ros,Random Oversampling,random_forest,0.98765169789154,0.929110752751451
+vowel0,smote_enn,SMOTE-ENN,random_forest,0.9847950876437002,0.9289963023221044
+vowel0,none,No Resampling,random_forest,0.9812878787878788,0.9252639201629218
+vowel0,rus,Random Undersampling,random_forest,0.8821346532140364,0.9200545907305401
+vowel0,adasyn,ADASYN,xgboost,0.9850906182564474,0.8971800613512149
+vowel0,smote,SMOTE,xgboost,0.9760287267080744,0.9226637832621108
+vowel0,smote_tomek,SMOTE-Tomek,xgboost,0.9760287267080744,0.9231970135580255
+vowel0,ros,Random Oversampling,xgboost,0.9755506062855728,0.9237973829242273
+vowel0,smote_enn,SMOTE-ENN,xgboost,0.9731631128616054,0.9236829324948806
+vowel0,none,No Resampling,xgboost,0.9714925990401356,0.9199505503356982
+vowel0,rus,Random Undersampling,xgboost,0.8990524046182502,0.9147412209033163
+wisconsin,none,No Resampling,decision_tree,0.953291215956496,0.8529619695847397
+wisconsin,smote_enn,SMOTE-ENN,decision_tree,0.9469512065958534,0.8568502233954713
+wisconsin,rus,Random Undersampling,decision_tree,0.939201851539514,0.8407474342542534
+wisconsin,ros,Random Oversampling,decision_tree,0.9370618465355308,0.8571104678668452
+wisconsin,adasyn,ADASYN,decision_tree,0.9370618465355308,0.8316724448799836
+wisconsin,smote,SMOTE,decision_tree,0.9351253799392096,0.8560645289812077
+wisconsin,smote_tomek,SMOTE-Tomek,decision_tree,0.9317429044600536,0.8565666771404138
+wisconsin,smote_enn,SMOTE-ENN,logistic_regression,0.9680602319491208,0.841711218175611
+wisconsin,none,No Resampling,logistic_regression,0.9677556415824756,0.8378229643648794
+wisconsin,smote,SMOTE,logistic_regression,0.9663060713908171,0.8409255237613472
+wisconsin,smote_tomek,SMOTE-Tomek,logistic_regression,0.9663060713908171,0.8414276719205535
+wisconsin,rus,Random Undersampling,logistic_regression,0.9648010719439292,0.825608429034393
+wisconsin,ros,Random Oversampling,logistic_regression,0.9647349843224874,0.8419714626469849
+wisconsin,adasyn,ADASYN,logistic_regression,0.9634355542624382,0.8165334396601233
+wisconsin,smote_tomek,SMOTE-Tomek,random_forest,0.9760671661141908,0.8884420908120413
+wisconsin,smote,SMOTE,random_forest,0.9744949400649764,0.887939942652835
+wisconsin,rus,Random Undersampling,random_forest,0.9728761215960828,0.8726228479258809
+wisconsin,none,No Resampling,random_forest,0.9695724860430164,0.8848373832563671
+wisconsin,ros,Random Oversampling,random_forest,0.9680009744944807,0.8889858815384727
+wisconsin,adasyn,ADASYN,random_forest,0.9664322407760628,0.863547858551611
+wisconsin,smote_enn,SMOTE-ENN,random_forest,0.9664322407760628,0.8887256370670988
+wisconsin,smote_enn,SMOTE-ENN,xgboost,0.9680009744944807,0.8833248120509134
+wisconsin,none,No Resampling,xgboost,0.9663060713908171,0.8794365582401816
+wisconsin,smote_tomek,SMOTE-Tomek,xgboost,0.9663060713908171,0.8830412657958558
+wisconsin,rus,Random Undersampling,xgboost,0.9648662551440328,0.8672220229096954
+wisconsin,smote,SMOTE,xgboost,0.9630971258089902,0.8825391176366496
+wisconsin,ros,Random Oversampling,xgboost,0.9615290738063498,0.8835850565222872
+wisconsin,adasyn,ADASYN,xgboost,0.9614559819413092,0.8581470335354255
+yeast1,none,No Resampling,decision_tree,0.6783822319268029,0.42145472194249817
+yeast1,adasyn,ADASYN,decision_tree,0.6761047788948022,0.40354128046609766
+yeast1,smote_enn,SMOTE-ENN,decision_tree,0.6692266519486466,0.42580396315153163
+yeast1,ros,Random Oversampling,decision_tree,0.6656797380736903,0.4242739737606464
+yeast1,smote,SMOTE,decision_tree,0.6622625871768428,0.42322801409929856
+yeast1,smote_tomek,SMOTE-Tomek,decision_tree,0.6567143302884564,0.42363659635010303
+yeast1,rus,Random Undersampling,decision_tree,0.638412174658439,0.4092802793363803
+yeast1,rus,Random Undersampling,logistic_regression,0.6832967627521116,0.39624647209885316
+yeast1,smote_tomek,SMOTE-Tomek,logistic_regression,0.6755602582478469,0.41060278911257575
+yeast1,smote,SMOTE,logistic_regression,0.6746708629636748,0.4101942068617713
+yeast1,ros,Random Oversampling,logistic_regression,0.6740783826066028,0.4112401665231192
+yeast1,adasyn,ADASYN,logistic_regression,0.6597866245804044,0.39050747322857043
+yeast1,smote_enn,SMOTE-ENN,logistic_regression,0.6547442319091643,0.4127701559140044
+yeast1,none,No Resampling,logistic_regression,0.6456136985304575,0.40842091470497094
+yeast1,smote_tomek,SMOTE-Tomek,random_forest,0.7315821634877828,0.45376373546882015
+yeast1,smote,SMOTE,random_forest,0.7221699756182514,0.45335515321801567
+yeast1,adasyn,ADASYN,random_forest,0.719338061465721,0.4336684195848148
+yeast1,ros,Random Oversampling,random_forest,0.7119179586044395,0.4544011128793635
+yeast1,rus,Random Undersampling,random_forest,0.7090095902119067,0.4394074184550975
+yeast1,none,No Resampling,random_forest,0.7063534771707733,0.4515818610612153
+yeast1,smote_enn,SMOTE-ENN,random_forest,0.692720050732675,0.45593110227024874
+yeast1,smote_tomek,SMOTE-Tomek,xgboost,0.7104116832431071,0.449134049041111
+yeast1,smote,SMOTE,xgboost,0.7095558474784593,0.4487254667903065
+yeast1,ros,Random Oversampling,xgboost,0.7092856210003918,0.44977142645165435
+yeast1,adasyn,ADASYN,xgboost,0.7056528925619834,0.4290387331571056
+yeast1,none,No Resampling,xgboost,0.6963947375929667,0.4469521746335061
+yeast1,smote_enn,SMOTE-ENN,xgboost,0.6818280165496453,0.4513014158425396
+yeast1,rus,Random Undersampling,xgboost,0.6790413302527188,0.43477773202738834

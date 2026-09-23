@@ -1,0 +1,13 @@
+dataset,classifier,number_of_resampling_strategies,actual_best_resampling,predicted_best_resampling,actual_best_macro_f1,predicted_choice_actual_macro_f1,regret,top1_correct,top3_correct,spearman,kendall,meta_model
+ecoli-0_vs_1,logistic_regression,7,smote_tomek,adasyn,0.9849695975951356,0.9702058504875406,0.014763747107594982,False,False,,,gradient_boosting
+glass1,logistic_regression,7,smote_enn,adasyn,0.61023457900858,0.5611950170874214,0.04903956192115866,False,False,,,gradient_boosting
+haberman,logistic_regression,7,smote_enn,adasyn,0.6425233644859814,0.5930851063829787,0.04943825810300262,False,False,,,gradient_boosting
+iris0,logistic_regression,6,none|ros|rus|smote|smote_tomek|smote_enn,ros,1.0,1.0,0.0,True,True,,,gradient_boosting
+page-blocks0,logistic_regression,7,none,none,0.847852850384496,0.847852850384496,0.0,True,True,,,gradient_boosting
+pima,logistic_regression,7,none,adasyn,0.737580065691888,0.7160610471606284,0.021519018531259704,False,True,,,gradient_boosting
+segment0,logistic_regression,7,none,none,0.9946556506999986,0.9946556506999986,0.0,True,True,,,gradient_boosting
+shuttle-c0-vs-c4,logistic_regression,6,none|ros|rus|smote|smote_tomek|smote_enn,none,0.9978126849919576,0.9978126849919576,0.0,True,True,,,gradient_boosting
+vehicle2,logistic_regression,7,ros,adasyn,0.9518336381687104,0.9417012547111304,0.010132383457579941,False,True,,,gradient_boosting
+vowel0,logistic_regression,7,none,none,0.901351261399188,0.901351261399188,0.0,True,True,,,gradient_boosting
+wisconsin,logistic_regression,7,smote_enn,adasyn,0.9680602319491208,0.9634355542624382,0.004624677686682621,False,False,,,gradient_boosting
+yeast1,logistic_regression,7,rus,adasyn,0.6832967627521116,0.6597866245804044,0.023510138171707218,False,False,,,gradient_boosting

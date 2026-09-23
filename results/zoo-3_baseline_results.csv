@@ -1,0 +1,2 @@
+dataset,resampling,classifier,samples,features,numeric_features,categorical_features,tn,fp,fn,tp,accuracy,balanced_accuracy,precision,recall,f1_class_0_math,f1_class_1_math,macro_f1_code,macro_f1_math,metric_error,verification,execution_time_seconds
+zoo-3,none,logistic_regression,101,16,0,16,96,0,4,1,0.9603960396039604,0.6,1.0,0.2,0.9795918367346939,0.33333333333333337,0.6564625850340136,0.6564625850340136,0.0,PASS,0.22277030000000053

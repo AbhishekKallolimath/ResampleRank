@@ -1,0 +1,8 @@
+dataset,resampling_code,resampling,classifier,samples,features,numeric_features,categorical_features,safe_k_neighbors,tn,fp,fn,tp,accuracy,balanced_accuracy,precision,recall,f1_class_0_math,f1_class_1_math,macro_f1_code,macro_f1_math,metric_error,verification,failure_reason,execution_time_seconds
+shuttle-c0-vs-c4,none,No Resampling,xgboost,1829,9,9,0,5,1706.0,0.0,0.0,123.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,PASS,,1.7991220999999982
+shuttle-c0-vs-c4,ros,Random Oversampling,xgboost,1829,9,9,0,5,1706.0,0.0,0.0,123.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,PASS,,1.6074095000000028
+shuttle-c0-vs-c4,smote,SMOTE,xgboost,1829,9,9,0,5,1706.0,0.0,0.0,123.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,PASS,,1.7851605000000035
+shuttle-c0-vs-c4,smote_tomek,SMOTE-Tomek,xgboost,1829,9,9,0,5,1706.0,0.0,0.0,123.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,PASS,,2.5000988999999976
+shuttle-c0-vs-c4,smote_enn,SMOTE-ENN,xgboost,1829,9,9,0,5,1706.0,0.0,0.0,123.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,PASS,,3.2915338999999975
+shuttle-c0-vs-c4,rus,Random Undersampling,xgboost,1829,9,9,0,5,1702.0,4.0,0.0,123.0,0.9978130125751777,0.9988276670574443,0.968503937007874,1.0,0.9988262910798122,0.9839999999999999,0.991413145539906,0.991413145539906,0.0,PASS,,1.3472319000000041
+shuttle-c0-vs-c4,adasyn,ADASYN,xgboost,1829,9,9,0,5,,,,,,,,,,,,,,NOT_APPLICABLE,Not any neigbours belong to the majority class. This case will induce a NaN case with a division by zero. ADASYN is not suited for this specific dataset. Use SMOTE instead.,0.48751550000000066

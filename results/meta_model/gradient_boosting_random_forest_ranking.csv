@@ -1,0 +1,13 @@
+dataset,classifier,number_of_resampling_strategies,actual_best_resampling,predicted_best_resampling,actual_best_macro_f1,predicted_choice_actual_macro_f1,regret,top1_correct,top3_correct,spearman,kendall,meta_model
+ecoli-0_vs_1,random_forest,7,none|ros|smote_enn,adasyn,0.9899488304093568,0.975099037917374,0.014849792491982816,False,True,,,gradient_boosting
+glass1,random_forest,7,ros,none,0.8572169916228037,0.8335967090576166,0.023620282565187112,False,True,,,gradient_boosting
+haberman,random_forest,7,smote_enn,none,0.655656819221685,0.529559748427673,0.126097070794012,False,False,,,gradient_boosting
+iris0,random_forest,6,none|ros|rus|smote|smote_tomek|smote_enn,smote_enn,1.0,1.0,0.0,True,True,,,gradient_boosting
+page-blocks0,random_forest,7,none,adasyn,0.9345174973488866,0.9151290368262402,0.01938846052264631,False,True,,,gradient_boosting
+pima,random_forest,7,smote_enn,adasyn,0.7431733533861193,0.7413054974030583,0.0018678559830610508,False,False,,,gradient_boosting
+segment0,random_forest,7,adasyn,none,0.9964641357967948,0.9946556506999986,0.0018084850967962085,False,False,,,gradient_boosting
+shuttle-c0-vs-c4,random_forest,6,none|ros|rus|smote|smote_tomek|smote_enn,none,1.0,1.0,0.0,True,True,,,gradient_boosting
+vehicle2,random_forest,7,none,adasyn,0.9860331250103184,0.9799465752550438,0.006086549755274562,False,True,,,gradient_boosting
+vowel0,random_forest,7,adasyn,adasyn,0.9939480809046026,0.9939480809046026,0.0,True,True,,,gradient_boosting
+wisconsin,random_forest,7,smote_tomek,adasyn,0.9760671661141908,0.9664322407760628,0.009634925338127931,False,False,,,gradient_boosting
+yeast1,random_forest,7,smote_tomek,adasyn,0.7315821634877828,0.719338061465721,0.012244102022061831,False,False,,,gradient_boosting

@@ -1,0 +1,8 @@
+dataset,resampling_code,resampling,classifier,samples,features,numeric_features,categorical_features,safe_k_neighbors,tn,fp,fn,tp,accuracy,balanced_accuracy,precision,recall,f1_class_0_math,f1_class_1_math,macro_f1_code,macro_f1_math,metric_error,verification,failure_reason,execution_time_seconds
+iris0,none,No Resampling,logistic_regression,150,4,4,0,5,100.0,0.0,0.0,50.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,PASS,,0.28102670000000174
+iris0,ros,Random Oversampling,logistic_regression,150,4,4,0,5,100.0,0.0,0.0,50.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,PASS,,0.21355099999999894
+iris0,rus,Random Undersampling,logistic_regression,150,4,4,0,5,100.0,0.0,0.0,50.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,PASS,,0.1476272999999999
+iris0,smote,SMOTE,logistic_regression,150,4,4,0,5,100.0,0.0,0.0,50.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,PASS,,0.20423040000000015
+iris0,smote_tomek,SMOTE-Tomek,logistic_regression,150,4,4,0,5,100.0,0.0,0.0,50.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,PASS,,0.19852960000000053
+iris0,smote_enn,SMOTE-ENN,logistic_regression,150,4,4,0,5,100.0,0.0,0.0,50.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,PASS,,0.26629039999999904
+iris0,adasyn,ADASYN,logistic_regression,150,4,4,0,5,,,,,,,,,,,,,,NOT_APPLICABLE,Not any neigbours belong to the majority class. This case will induce a NaN case with a division by zero. ADASYN is not suited for this specific dataset. Use SMOTE instead.,0.10582129999999879
