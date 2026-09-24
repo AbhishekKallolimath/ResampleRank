@@ -1,0 +1,13 @@
+dataset,samples,features,numeric_features,categorical_features,missing_values,duplicates,majority_count,minority_count,minority_proportion,imbalance_ratio
+ecoli-0_vs_1,220,7,7,0,0,0,143,77,0.35,1.857
+glass1,214,9,9,0,0,1,138,76,0.355,1.816
+haberman,306,3,3,0,0,23,225,81,0.265,2.778
+iris0,150,4,4,0,0,3,100,50,0.333,2.0
+page-blocks0,5472,10,10,0,0,79,4913,559,0.102,8.789
+pima,768,8,8,0,0,0,500,268,0.349,1.866
+segment0,2308,19,19,0,0,224,1979,329,0.143,6.015
+shuttle-c0-vs-c4,1829,9,9,0,0,0,1706,123,0.067,13.87
+vehicle2,846,18,18,0,0,0,628,218,0.258,2.881
+vowel0,988,13,13,0,0,0,898,90,0.091,9.978
+wisconsin,683,9,9,0,0,234,444,239,0.35,1.858
+yeast1,1484,8,8,0,0,31,1055,429,0.289,2.459
