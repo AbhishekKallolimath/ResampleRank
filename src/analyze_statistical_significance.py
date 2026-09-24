@@ -1,10 +1,9 @@
 from pathlib import Path
 import itertools
-import math
 
 import numpy as np
 import pandas as pd
-from scipy.stats import friedmanchisquare, wilcoxon
+from scipy.stats import friedmanchisquare
 
 
 RESULTS_DIR = Path("results")
@@ -105,9 +104,13 @@ def find_metric_column(df):
         if column in df.columns:
             return column
 
-    normalized = {str(c).lower().replace("-", "_"): c for c in df.columns}
+    normalized = {
+        str(column).lower().replace("-", "_"): column
+        for column in df.columns
+    }
 
     for column in [
+        "macro_f1_code",
         "macro_f1",
         "macro_f1_score",
         "f1_macro",
@@ -127,9 +130,7 @@ def load_results():
 
     for dataset in PRIMARY_DATASETS:
         for classifier in CLASSIFIERS:
-            filename = (
-                f"{dataset}_{classifier}_results.csv"
-            )
+            filename = f"{dataset}_{classifier}_results.csv"
             path = RESULTS_DIR / filename
 
             if not path.exists():
@@ -137,10 +138,15 @@ def load_results():
                 continue
 
             df = pd.read_csv(path)
+
             metric_column = find_metric_column(df)
 
             strategy_column = None
-            for candidate in ["resampling", "resampling_code"]:
+
+            for candidate in [
+                "resampling",
+                "resampling_code",
+            ]:
                 if candidate in df.columns:
                     strategy_column = candidate
                     break
@@ -153,7 +159,10 @@ def load_results():
             temp = pd.DataFrame({
                 "dataset": dataset,
                 "classifier": classifier,
-                "resampling": df[strategy_column].map(normalize_strategy),
+                "resampling": (
+                    df[strategy_column]
+                    .map(normalize_strategy)
+                ),
                 "macro_f1": pd.to_numeric(
                     df[metric_column],
                     errors="coerce"
@@ -163,6 +172,10 @@ def load_results():
             temp = temp[
                 temp["resampling"].isin(STRATEGIES)
             ]
+
+            temp = temp.dropna(
+                subset=["macro_f1"]
+            )
 
             records.append(temp)
 
@@ -176,15 +189,16 @@ def load_results():
             "No benchmark result files were found."
         )
 
-    result = pd.concat(
+    return pd.concat(
         records,
         ignore_index=True
     )
 
-    return result
 
-
-def make_pivot(df, classifier=None):
+def make_pivot(
+    df,
+    classifier=None
+):
     temp = df.copy()
 
     if classifier is not None:
@@ -220,7 +234,10 @@ def make_pivot(df, classifier=None):
     return pivot
 
 
-def friedman_analysis(pivot, classifier_name):
+def friedman_analysis(
+    pivot,
+    analysis_name
+):
     arrays = [
         pivot[strategy].values
         for strategy in STRATEGIES
@@ -228,7 +245,7 @@ def friedman_analysis(pivot, classifier_name):
 
     if len(pivot) < 2:
         return {
-            "analysis": classifier_name,
+            "analysis": analysis_name,
             "datasets": len(pivot),
             "strategies": len(STRATEGIES),
             "friedman_statistic": np.nan,
@@ -236,15 +253,20 @@ def friedman_analysis(pivot, classifier_name):
             "kendall_w": np.nan,
         }
 
-    statistic, p_value = friedmanchisquare(*arrays)
+    statistic, p_value = friedmanchisquare(
+        *arrays
+    )
 
     n = len(pivot)
     k = len(STRATEGIES)
 
-    kendall_w = statistic / (n * (k - 1))
+    kendall_w = (
+        statistic /
+        (n * (k - 1))
+    )
 
     return {
-        "analysis": classifier_name,
+        "analysis": analysis_name,
         "datasets": n,
         "strategies": k,
         "friedman_statistic": statistic,
@@ -253,18 +275,35 @@ def friedman_analysis(pivot, classifier_name):
     }
 
 
-def rank_biserial_effect(x, y):
-    diff = np.asarray(x) - np.asarray(y)
-    diff = diff[np.isfinite(diff)]
-    diff = diff[diff != 0]
+def rank_biserial_effect(
+    x,
+    y
+):
+    x = np.asarray(x, dtype=float)
+    y = np.asarray(y, dtype=float)
+
+    diff = x - y
+
+    diff = diff[
+        np.isfinite(diff)
+    ]
+
+    diff = diff[
+        diff != 0
+    ]
 
     if len(diff) == 0:
         return 0.0
 
     abs_diff = np.abs(diff)
+
     order = np.argsort(abs_diff)
 
-    ranks = np.empty(len(diff), dtype=float)
+    ranks = np.empty(
+        len(diff),
+        dtype=float
+    )
+
     sorted_abs = abs_diff[order]
 
     i = 0
@@ -274,31 +313,50 @@ def rank_biserial_effect(x, y):
 
         while (
             j + 1 < len(sorted_abs)
-            and sorted_abs[j + 1] == sorted_abs[i]
+            and sorted_abs[j + 1]
+            == sorted_abs[i]
         ):
             j += 1
 
-        average_rank = (i + j + 2) / 2.0
-        ranks[order[i:j + 1]] = average_rank
+        average_rank = (
+            i + j + 2
+        ) / 2.0
+
+        ranks[
+            order[i:j + 1]
+        ] = average_rank
+
         i = j + 1
 
-    positive_rank_sum = ranks[diff > 0].sum()
-    negative_rank_sum = ranks[diff < 0].sum()
+    positive_rank_sum = ranks[
+        diff > 0
+    ].sum()
+
+    negative_rank_sum = ranks[
+        diff < 0
+    ].sum()
 
     denominator = (
-        len(diff) * (len(diff) + 1)
+        len(diff) *
+        (len(diff) + 1)
     ) / 2.0
 
     if denominator == 0:
         return 0.0
 
     return (
-        positive_rank_sum - negative_rank_sum
+        positive_rank_sum -
+        negative_rank_sum
     ) / denominator
 
 
-def holm_adjust(p_values):
-    p_values = np.asarray(p_values, dtype=float)
+def holm_adjust(
+    p_values
+):
+    p_values = np.asarray(
+        p_values,
+        dtype=float
+    )
 
     adjusted = np.full(
         len(p_values),
@@ -306,20 +364,28 @@ def holm_adjust(p_values):
         dtype=float
     )
 
-    valid = np.isfinite(p_values)
+    valid = np.isfinite(
+        p_values
+    )
 
     if not np.any(valid):
         return adjusted
 
     indices = np.where(valid)[0]
+
     sorted_indices = indices[
-        np.argsort(p_values[valid])
+        np.argsort(
+            p_values[valid]
+        )
     ]
 
     m = len(sorted_indices)
+
     running_max = 0.0
 
-    for rank, idx in enumerate(sorted_indices):
+    for rank, idx in enumerate(
+        sorted_indices
+    ):
         adjusted_value = (
             m - rank
         ) * p_values[idx]
@@ -337,6 +403,62 @@ def holm_adjust(p_values):
     return adjusted
 
 
+def exact_paired_permutation_test(
+    x,
+    y
+):
+    x = np.asarray(
+        x,
+        dtype=float
+    )
+
+    y = np.asarray(
+        y,
+        dtype=float
+    )
+
+    diff = x - y
+
+    diff = diff[
+        np.isfinite(diff)
+    ]
+
+    diff = diff[
+        diff != 0
+    ]
+
+    if len(diff) == 0:
+        return np.nan, np.nan
+
+    observed = np.sum(diff)
+
+    n = len(diff)
+
+    total = 2 ** n
+    extreme = 0
+
+    for mask in range(total):
+        signs = np.ones(n)
+
+        for i in range(n):
+            if mask & (1 << i):
+                signs[i] = -1.0
+
+        statistic = np.sum(
+            signs * diff
+        )
+
+        if (
+            abs(statistic)
+            >= abs(observed)
+        ):
+            extreme += 1
+
+    p_value = extreme / total
+
+    return observed, p_value
+
+
 def pairwise_analysis(
     pivot,
     analysis_name
@@ -350,24 +472,29 @@ def pairwise_analysis(
         x = pivot[strategy_a].values
         y = pivot[strategy_b].values
 
-        try:
-            statistic, p_value = wilcoxon(
+        permutation_statistic, p_value = (
+            exact_paired_permutation_test(
                 x,
-                y,
-                zero_method="wilcox",
-                correction=False,
-                alternative="two-sided",
-                mode="auto",
+                y
             )
-        except ValueError:
-            statistic = np.nan
-            p_value = np.nan
+        )
 
-        effect = rank_biserial_effect(x, y)
+        effect = rank_biserial_effect(
+            x,
+            y
+        )
 
-        mean_a = float(np.mean(x))
-        mean_b = float(np.mean(y))
-        mean_difference = mean_a - mean_b
+        mean_a = float(
+            np.mean(x)
+        )
+
+        mean_b = float(
+            np.mean(y)
+        )
+
+        mean_difference = (
+            mean_a - mean_b
+        )
 
         rows.append({
             "analysis": analysis_name,
@@ -376,20 +503,32 @@ def pairwise_analysis(
             "datasets": len(x),
             "mean_a": mean_a,
             "mean_b": mean_b,
-            "mean_difference_a_minus_b": mean_difference,
-            "wilcoxon_statistic": statistic,
+            "mean_difference_a_minus_b": (
+                mean_difference
+            ),
+            "permutation_statistic": (
+                permutation_statistic
+            ),
             "raw_p_value": p_value,
             "rank_biserial_effect": effect,
         })
 
-    result = pd.DataFrame(rows)
+    result = pd.DataFrame(
+        rows
+    )
 
-    result["holm_adjusted_p_value"] = holm_adjust(
+    result[
+        "holm_adjusted_p_value"
+    ] = holm_adjust(
         result["raw_p_value"].values
     )
 
-    result["significant_alpha_0_05"] = (
-        result["holm_adjusted_p_value"] < 0.05
+    result[
+        "significant_alpha_0_05"
+    ] = (
+        result[
+            "holm_adjusted_p_value"
+        ] < 0.05
     )
 
     return result
@@ -399,14 +538,18 @@ def summary_analysis(
     pivot,
     analysis_name
 ):
-    baseline = pivot["No Resampling"]
+    baseline = pivot[
+        "No Resampling"
+    ]
 
     rows = []
 
     for strategy in STRATEGIES:
         values = pivot[strategy]
 
-        differences = values - baseline
+        differences = (
+            values - baseline
+        )
 
         wins = int(
             np.sum(
@@ -416,7 +559,8 @@ def summary_analysis(
 
         ties = int(
             np.sum(
-                np.abs(differences) <= 1e-12
+                np.abs(differences)
+                <= 1e-12
             )
         )
 
@@ -430,25 +574,41 @@ def summary_analysis(
             "analysis": analysis_name,
             "strategy": strategy,
             "datasets": len(values),
-            "mean_macro_f1": values.mean(),
-            "median_macro_f1": values.median(),
-            "std_macro_f1": values.std(ddof=1),
-            "mean_improvement_vs_baseline": differences.mean(),
-            "median_improvement_vs_baseline": differences.median(),
+            "mean_macro_f1": (
+                values.mean()
+            ),
+            "median_macro_f1": (
+                values.median()
+            ),
+            "std_macro_f1": (
+                values.std(ddof=1)
+            ),
+            "mean_improvement_vs_baseline": (
+                differences.mean()
+            ),
+            "median_improvement_vs_baseline": (
+                differences.median()
+            ),
             "wins_vs_baseline": wins,
             "ties_vs_baseline": ties,
             "losses_vs_baseline": losses,
             "improvement_rate_percent": (
-                100.0 * wins / len(values)
+                100.0 *
+                wins /
+                len(values)
             ),
         })
 
-    return pd.DataFrame(rows)
+    return pd.DataFrame(
+        rows
+    )
 
 
 def main():
     print("=" * 75)
-    print("ResampleRank - Statistical Significance Analysis")
+    print(
+        "ResampleRank - Statistical Significance Analysis"
+    )
     print("=" * 75)
 
     OUTPUT_DIR.mkdir(
@@ -456,20 +616,33 @@ def main():
         exist_ok=True
     )
 
-    print("\nLoading benchmark results...\n")
+    print(
+        "\nLoading benchmark results...\n"
+    )
 
     data = load_results()
 
-    print("\nTotal loaded rows:", len(data))
+    print(
+        "\nTotal loaded rows:",
+        len(data)
+    )
 
     all_friedman = []
     all_posthoc = []
     all_summary = []
 
     for classifier in CLASSIFIERS:
-        print("\n" + "-" * 75)
-        print(f"Classifier: {classifier}")
-        print("-" * 75)
+        print(
+            "\n" + "-" * 75
+        )
+
+        print(
+            f"Classifier: {classifier}"
+        )
+
+        print(
+            "-" * 75
+        )
 
         pivot = make_pivot(
             data,
@@ -477,15 +650,18 @@ def main():
         )
 
         print(
-            f"Complete datasets: {len(pivot)}"
+            f"Complete datasets: "
+            f"{len(pivot)}"
         )
 
         if len(pivot) == 0:
             continue
 
-        friedman_result = friedman_analysis(
-            pivot,
-            classifier
+        friedman_result = (
+            friedman_analysis(
+                pivot,
+                classifier
+            )
         )
 
         all_friedman.append(
@@ -512,18 +688,30 @@ def main():
             classifier
         )
 
-        all_posthoc.append(posthoc)
+        all_posthoc.append(
+            posthoc
+        )
 
         summary = summary_analysis(
             pivot,
             classifier
         )
 
-        all_summary.append(summary)
+        all_summary.append(
+            summary
+        )
 
-    print("\n" + "-" * 75)
-    print("Overall analysis across classifiers")
-    print("-" * 75)
+    print(
+        "\n" + "-" * 75
+    )
+
+    print(
+        "Overall analysis across classifiers"
+    )
+
+    print(
+        "-" * 75
+    )
 
     pooled = (
         data.groupby(
@@ -543,7 +731,9 @@ def main():
         if strategy not in pooled_pivot.columns:
             pooled_pivot[strategy] = np.nan
 
-    pooled_pivot = pooled_pivot[STRATEGIES]
+    pooled_pivot = pooled_pivot[
+        STRATEGIES
+    ]
 
     pooled_pivot = pooled_pivot.dropna(
         subset=STRATEGIES,
@@ -556,9 +746,12 @@ def main():
     )
 
     if len(pooled_pivot) > 0:
-        pooled_friedman = friedman_analysis(
-            pooled_pivot,
-            "ALL_CLASSIFIERS"
+
+        pooled_friedman = (
+            friedman_analysis(
+                pooled_pivot,
+                "ALL_CLASSIFIERS"
+            )
         )
 
         all_friedman.append(
@@ -580,18 +773,22 @@ def main():
             f"{pooled_friedman['kendall_w']:.6f}"
         )
 
-        pooled_posthoc = pairwise_analysis(
-            pooled_pivot,
-            "ALL_CLASSIFIERS"
+        pooled_posthoc = (
+            pairwise_analysis(
+                pooled_pivot,
+                "ALL_CLASSIFIERS"
+            )
         )
 
         all_posthoc.append(
             pooled_posthoc
         )
 
-        pooled_summary = summary_analysis(
-            pooled_pivot,
-            "ALL_CLASSIFIERS"
+        pooled_summary = (
+            summary_analysis(
+                pooled_pivot,
+                "ALL_CLASSIFIERS"
+            )
         )
 
         all_summary.append(
@@ -612,39 +809,57 @@ def main():
         ignore_index=True
     )
 
-    effect_rows = []
+    effect_df = posthoc_df[
+        [
+            "analysis",
+            "strategy_a",
+            "strategy_b",
+            "datasets",
+            "rank_biserial_effect",
+            "holm_adjusted_p_value",
+            "significant_alpha_0_05",
+        ]
+    ].copy()
 
-    for _, row in posthoc_df.iterrows():
-        effect_rows.append({
-            "analysis": row["analysis"],
-            "comparison": (
-                f"{row['strategy_a']} vs "
-                f"{row['strategy_b']}"
-            ),
-            "datasets": row["datasets"],
-            "rank_biserial_effect": row[
-                "rank_biserial_effect"
-            ],
-            "interpretation": (
-                "positive"
-                if row["rank_biserial_effect"] > 0
-                else (
-                    "negative"
-                    if row["rank_biserial_effect"] < 0
-                    else "zero"
-                )
-            ),
-            "holm_adjusted_p_value": row[
-                "holm_adjusted_p_value"
-            ],
-            "significant_alpha_0_05": row[
-                "significant_alpha_0_05"
-            ],
-        })
-
-    effect_df = pd.DataFrame(
-        effect_rows
+    effect_df[
+        "comparison"
+    ] = (
+        effect_df[
+            "strategy_a"
+        ]
+        + " vs "
+        + effect_df[
+            "strategy_b"
+        ]
     )
+
+    effect_df[
+        "interpretation"
+    ] = np.where(
+        effect_df[
+            "rank_biserial_effect"
+        ] > 0,
+        "positive",
+        np.where(
+            effect_df[
+                "rank_biserial_effect"
+            ] < 0,
+            "negative",
+            "zero"
+        )
+    )
+
+    effect_df = effect_df[
+        [
+            "analysis",
+            "comparison",
+            "datasets",
+            "rank_biserial_effect",
+            "interpretation",
+            "holm_adjusted_p_value",
+            "significant_alpha_0_05",
+        ]
+    ]
 
     friedman_path = (
         OUTPUT_DIR /
@@ -686,9 +901,17 @@ def main():
         index=False
     )
 
-    print("\n" + "=" * 75)
-    print("STATISTICAL ANALYSIS SUMMARY")
-    print("=" * 75)
+    print(
+        "\n" + "=" * 75
+    )
+
+    print(
+        "STATISTICAL ANALYSIS SUMMARY"
+    )
+
+    print(
+        "=" * 75
+    )
 
     print(
         friedman_df.to_string(
@@ -696,12 +919,25 @@ def main():
         )
     )
 
-    print("\nSaved files:")
+    print(
+        "\nSaved files:"
+    )
 
-    print(friedman_path.resolve())
-    print(posthoc_path.resolve())
-    print(effect_path.resolve())
-    print(summary_path.resolve())
+    print(
+        friedman_path.resolve()
+    )
+
+    print(
+        posthoc_path.resolve()
+    )
+
+    print(
+        effect_path.resolve()
+    )
+
+    print(
+        summary_path.resolve()
+    )
 
 
 if __name__ == "__main__":
