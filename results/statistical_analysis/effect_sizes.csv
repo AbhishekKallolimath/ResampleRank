@@ -1,0 +1,106 @@
+analysis,comparison,datasets,rank_biserial_effect,interpretation,holm_adjusted_p_value,significant_alpha_0_05
+logistic_regression,No Resampling vs Random Oversampling,10,-0.09090909090909091,negative,1.0,False
+logistic_regression,No Resampling vs Random Undersampling,10,0.05454545454545454,positive,1.0,False
+logistic_regression,No Resampling vs SMOTE,10,-0.05454545454545454,negative,1.0,False
+logistic_regression,No Resampling vs ADASYN,10,0.23636363636363636,positive,1.0,False
+logistic_regression,No Resampling vs SMOTE-Tomek,10,-0.12727272727272726,negative,1.0,False
+logistic_regression,No Resampling vs SMOTE-ENN,10,0.12727272727272726,positive,1.0,False
+logistic_regression,Random Oversampling vs Random Undersampling,10,0.45454545454545453,positive,1.0,False
+logistic_regression,Random Oversampling vs SMOTE,10,-0.38181818181818183,negative,1.0,False
+logistic_regression,Random Oversampling vs ADASYN,10,0.7818181818181819,positive,0.51953125,False
+logistic_regression,Random Oversampling vs SMOTE-Tomek,10,-0.2,negative,1.0,False
+logistic_regression,Random Oversampling vs SMOTE-ENN,10,0.15555555555555556,positive,1.0,False
+logistic_regression,Random Undersampling vs SMOTE,10,-0.6444444444444445,negative,1.0,False
+logistic_regression,Random Undersampling vs ADASYN,10,0.5636363636363636,positive,1.0,False
+logistic_regression,Random Undersampling vs SMOTE-Tomek,10,-0.7454545454545455,negative,0.66796875,False
+logistic_regression,Random Undersampling vs SMOTE-ENN,10,-0.23636363636363636,negative,1.0,False
+logistic_regression,SMOTE vs ADASYN,10,0.8545454545454545,positive,0.2734375,False
+logistic_regression,SMOTE vs SMOTE-Tomek,10,-0.047619047619047616,negative,1.0,False
+logistic_regression,SMOTE vs SMOTE-ENN,10,0.2,positive,1.0,False
+logistic_regression,ADASYN vs SMOTE-Tomek,10,-0.8909090909090909,negative,0.205078125,False
+logistic_regression,ADASYN vs SMOTE-ENN,10,-0.2727272727272727,negative,1.0,False
+logistic_regression,SMOTE-Tomek vs SMOTE-ENN,10,0.2,positive,1.0,False
+decision_tree,No Resampling vs Random Oversampling,10,0.6727272727272727,positive,0.90234375,False
+decision_tree,No Resampling vs Random Undersampling,10,1.0,positive,0.041015625,True
+decision_tree,No Resampling vs SMOTE,10,0.6727272727272727,positive,0.90234375,False
+decision_tree,No Resampling vs ADASYN,10,0.4909090909090909,positive,1.0,False
+decision_tree,No Resampling vs SMOTE-Tomek,10,0.9111111111111111,positive,0.259765625,False
+decision_tree,No Resampling vs SMOTE-ENN,10,0.01818181818181818,positive,1.0,False
+decision_tree,Random Oversampling vs Random Undersampling,10,0.8545454545454545,positive,0.259765625,False
+decision_tree,Random Oversampling vs SMOTE,10,0.4666666666666667,positive,1.0,False
+decision_tree,Random Oversampling vs ADASYN,10,-0.1111111111111111,negative,1.0,False
+decision_tree,Random Oversampling vs SMOTE-Tomek,10,0.2,positive,1.0,False
+decision_tree,Random Oversampling vs SMOTE-ENN,10,-0.2727272727272727,negative,1.0,False
+decision_tree,Random Undersampling vs SMOTE,10,-0.7454545454545455,negative,0.556640625,False
+decision_tree,Random Undersampling vs ADASYN,10,-0.8545454545454545,negative,0.259765625,False
+decision_tree,Random Undersampling vs SMOTE-Tomek,10,-0.8909090909090909,negative,0.1953125,False
+decision_tree,Random Undersampling vs SMOTE-ENN,10,-0.7818181818181819,negative,0.4375,False
+decision_tree,SMOTE vs ADASYN,10,-0.45454545454545453,negative,1.0,False
+decision_tree,SMOTE vs SMOTE-Tomek,10,-0.16666666666666666,negative,1.0,False
+decision_tree,SMOTE vs SMOTE-ENN,10,-0.5555555555555556,negative,1.0,False
+decision_tree,ADASYN vs SMOTE-Tomek,10,0.2,positive,1.0,False
+decision_tree,ADASYN vs SMOTE-ENN,10,-0.12727272727272726,negative,1.0,False
+decision_tree,SMOTE-Tomek vs SMOTE-ENN,10,-0.4222222222222222,negative,1.0,False
+random_forest,No Resampling vs Random Oversampling,10,0.022222222222222223,positive,1.0,False
+random_forest,No Resampling vs Random Undersampling,10,0.45454545454545453,positive,1.0,False
+random_forest,No Resampling vs SMOTE,10,0.01818181818181818,positive,1.0,False
+random_forest,No Resampling vs ADASYN,10,0.2727272727272727,positive,1.0,False
+random_forest,No Resampling vs SMOTE-Tomek,10,0.05454545454545454,positive,1.0,False
+random_forest,No Resampling vs SMOTE-ENN,10,0.4222222222222222,positive,1.0,False
+random_forest,Random Oversampling vs Random Undersampling,10,0.5272727272727272,positive,1.0,False
+random_forest,Random Oversampling vs SMOTE,10,0.15555555555555556,positive,1.0,False
+random_forest,Random Oversampling vs ADASYN,10,0.12727272727272726,positive,1.0,False
+random_forest,Random Oversampling vs SMOTE-Tomek,10,-0.3333333333333333,negative,1.0,False
+random_forest,Random Oversampling vs SMOTE-ENN,10,-0.022222222222222223,negative,1.0,False
+random_forest,Random Undersampling vs SMOTE,10,-0.6363636363636364,negative,1.0,False
+random_forest,Random Undersampling vs ADASYN,10,-0.4909090909090909,negative,1.0,False
+random_forest,Random Undersampling vs SMOTE-Tomek,10,-0.6727272727272727,negative,1.0,False
+random_forest,Random Undersampling vs SMOTE-ENN,10,-0.41818181818181815,negative,1.0,False
+random_forest,SMOTE vs ADASYN,10,0.38181818181818183,positive,1.0,False
+random_forest,SMOTE vs SMOTE-Tomek,10,-0.5,negative,1.0,False
+random_forest,SMOTE vs SMOTE-ENN,10,0.05454545454545454,positive,1.0,False
+random_forest,ADASYN vs SMOTE-Tomek,10,-0.45454545454545453,negative,1.0,False
+random_forest,ADASYN vs SMOTE-ENN,10,-0.1111111111111111,negative,1.0,False
+random_forest,SMOTE-Tomek vs SMOTE-ENN,10,0.12727272727272726,positive,1.0,False
+xgboost,No Resampling vs Random Oversampling,10,-0.3090909090909091,negative,1.0,False
+xgboost,No Resampling vs Random Undersampling,10,0.6,positive,1.0,False
+xgboost,No Resampling vs SMOTE,10,0.06666666666666667,positive,1.0,False
+xgboost,No Resampling vs ADASYN,10,0.3090909090909091,positive,1.0,False
+xgboost,No Resampling vs SMOTE-Tomek,10,0.2777777777777778,positive,1.0,False
+xgboost,No Resampling vs SMOTE-ENN,10,0.41818181818181815,positive,1.0,False
+xgboost,Random Oversampling vs Random Undersampling,10,0.7818181818181819,positive,0.546875,False
+xgboost,Random Oversampling vs SMOTE,10,0.5272727272727272,positive,1.0,False
+xgboost,Random Oversampling vs ADASYN,10,0.45454545454545453,positive,1.0,False
+xgboost,Random Oversampling vs SMOTE-Tomek,10,0.45454545454545453,positive,1.0,False
+xgboost,Random Oversampling vs SMOTE-ENN,10,0.34545454545454546,positive,1.0,False
+xgboost,Random Undersampling vs SMOTE,10,-0.8666666666666667,negative,0.4384645264933845,False
+xgboost,Random Undersampling vs ADASYN,10,-0.7818181818181819,negative,0.546875,False
+xgboost,Random Undersampling vs SMOTE-Tomek,10,-0.4666666666666667,negative,1.0,False
+xgboost,Random Undersampling vs SMOTE-ENN,10,-0.6363636363636364,negative,1.0,False
+xgboost,SMOTE vs ADASYN,10,0.2,positive,1.0,False
+xgboost,SMOTE vs SMOTE-Tomek,10,0.07142857142857142,positive,1.0,False
+xgboost,SMOTE vs SMOTE-ENN,10,0.24444444444444444,positive,1.0,False
+xgboost,ADASYN vs SMOTE-Tomek,10,0.2,positive,1.0,False
+xgboost,ADASYN vs SMOTE-ENN,10,0.2,positive,1.0,False
+xgboost,SMOTE-Tomek vs SMOTE-ENN,10,0.2,positive,1.0,False
+ALL_CLASSIFIERS,No Resampling vs Random Oversampling,10,-0.01818181818181818,negative,1.0,False
+ALL_CLASSIFIERS,No Resampling vs Random Undersampling,10,0.6,positive,1.0,False
+ALL_CLASSIFIERS,No Resampling vs SMOTE,10,0.09090909090909091,positive,1.0,False
+ALL_CLASSIFIERS,No Resampling vs ADASYN,10,0.34545454545454546,positive,1.0,False
+ALL_CLASSIFIERS,No Resampling vs SMOTE-Tomek,10,0.05454545454545454,positive,1.0,False
+ALL_CLASSIFIERS,No Resampling vs SMOTE-ENN,10,0.41818181818181815,positive,1.0,False
+ALL_CLASSIFIERS,Random Oversampling vs Random Undersampling,10,0.7090909090909091,positive,0.9765625,False
+ALL_CLASSIFIERS,Random Oversampling vs SMOTE,10,0.2727272727272727,positive,1.0,False
+ALL_CLASSIFIERS,Random Oversampling vs ADASYN,10,0.45454545454545453,positive,1.0,False
+ALL_CLASSIFIERS,Random Oversampling vs SMOTE-Tomek,10,0.23636363636363636,positive,1.0,False
+ALL_CLASSIFIERS,Random Oversampling vs SMOTE-ENN,10,0.12727272727272726,positive,1.0,False
+ALL_CLASSIFIERS,Random Undersampling vs SMOTE,10,-0.7090909090909091,negative,0.9765625,False
+ALL_CLASSIFIERS,Random Undersampling vs ADASYN,10,-0.6363636363636364,negative,1.0,False
+ALL_CLASSIFIERS,Random Undersampling vs SMOTE-Tomek,10,-0.8545454545454545,negative,0.287109375,False
+ALL_CLASSIFIERS,Random Undersampling vs SMOTE-ENN,10,-0.6,negative,1.0,False
+ALL_CLASSIFIERS,SMOTE vs ADASYN,10,0.38181818181818183,positive,1.0,False
+ALL_CLASSIFIERS,SMOTE vs SMOTE-Tomek,10,-0.2222222222222222,negative,1.0,False
+ALL_CLASSIFIERS,SMOTE vs SMOTE-ENN,10,0.05454545454545454,positive,1.0,False
+ALL_CLASSIFIERS,ADASYN vs SMOTE-Tomek,10,-0.45454545454545453,negative,1.0,False
+ALL_CLASSIFIERS,ADASYN vs SMOTE-ENN,10,-0.12727272727272726,negative,1.0,False
+ALL_CLASSIFIERS,SMOTE-Tomek vs SMOTE-ENN,10,0.12727272727272726,positive,1.0,False
