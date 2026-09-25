@@ -1,7 +1,11 @@
 from pathlib import Path
 import argparse
+import csv
+import io
 import math
+import re
 import time
+import zipfile
 
 import pandas as pd
 
@@ -22,17 +26,25 @@ from sklearn.preprocessing import OneHotEncoder, StandardScaler
 
 from xgboost import XGBClassifier
 
-from imblearn.over_sampling import RandomOverSampler, SMOTE, ADASYN
+from imblearn.over_sampling import (
+    RandomOverSampler,
+    SMOTE,
+    ADASYN,
+)
 from imblearn.under_sampling import RandomUnderSampler
 from imblearn.combine import SMOTETomek, SMOTEENN
 from imblearn.pipeline import Pipeline as ImbPipeline
 
 
 BASE_DIR = Path(__file__).resolve().parents[1]
+
 RAW_DIR = BASE_DIR / "data" / "raw"
 RESULTS_DIR = BASE_DIR / "results"
 
-RESULTS_DIR.mkdir(parents=True, exist_ok=True)
+RESULTS_DIR.mkdir(
+    parents=True,
+    exist_ok=True,
+)
 
 
 RESAMPLING_STRATEGIES = [
@@ -46,49 +58,87 @@ RESAMPLING_STRATEGIES = [
 ]
 
 
+CLASSIFIERS = [
+    "logistic_regression",
+    "decision_tree",
+    "random_forest",
+    "xgboost",
+]
+
+
 N_SPLITS = 5
 RANDOM_STATE = 42
 
 
-def read_keel_feature_types(dataset_name, feature_columns):
-    """
-    Read the original KEEL attribute definitions and determine
-    whether each feature is numeric or categorical.
+def resolve_input_file(input_file):
+    if input_file is None:
+        return None
 
-    If a KEEL .dat file is unavailable, all CSV features are
-    treated as numeric.
-    """
+    path = Path(input_file)
 
-    input_file = RAW_DIR / f"{dataset_name}.dat"
+    if path.is_absolute():
+        return path
 
-    if not input_file.exists():
-        return {
-            column: "numeric"
-            for column in feature_columns
-        }
+    return BASE_DIR / path
 
+
+def parse_keel_attribute_line(line):
+    parts = line.strip().split(
+        maxsplit=2
+    )
+
+    if len(parts) < 3:
+        return None, None
+
+    attribute_name = parts[1].strip()
+
+    if (
+        attribute_name.startswith("'")
+        and attribute_name.endswith("'")
+    ):
+        attribute_name = attribute_name[1:-1]
+
+    if (
+        attribute_name.startswith('"')
+        and attribute_name.endswith('"')
+    ):
+        attribute_name = attribute_name[1:-1]
+
+    definition = parts[2].strip()
+
+    return attribute_name, definition
+
+
+def read_keel_attribute_definitions(input_file):
     feature_types = {}
+    attribute_order = []
 
-    with open(input_file, "r", encoding="utf-8") as file:
+    with open(
+        input_file,
+        "r",
+        encoding="utf-8",
+    ) as file:
+
         for raw_line in file:
+
             line = raw_line.strip()
 
             if not line:
                 continue
 
-            if not line.lower().startswith("@attribute"):
+            if not line.lower().startswith(
+                "@attribute"
+            ):
                 continue
 
-            parts = line.split(maxsplit=2)
+            name, definition = (
+                parse_keel_attribute_line(line)
+            )
 
-            if len(parts) < 3:
+            if name is None:
                 continue
 
-            name = parts[1]
-            definition = parts[2].strip()
-
-            if name.lower() == "class":
-                continue
+            attribute_order.append(name)
 
             if (
                 definition.startswith("{")
@@ -97,41 +147,625 @@ def read_keel_feature_types(dataset_name, feature_columns):
                 feature_types[name] = "categorical"
 
             elif definition.lower().startswith(
-                ("real", "integer")
+                (
+                    "real",
+                    "integer",
+                    "numeric",
+                )
             ):
                 feature_types[name] = "numeric"
 
             else:
                 raise ValueError(
-                    f"Unsupported attribute definition "
+                    f"Unsupported KEEL attribute definition "
                     f"for '{name}': {definition}"
                 )
 
-    return feature_types
+    return (
+        feature_types,
+        attribute_order,
+    )
 
+def normalize_name(value):
+    value = str(value).lower().strip()
 
-def load_dataset(dataset_name):
-    feature_file = RAW_DIR / f"{dataset_name}.csv"
-    target_file = RAW_DIR / f"{dataset_name}_target.csv"
+    value = re.sub(
+        r"[^a-z0-9]+",
+        "",
+        value,
+    )
 
-    if not feature_file.exists():
-        raise FileNotFoundError(
-            f"Feature file not found: {feature_file}"
+    return value
+
+def find_keel_dat_file(dataset_name):
+    normalized_dataset = normalize_name(
+        dataset_name
+    )
+
+    candidates = []
+
+    for path in RAW_DIR.rglob("*"):
+
+        if not path.is_file():
+            continue
+
+        relative_parts = [
+            part.lower()
+            for part in path.relative_to(
+                RAW_DIR
+            ).parts
+        ]
+
+        if "__macosx" in relative_parts:
+            continue
+
+        if path.name.startswith("._"):
+            continue
+
+        if path.suffix.lower() != ".dat":
+            continue
+
+        normalized_stem = normalize_name(
+            path.stem
         )
 
-    if not target_file.exists():
-        raise FileNotFoundError(
-            f"Target file not found: {target_file}"
+        if normalized_stem == normalized_dataset:
+            candidates.append(path)
+
+    if not candidates:
+        return None
+
+    candidates.sort(
+        key=lambda p: (
+            len(p.parts),
+            str(p).lower(),
+        )
+    )
+
+    return candidates[0]
+
+
+def find_keel_zip_file(dataset_name):
+    normalized_dataset = normalize_name(
+        dataset_name
+    )
+
+    candidates = []
+
+    for path in RAW_DIR.rglob("*.zip"):
+
+        if not path.is_file():
+            continue
+
+        relative_parts = [
+            part.lower()
+            for part in path.relative_to(
+                RAW_DIR
+            ).parts
+        ]
+
+        if "__macosx" in relative_parts:
+            continue
+
+        if path.name.startswith("._"):
+            continue
+
+        normalized_stem = normalize_name(
+            path.stem
         )
 
-    X = pd.read_csv(feature_file)
-    y_df = pd.read_csv(target_file)
+        normalized_parent = normalize_name(
+            path.parent.name
+        )
+
+        if (
+            normalized_stem
+            == normalized_dataset
+            or
+            normalized_parent
+            == normalized_dataset
+        ):
+            candidates.append(path)
+
+    if not candidates:
+        return None
+
+    candidates.sort(
+        key=lambda p: (
+            0
+            if normalize_name(
+                p.stem
+            )
+            == normalized_dataset
+            else 1,
+            len(p.parts),
+            str(p).lower(),
+        )
+    )
+
+    return candidates[0]
+
+
+def read_keel_content(
+    content,
+    source_name,
+):
+    feature_types_all = {}
+    attribute_order = []
+    target_column = None
+
+    data_started = False
+    records = []
+
+    text = content.decode(
+        "utf-8",
+        errors="replace",
+    )
+
+    for raw_line in text.splitlines():
+
+        line = raw_line.strip()
+
+        if not line:
+            continue
+
+        lower = line.lower()
+
+        if lower == "@data":
+            data_started = True
+            continue
+
+        if not data_started:
+
+            if not lower.startswith(
+                "@attribute"
+            ):
+                continue
+
+            parts = line.split(
+                maxsplit=2
+            )
+
+            if len(parts) < 3:
+                continue
+
+            name = parts[1].strip()
+
+            definition = parts[2].strip()
+
+            if (
+                name.startswith("'")
+                and name.endswith("'")
+            ):
+                name = name[1:-1]
+
+            if (
+                name.startswith('"')
+                and name.endswith('"')
+            ):
+                name = name[1:-1]
+
+            attribute_order.append(
+                name
+            )
+
+            if (
+                definition.startswith("{")
+                and definition.endswith("}")
+            ):
+                feature_types_all[name] = (
+                    "categorical"
+                )
+            elif definition.lower().startswith(
+                (
+                    "real",
+                    "integer",
+                    "numeric",
+                )
+            ):
+                feature_types_all[name] = (
+                    "numeric"
+                )
+            else:
+                raise ValueError(
+                    f"Unsupported KEEL attribute "
+                    f"definition in {source_name}: "
+                    f"{definition}"
+                )
+
+            if name.lower() in {
+                "class",
+                "target",
+                "label",
+                "outcome",
+            }:
+                target_column = name
+
+            continue
+
+        if line.startswith("%"):
+            continue
+
+        reader = csv.reader(
+            [line],
+            skipinitialspace=True,
+        )
+
+        row = next(reader)
+
+        row = [
+            value.strip()
+            for value in row
+        ]
+
+        if len(row) != len(
+            attribute_order
+        ):
+            raise ValueError(
+                f"Invalid row length in "
+                f"{source_name}: expected "
+                f"{len(attribute_order)}, found "
+                f"{len(row)}"
+            )
+
+        records.append(row)
+
+    if not attribute_order:
+        raise ValueError(
+            f"No KEEL attributes found in "
+            f"{source_name}"
+        )
+
+    if target_column is None:
+        target_column = (
+            attribute_order[-1]
+        )
+
+    if not records:
+        raise ValueError(
+            f"No KEEL data rows found in "
+            f"{source_name}"
+        )
+
+    data = pd.DataFrame(
+        records,
+        columns=attribute_order,
+    )
+
+    feature_columns = [
+        column
+        for column in attribute_order
+        if column != target_column
+    ]
+
+    X = data[
+        feature_columns
+    ].copy()
+
+    y = (
+        data[target_column]
+        .astype(str)
+        .str.strip()
+    )
+
+    numeric_features = [
+        column
+        for column in feature_columns
+        if feature_types_all[column]
+        == "numeric"
+    ]
+
+    categorical_features = [
+        column
+        for column in feature_columns
+        if feature_types_all[column]
+        == "categorical"
+    ]
+
+    for column in numeric_features:
+
+        X[column] = pd.to_numeric(
+            X[column],
+            errors="coerce",
+        )
+
+    for column in categorical_features:
+
+        X[column] = (
+            X[column]
+            .astype(str)
+            .str.strip()
+        )
+
+    return (
+        X,
+        y,
+        numeric_features,
+        categorical_features,
+        target_column,
+    )
+
+
+def load_keel_dataset(dataset_name):
+
+    dat_file = find_keel_dat_file(
+        dataset_name
+    )
+
+    if dat_file is not None:
+
+        with open(
+            dat_file,
+            "rb",
+        ) as file:
+
+            content = file.read()
+
+        return read_keel_content(
+            content,
+            str(
+                dat_file.relative_to(
+                    BASE_DIR
+                )
+            ),
+        )
+
+    zip_file = find_keel_zip_file(
+        dataset_name
+    )
+
+    if zip_file is None:
+        raise FileNotFoundError(
+            f"No KEEL .dat or ZIP file found "
+            f"for dataset '{dataset_name}'."
+        )
+
+    with zipfile.ZipFile(
+        zip_file,
+        "r",
+    ) as archive:
+
+        members = []
+
+        normalized_dataset = normalize_name(
+            dataset_name
+        )
+
+        for member in archive.infolist():
+
+            member_name = member.filename
+
+            if member.is_dir():
+                continue
+
+            if "__MACOSX/" in member_name:
+                continue
+
+            member_base = Path(
+                member_name
+            ).name
+
+            if member_base.startswith("._"):
+                continue
+
+            if not member_base.lower().endswith(
+                ".dat"
+            ):
+                continue
+
+            normalized_member = normalize_name(
+                Path(
+                    member_base
+                ).stem
+            )
+
+            if (
+                normalized_member
+                == normalized_dataset
+            ):
+                members.append(
+                    member
+                )
+
+        if not members:
+
+            for member in archive.infolist():
+
+                if member.is_dir():
+                    continue
+
+                member_name = member.filename
+
+                if "__MACOSX/" in member_name:
+                    continue
+
+                member_base = Path(
+                    member_name
+                ).name
+
+                if member_base.startswith("._"):
+                    continue
+
+                if member_base.lower().endswith(
+                    ".dat"
+                ):
+                    members.append(
+                        member
+                    )
+
+        if not members:
+            raise FileNotFoundError(
+                f"No .dat file found inside "
+                f"{zip_file}"
+            )
+
+        member = members[0]
+
+        content = archive.read(
+            member
+        )
+
+        source_name = (
+            f"{zip_file.relative_to(BASE_DIR)}"
+            f" -> {member.filename}"
+        )
+
+        return read_keel_content(
+            content,
+            source_name,
+        )
+
+
+def infer_csv_feature_types(X):
+    numeric_features = []
+    categorical_features = []
+
+    for column in X.columns:
+
+        series = X[column]
+
+        if pd.api.types.is_numeric_dtype(
+            series
+        ):
+            numeric_features.append(
+                column
+            )
+            continue
+
+        converted = pd.to_numeric(
+            series,
+            errors="coerce",
+        )
+
+        non_missing_original = (
+            series.notna().sum()
+        )
+
+        non_missing_converted = (
+            converted.notna().sum()
+        )
+
+        if (
+            non_missing_original > 0
+            and
+            non_missing_original
+            == non_missing_converted
+        ):
+            X[column] = converted
+            numeric_features.append(
+                column
+            )
+        else:
+            X[column] = (
+                series
+                .astype(str)
+                .str.strip()
+            )
+
+            categorical_features.append(
+                column
+            )
+
+    return (
+        numeric_features,
+        categorical_features,
+    )
+
+
+def load_csv_dataset(
+    dataset_name,
+    input_file=None,
+    target_column=None,
+):
+    if input_file is not None:
+
+        feature_file = resolve_input_file(
+            input_file
+        )
+
+        if not feature_file.exists():
+            raise FileNotFoundError(
+                f"Input dataset file not found: "
+                f"{feature_file}"
+            )
+
+        data = pd.read_csv(
+            feature_file
+        )
+
+        if target_column is None:
+            raise ValueError(
+                "For a single CSV input file, "
+                "--target-column must be provided."
+            )
+
+        if target_column not in data.columns:
+            raise ValueError(
+                f"Target column '{target_column}' "
+                f"not found in {feature_file.name}.\n"
+                f"Available columns: "
+                f"{list(data.columns)}"
+            )
+
+        y = (
+            data[target_column]
+            .astype(str)
+            .str.strip()
+        )
+
+        X = data.drop(
+            columns=[target_column]
+        ).copy()
+
+        return (
+            X,
+            y,
+            target_column,
+        )
+
+    feature_file = (
+        RAW_DIR
+        / f"{dataset_name}.csv"
+    )
+
+    target_file = (
+        RAW_DIR
+        / f"{dataset_name}_target.csv"
+    )
+
+    if (
+        not feature_file.exists()
+        or not target_file.exists()
+    ):
+        raise FileNotFoundError(
+            f"Could not find the standardized CSV files "
+            f"for dataset '{dataset_name}'.\n\n"
+            f"Expected:\n"
+            f"  {feature_file}\n"
+            f"  {target_file}\n\n"
+            f"Alternatively provide:\n"
+            f"  --input-file <csv>\n"
+            f"  --target-column <column>"
+        )
+
+    X = pd.read_csv(
+        feature_file
+    )
+
+    y_df = pd.read_csv(
+        target_file
+    )
 
     if y_df.shape[1] != 1:
         raise ValueError(
-            f"Expected one target column, found "
+            f"Expected one target column in "
+            f"{target_file.name}, found "
             f"{y_df.shape[1]}"
         )
+
+    target_column = (
+        y_df.columns[0]
+    )
 
     y = (
         y_df.iloc[:, 0]
@@ -139,75 +773,196 @@ def load_dataset(dataset_name):
         .str.strip()
     )
 
-    class_counts = y.value_counts()
+    return (
+        X,
+        y,
+        target_column,
+    )
+
+
+def validate_binary_target(y):
+    if y.isnull().any():
+        raise ValueError(
+            "Target contains missing values."
+        )
+
+    class_counts = (
+        y.value_counts()
+    )
 
     if len(class_counts) != 2:
         raise ValueError(
-            f"Expected binary classification, found "
-            f"{len(class_counts)} classes."
+            "Expected binary classification, "
+            f"found {len(class_counts)} classes: "
+            f"{list(class_counts.index)}"
         )
 
-    majority_class = class_counts.idxmax()
-    minority_class = class_counts.idxmin()
+    minority_count = int(
+        class_counts.min()
+    )
+
+    if minority_count < N_SPLITS:
+        raise ValueError(
+            f"Minority class has only "
+            f"{minority_count} samples, but "
+            f"{N_SPLITS}-fold stratified CV requires "
+            f"at least {N_SPLITS} samples."
+        )
+
+    majority_class = (
+        class_counts.idxmax()
+    )
+
+    minority_class = (
+        class_counts.idxmin()
+    )
 
     label_mapping = {
         majority_class: 0,
         minority_class: 1,
     }
 
-    y = y.map(label_mapping).astype(int)
-
-    feature_types = read_keel_feature_types(
-        dataset_name,
-        X.columns,
+    y_encoded = (
+        y.map(label_mapping)
+        .astype(int)
     )
 
-    missing_definitions = [
+    return (
+        y_encoded,
+        majority_class,
+        minority_class,
+        class_counts,
+    )
+
+
+def finalize_feature_types(
+    X,
+    numeric_features,
+    categorical_features,
+):
+    X = X.copy()
+
+    missing_columns = [
         column
         for column in X.columns
-        if column not in feature_types
+        if (
+            column not in numeric_features
+            and
+            column not in categorical_features
+        )
     ]
 
-    if missing_definitions:
+    if missing_columns:
         raise ValueError(
-            "Missing KEEL feature definitions for columns: "
-            f"{missing_definitions}"
+            "Could not determine feature type for: "
+            f"{missing_columns}"
         )
 
-    numeric_features = [
-        column
-        for column in X.columns
-        if feature_types[column] == "numeric"
-    ]
+    for column in numeric_features:
 
-    categorical_features = [
-        column
-        for column in X.columns
-        if feature_types[column] == "categorical"
-    ]
+        X[column] = pd.to_numeric(
+            X[column],
+            errors="coerce",
+        )
 
     for column in categorical_features:
+
         X[column] = (
             X[column]
             .astype(str)
             .str.strip()
         )
 
-    for column in numeric_features:
-        X[column] = pd.to_numeric(
-            X[column],
-            errors="coerce",
-        )
-
     if X.isnull().any().any():
-        missing_columns = X.columns[
-            X.isnull().any()
-        ].tolist()
+
+        missing_columns = (
+            X.columns[
+                X.isnull().any()
+            ].tolist()
+        )
 
         raise ValueError(
             f"Missing/invalid feature values in: "
             f"{missing_columns}"
         )
+
+    return X
+
+
+def load_dataset(
+    dataset_name,
+    input_file=None,
+    target_column=None,
+):
+    dat_file = find_keel_dat_file(
+        dataset_name
+    )
+
+    zip_file = find_keel_zip_file(
+        dataset_name
+    )
+
+    if (
+        input_file is None
+        and (
+            dat_file is not None
+            or zip_file is not None
+        )
+    ):
+
+        (
+            X,
+            y,
+            numeric_features,
+            categorical_features,
+            detected_target_column,
+        ) = load_keel_dataset(
+            dataset_name
+        )
+
+        target_column = (
+            target_column
+            or detected_target_column
+        )
+
+    else:
+
+        (
+            X,
+            y,
+            detected_target_column,
+        ) = load_csv_dataset(
+            dataset_name,
+            input_file=input_file,
+            target_column=target_column,
+        )
+
+        target_column = (
+            target_column
+            or detected_target_column
+        )
+
+        (
+            numeric_features,
+            categorical_features,
+        ) = infer_csv_feature_types(
+            X
+        )
+
+    X = finalize_feature_types(
+        X,
+        numeric_features,
+        categorical_features,
+    )
+
+    (
+        y,
+        majority_class,
+        minority_class,
+        class_counts,
+    ) = validate_binary_target(
+        y
+    )
 
     return (
         X,
@@ -216,6 +971,80 @@ def load_dataset(dataset_name):
         minority_class,
         numeric_features,
         categorical_features,
+        target_column,
+        class_counts,
+    )
+    keel_file = (
+        RAW_DIR
+        / f"{dataset_name}.dat"
+    )
+
+    if (
+        input_file is None
+        and keel_file.exists()
+    ):
+        (
+            X,
+            y,
+            numeric_features,
+            categorical_features,
+            detected_target_column,
+        ) = load_keel_dataset(
+            dataset_name
+        )
+
+        target_column = (
+            target_column
+            or detected_target_column
+        )
+
+    else:
+        (
+            X,
+            y,
+            detected_target_column,
+        ) = load_csv_dataset(
+            dataset_name,
+            input_file=input_file,
+            target_column=target_column,
+        )
+
+        target_column = (
+            target_column
+            or detected_target_column
+        )
+
+        (
+            numeric_features,
+            categorical_features,
+        ) = infer_csv_feature_types(
+            X
+        )
+
+    X = finalize_feature_types(
+        X,
+        numeric_features,
+        categorical_features,
+    )
+
+    (
+        y,
+        majority_class,
+        minority_class,
+        class_counts,
+    ) = validate_binary_target(
+        y
+    )
+
+    return (
+        X,
+        y,
+        majority_class,
+        minority_class,
+        numeric_features,
+        categorical_features,
+        target_column,
+        class_counts,
     )
 
 
@@ -226,6 +1055,7 @@ def build_preprocessor(
     transformers = []
 
     if numeric_features:
+
         transformers.append(
             (
                 "numeric",
@@ -235,13 +1065,22 @@ def build_preprocessor(
         )
 
     if categorical_features:
+
+        try:
+            encoder = OneHotEncoder(
+                handle_unknown="ignore",
+                sparse_output=False,
+            )
+        except TypeError:
+            encoder = OneHotEncoder(
+                handle_unknown="ignore",
+                sparse=False,
+            )
+
         transformers.append(
             (
                 "categorical",
-                OneHotEncoder(
-                    handle_unknown="ignore",
-                    sparse=False,
-                ),
+                encoder,
                 categorical_features,
             )
         )
@@ -258,12 +1097,9 @@ def build_preprocessor(
 
 
 def get_safe_k_neighbors(y):
-    """
-    Select a k-nearest-neighbor value that is safe for
-    all training folds.
-    """
-
-    class_counts = y.value_counts()
+    class_counts = (
+        y.value_counts()
+    )
 
     minority_count = int(
         class_counts.min()
@@ -272,7 +1108,8 @@ def get_safe_k_neighbors(y):
     minimum_training_minority = (
         minority_count
         - math.ceil(
-            minority_count / N_SPLITS
+            minority_count
+            / N_SPLITS
         )
     )
 
@@ -281,24 +1118,32 @@ def get_safe_k_neighbors(y):
         minimum_training_minority - 1,
     )
 
-    safe_k = max(1, safe_k)
+    safe_k = max(
+        1,
+        safe_k,
+    )
 
     return safe_k
 
 
-def build_classifier(classifier_name):
+def build_classifier(
+    classifier_name
+):
     if classifier_name == "logistic_regression":
+
         return LogisticRegression(
             max_iter=1000,
             random_state=RANDOM_STATE,
         )
 
     if classifier_name == "decision_tree":
+
         return DecisionTreeClassifier(
             random_state=RANDOM_STATE,
         )
 
     if classifier_name == "random_forest":
+
         return RandomForestClassifier(
             n_estimators=100,
             random_state=RANDOM_STATE,
@@ -306,6 +1151,7 @@ def build_classifier(classifier_name):
         )
 
     if classifier_name == "xgboost":
+
         return XGBClassifier(
             n_estimators=100,
             max_depth=4,
@@ -315,11 +1161,11 @@ def build_classifier(classifier_name):
             random_state=RANDOM_STATE,
             n_jobs=-1,
             eval_metric="logloss",
-            use_label_encoder=False,
         )
 
     raise ValueError(
-        f"Unknown classifier: {classifier_name}"
+        f"Unknown classifier: "
+        f"{classifier_name}"
     )
 
 
@@ -327,39 +1173,38 @@ def build_resampler(
     resampling_code,
     y,
 ):
-    """
-    Build a fresh resampler for each experiment.
-
-    SMOTE/ADASYN-family methods use a safe neighbor count
-    so very small minority classes do not fail because of
-    an invalid neighbor count.
-    """
-
-    k_neighbors = get_safe_k_neighbors(y)
+    k_neighbors = (
+        get_safe_k_neighbors(y)
+    )
 
     if resampling_code == "ros":
+
         return RandomOverSampler(
-            random_state=RANDOM_STATE
+            random_state=RANDOM_STATE,
         )
 
     if resampling_code == "rus":
+
         return RandomUnderSampler(
-            random_state=RANDOM_STATE
+            random_state=RANDOM_STATE,
         )
 
     if resampling_code == "smote":
+
         return SMOTE(
             random_state=RANDOM_STATE,
             k_neighbors=k_neighbors,
         )
 
     if resampling_code == "adasyn":
+
         return ADASYN(
             random_state=RANDOM_STATE,
             n_neighbors=k_neighbors,
         )
 
     if resampling_code == "smote_tomek":
+
         return SMOTETomek(
             random_state=RANDOM_STATE,
             smote=SMOTE(
@@ -369,6 +1214,7 @@ def build_resampler(
         )
 
     if resampling_code == "smote_enn":
+
         return SMOTEENN(
             random_state=RANDOM_STATE,
             smote=SMOTE(
@@ -410,6 +1256,7 @@ def build_pipeline(
     ]
 
     if resampling_code != "none":
+
         resampler = build_resampler(
             resampling_code,
             y,
@@ -448,31 +1295,44 @@ def calculate_macro_f1_mathematically(cm):
         fn_value,
     ):
         precision_denominator = (
-            tp_value + fp_value
+            tp_value
+            + fp_value
         )
 
         recall_denominator = (
-            tp_value + fn_value
+            tp_value
+            + fn_value
         )
 
         precision = (
-            tp_value / precision_denominator
+            tp_value
+            / precision_denominator
             if precision_denominator != 0
             else 0.0
         )
 
         recall = (
-            tp_value / recall_denominator
+            tp_value
+            / recall_denominator
             if recall_denominator != 0
             else 0.0
         )
 
-        if precision + recall == 0:
+        if (
+            precision
+            + recall
+            == 0
+        ):
             return 0.0
 
         return (
-            2 * precision * recall
-            / (precision + recall)
+            2
+            * precision
+            * recall
+            / (
+                precision
+                + recall
+            )
         )
 
     f1_class_0 = calculate_f1(
@@ -488,7 +1348,8 @@ def calculate_macro_f1_mathematically(cm):
     )
 
     macro_f1 = (
-        f1_class_0 + f1_class_1
+        f1_class_0
+        + f1_class_1
     ) / 2
 
     return (
@@ -514,7 +1375,9 @@ def run_classifier_benchmark(
 
     results = []
 
-    safe_k = get_safe_k_neighbors(y)
+    safe_k = (
+        get_safe_k_neighbors(y)
+    )
 
     print("\n")
     print("=" * 75)
@@ -545,7 +1408,8 @@ def run_classifier_benchmark(
     ) in RESAMPLING_STRATEGIES:
 
         print(
-            f"\nRunning: {strategy_name}"
+            f"\nRunning: "
+            f"{strategy_name}"
         )
 
         model = build_pipeline(
@@ -556,9 +1420,12 @@ def run_classifier_benchmark(
             y,
         )
 
-        start_time = time.perf_counter()
+        start_time = (
+            time.perf_counter()
+        )
 
         try:
+
             y_pred = cross_val_predict(
                 model,
                 X,
@@ -578,7 +1445,9 @@ def run_classifier_benchmark(
                 labels=[0, 1],
             )
 
-            tn, fp, fn, tp = cm.ravel()
+            tn, fp, fn, tp = (
+                cm.ravel()
+            )
 
             accuracy = accuracy_score(
                 y,
@@ -650,14 +1519,21 @@ def run_classifier_benchmark(
             )
 
         except Exception as error:
+
             elapsed_time = (
                 time.perf_counter()
                 - start_time
             )
 
             if strategy_code != "none":
-                verification = "NOT_APPLICABLE"
-                failure_reason = str(error)
+
+                verification = (
+                    "NOT_APPLICABLE"
+                )
+
+                failure_reason = str(
+                    error
+                )
 
                 tn = float("nan")
                 fp = float("nan")
@@ -665,15 +1541,27 @@ def run_classifier_benchmark(
                 tp = float("nan")
 
                 accuracy = float("nan")
-                balanced_accuracy = float("nan")
+                balanced_accuracy = float(
+                    "nan"
+                )
                 precision = float("nan")
                 recall = float("nan")
 
-                f1_class_0_math = float("nan")
-                f1_class_1_math = float("nan")
-                macro_f1_code = float("nan")
-                macro_f1_math = float("nan")
-                metric_error = float("nan")
+                f1_class_0_math = float(
+                    "nan"
+                )
+                f1_class_1_math = float(
+                    "nan"
+                )
+                macro_f1_code = float(
+                    "nan"
+                )
+                macro_f1_math = float(
+                    "nan"
+                )
+                metric_error = float(
+                    "nan"
+                )
 
                 print(
                     "Status            : "
@@ -716,14 +1604,30 @@ def run_classifier_benchmark(
                 "balanced_accuracy": balanced_accuracy,
                 "precision": precision,
                 "recall": recall,
-                "f1_class_0_math": f1_class_0_math,
-                "f1_class_1_math": f1_class_1_math,
-                "macro_f1_code": macro_f1_code,
-                "macro_f1_math": macro_f1_math,
-                "metric_error": metric_error,
-                "verification": verification,
-                "failure_reason": failure_reason,
-                "execution_time_seconds": elapsed_time,
+                "f1_class_0_math": (
+                    f1_class_0_math
+                ),
+                "f1_class_1_math": (
+                    f1_class_1_math
+                ),
+                "macro_f1_code": (
+                    macro_f1_code
+                ),
+                "macro_f1_math": (
+                    macro_f1_math
+                ),
+                "metric_error": (
+                    metric_error
+                ),
+                "verification": (
+                    verification
+                ),
+                "failure_reason": (
+                    failure_reason
+                ),
+                "execution_time_seconds": (
+                    elapsed_time
+                ),
             }
         )
 
@@ -731,15 +1635,20 @@ def run_classifier_benchmark(
         results
     )
 
-    results_df = results_df.sort_values(
-        by="macro_f1_math",
-        ascending=False,
-        na_position="last",
-    ).reset_index(drop=True)
+    results_df = (
+        results_df
+        .sort_values(
+            by="macro_f1_math",
+            ascending=False,
+            na_position="last",
+        )
+        .reset_index(drop=True)
+    )
 
     result_file = (
         RESULTS_DIR
-        / f"{dataset_name}_{classifier_name}_results.csv"
+        / f"{dataset_name}_"
+        f"{classifier_name}_results.csv"
     )
 
     results_df.to_csv(
@@ -766,14 +1675,35 @@ def main():
         "--dataset",
         required=True,
         help=(
-            "Dataset name, such as "
-            "pima, zoo-3, or abalone9-18."
+            "Dataset name, for example "
+            "pima, glass0, banknote, etc."
+        ),
+    )
+
+    parser.add_argument(
+        "--input-file",
+        default=None,
+        help=(
+            "Optional CSV file. Use this when "
+            "the dataset is stored as a single "
+            "CSV containing both features and target."
+        ),
+    )
+
+    parser.add_argument(
+        "--target-column",
+        default=None,
+        help=(
+            "Target column name for a single CSV "
+            "input file."
         ),
     )
 
     args = parser.parse_args()
 
-    dataset_name = args.dataset
+    dataset_name = (
+        args.dataset.strip()
+    )
 
     (
         X,
@@ -782,7 +1712,13 @@ def main():
         minority_class,
         numeric_features,
         categorical_features,
-    ) = load_dataset(dataset_name)
+        target_column,
+        class_counts,
+    ) = load_dataset(
+        dataset_name,
+        input_file=args.input_file,
+        target_column=args.target_column,
+    )
 
     print("=" * 75)
     print(
@@ -793,6 +1729,11 @@ def main():
     print(
         f"\nDataset           : "
         f"{dataset_name}"
+    )
+
+    print(
+        f"Input target      : "
+        f"{target_column}"
     )
 
     print(
@@ -825,12 +1766,15 @@ def main():
         f"{minority_class} -> 1"
     )
 
-    classifiers = [
-        "logistic_regression",
-        "decision_tree",
-        "random_forest",
-        "xgboost",
-    ]
+    print(
+        "\nClass distribution:"
+    )
+
+    print(
+        class_counts.to_string()
+    )
+
+    classifiers = CLASSIFIERS
 
     all_results = []
 
@@ -865,11 +1809,13 @@ def main():
     )
 
     successful_experiments = (
-        combined["verification"] == "PASS"
+        combined["verification"]
+        == "PASS"
     ).sum()
 
     verification_failures = (
-        combined["verification"] == "FAIL"
+        combined["verification"]
+        == "FAIL"
     ).sum()
 
     not_applicable = (
@@ -877,10 +1823,13 @@ def main():
         == "NOT_APPLICABLE"
     ).sum()
 
-    valid_macro_f1 = combined.loc[
-        combined["verification"] == "PASS",
-        "macro_f1_math",
-    ]
+    valid_macro_f1 = (
+        combined.loc[
+            combined["verification"]
+            == "PASS",
+            "macro_f1_math",
+        ]
+    )
 
     print("\n")
     print("=" * 75)
@@ -908,6 +1857,7 @@ def main():
     )
 
     if not valid_macro_f1.empty:
+
         print(
             f"Macro-F1 minimum       : "
             f"{valid_macro_f1.min():.6f}"
@@ -917,7 +1867,9 @@ def main():
             f"Macro-F1 maximum       : "
             f"{valid_macro_f1.max():.6f}"
         )
+
     else:
+
         print(
             "Macro-F1 minimum       : N/A"
         )
@@ -930,7 +1882,9 @@ def main():
         "\nCombined results saved to:"
     )
 
-    print(combined_file)
+    print(
+        combined_file
+    )
 
 
 if __name__ == "__main__":
