@@ -1,3 +1,4 @@
+
 from pathlib import Path
 
 import pandas as pd
@@ -12,6 +13,12 @@ PROFILE_FILE = (
     / "data"
     / "processed"
     / "dataset_profiles.csv"
+)
+
+SPLIT_FILE = (
+    BASE_DIR
+    / "data"
+    / "dataset_splits.csv"
 )
 
 OUTPUT_FILE = RESULTS_DIR / "meta_dataset.csv"
@@ -42,6 +49,13 @@ CLASSIFIERS = [
 
 
 EXPECTED_EXPERIMENTS_PER_DATASET = 28
+
+
+VALID_SPLITS = {
+    "TRAIN",
+    "VALIDATION",
+    "TEST",
+}
 
 
 def get_result_files():
@@ -134,6 +148,179 @@ def load_result_files():
     )
 
     return combined
+
+
+def load_dataset_splits():
+    if not SPLIT_FILE.exists():
+        raise FileNotFoundError(
+            f"Dataset split file not found: "
+            f"{SPLIT_FILE}\n\n"
+            "Create data/dataset_splits.csv "
+            "with columns: dataset, split"
+        )
+
+    splits = pd.read_csv(
+        SPLIT_FILE
+    )
+
+    required_columns = [
+        "dataset",
+        "split",
+    ]
+
+    missing_columns = [
+        column
+        for column in required_columns
+        if column not in splits.columns
+    ]
+
+    if missing_columns:
+        raise ValueError(
+            "Dataset split file is missing columns: "
+            f"{missing_columns}"
+        )
+
+    splits["dataset"] = (
+        splits["dataset"]
+        .astype(str)
+        .str.strip()
+    )
+
+    splits["split"] = (
+        splits["split"]
+        .astype(str)
+        .str.strip()
+        .str.upper()
+    )
+
+    if splits["dataset"].duplicated().any():
+        duplicate_datasets = sorted(
+            splits.loc[
+                splits["dataset"].duplicated(keep=False),
+                "dataset"
+            ].unique()
+        )
+
+        raise ValueError(
+            "Dataset split file contains duplicate "
+            "dataset entries:\n"
+            + "\n".join(duplicate_datasets)
+        )
+
+    invalid_splits = sorted(
+        set(splits["split"]) - VALID_SPLITS
+    )
+
+    if invalid_splits:
+        raise ValueError(
+            f"Invalid split values found in "
+            f"{SPLIT_FILE.name}: {invalid_splits}\n"
+            f"Allowed values: "
+            f"{sorted(VALID_SPLITS)}"
+        )
+
+    split_dataset_names = set(
+        splits["dataset"]
+    )
+
+    missing_primary_datasets = (
+        set(PRIMARY_DATASETS)
+        - split_dataset_names
+    )
+
+    if missing_primary_datasets:
+        raise ValueError(
+            "The following primary datasets are missing "
+            "from data/dataset_splits.csv:\n"
+            + "\n".join(
+                sorted(missing_primary_datasets)
+            )
+        )
+
+    primary_splits = splits[
+        splits["dataset"].isin(
+            PRIMARY_DATASETS
+        )
+    ].copy()
+
+    print("\n" + "-" * 75)
+    print("DATASET-LEVEL SPLIT REGISTRY")
+    print("-" * 75)
+
+    print(
+        primary_splits[
+            ["dataset", "split"]
+        ]
+        .sort_values("dataset")
+        .to_string(index=False)
+    )
+
+    print("\nSplit counts for current benchmark:")
+    print(
+        primary_splits["split"]
+        .value_counts()
+        .reindex(
+            ["TRAIN", "VALIDATION", "TEST"],
+            fill_value=0,
+        )
+    )
+
+    return splits
+
+
+def add_dataset_splits(meta_df):
+    splits = load_dataset_splits()
+
+    meta_df = meta_df.copy()
+
+    meta_df["dataset"] = (
+        meta_df["dataset"]
+        .astype(str)
+        .str.strip()
+    )
+
+    meta_df = meta_df.merge(
+        splits[
+            [
+                "dataset",
+                "split",
+            ]
+        ],
+        on="dataset",
+        how="left",
+        validate="many_to_one",
+    )
+
+    if meta_df["split"].isna().any():
+        missing_datasets = sorted(
+            meta_df.loc[
+                meta_df["split"].isna(),
+                "dataset"
+            ].unique()
+        )
+
+        raise ValueError(
+            "The following result datasets do not have "
+            "a split assignment:\n"
+            + "\n".join(missing_datasets)
+        )
+
+    invalid_splits = sorted(
+        set(meta_df["split"]) - VALID_SPLITS
+    )
+
+    if invalid_splits:
+        raise ValueError(
+            f"Invalid split values after merging: "
+            f"{invalid_splits}"
+        )
+
+    print(
+        "\nDataset-level split successfully merged "
+        "into benchmark results."
+    )
+
+    return meta_df
 
 
 def validate_experiments(meta_df):
@@ -603,6 +790,7 @@ def select_columns(meta_df):
     final_columns = [
 
         "dataset",
+        "split",
 
         "samples",
         "features",
@@ -688,6 +876,46 @@ def validate_final_dataset(meta_df):
             f"Expected: {sorted(expected_datasets)}\n"
             f"Found   : {sorted(actual_datasets)}"
         )
+
+    split_values = set(
+        meta_df["split"]
+        .dropna()
+        .astype(str)
+    )
+
+    invalid_splits = (
+        split_values
+        - VALID_SPLITS
+    )
+
+    if invalid_splits:
+        raise ValueError(
+            f"Final meta-dataset contains "
+            f"invalid split values: "
+            f"{sorted(invalid_splits)}"
+        )
+
+    if meta_df["split"].isna().any():
+        raise ValueError(
+            "Final meta-dataset contains "
+            "datasets without split assignments."
+        )
+
+    for dataset in PRIMARY_DATASETS:
+
+        dataset_splits = set(
+            meta_df.loc[
+                meta_df["dataset"] == dataset,
+                "split"
+            ]
+        )
+
+        if len(dataset_splits) != 1:
+            raise ValueError(
+                f"{dataset}: dataset appears in "
+                f"multiple split groups: "
+                f"{sorted(dataset_splits)}"
+            )
 
     if meta_df[
         "target_macro_f1"
@@ -785,12 +1013,73 @@ def print_summary(meta_df, original_df):
         f"{meta_df['classifier'].nunique()}"
     )
 
+    print(
+        "\nDataset split summary:"
+    )
+
+    split_summary = (
+        meta_df[
+            [
+                "dataset",
+                "split",
+            ]
+        ]
+        .drop_duplicates()
+        ["split"]
+        .value_counts()
+        .reindex(
+            ["TRAIN", "VALIDATION", "TEST"],
+            fill_value=0,
+        )
+    )
+
+    print(
+        split_summary.to_string()
+    )
+
+    print("\nDatasets by split:")
+
+    datasets_by_split = (
+        meta_df[
+            [
+                "dataset",
+                "split",
+            ]
+        ]
+        .drop_duplicates()
+        .sort_values(
+            [
+                "split",
+                "dataset",
+            ]
+        )
+    )
+
+    for split in [
+        "TRAIN",
+        "VALIDATION",
+        "TEST",
+    ]:
+
+        print(
+            f"\n{split}:"
+        )
+
+        print(
+            datasets_by_split.loc[
+                datasets_by_split["split"] == split,
+                "dataset",
+            ]
+            .to_string(index=False)
+        )
+
     print("\nExperiments per dataset:")
 
     print(
         meta_df[
             "dataset"
-        ].value_counts()
+        ]
+        .value_counts()
         .sort_index()
     )
 
@@ -799,7 +1088,8 @@ def print_summary(meta_df, original_df):
     print(
         meta_df[
             "classifier"
-        ].value_counts()
+        ]
+        .value_counts()
         .sort_index()
     )
 
@@ -830,6 +1120,7 @@ def print_summary(meta_df, original_df):
         meta_df[
             [
                 "dataset",
+                "split",
                 "resampling",
                 "classifier",
                 "imbalance_ratio",
@@ -878,6 +1169,12 @@ def main():
     )
 
     model_ready_df = (
+        add_dataset_splits(
+            model_ready_df
+        )
+    )
+
+    model_ready_df = (
         select_columns(
             model_ready_df
         )
@@ -888,10 +1185,12 @@ def main():
         .sort_values(
             by=[
                 "dataset",
+                "split",
                 "classifier",
                 "macro_f1_math",
             ],
             ascending=[
+                True,
                 True,
                 True,
                 False,

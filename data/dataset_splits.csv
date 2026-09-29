@@ -1,0 +1,86 @@
+dataset,split,family
+Oil Spill,TEST,Kaggle
+Pulsar HTRU2,TEST,Kaggle
+Secondary Mushroom,TEST,Kaggle
+Smart Grid Stability,TEST,Kaggle
+Credit Approval,TEST,UCI
+Default of Credit Card Clients,TEST,UCI
+Occupancy Detection,TEST,UCI
+Sonar Mines vs Rocks,TEST,UCI
+Website Phishing,TEST,UCI
+haberman,TEST,single_dataset
+iris0,TEST,single_dataset
+pima,TEST,single_dataset
+segment0,TEST,single_dataset
+vowel0,TEST,single_dataset
+wisconsin,TEST,single_dataset
+zoo-3,TEST,single_dataset
+APS Failure Scania Trucks,TRAIN,Kaggle
+Bank Customer Churn,TRAIN,Kaggle
+Banknote Authentication,TRAIN,Kaggle
+Give Me Some Credit,TRAIN,Kaggle
+Heart Disease UCI,TRAIN,Kaggle
+IBM Employee Attrition,TRAIN,Kaggle
+Stroke Prediction,TRAIN,Kaggle
+Wine Quality,TRAIN,Kaggle
+Adult,TRAIN,UCI
+Bank Marketing,TRAIN,UCI
+Breast Cancer Coimbra,TRAIN,UCI
+Breast Cancer Wisconsin Diagnostic,TRAIN,UCI
+Ionosphere,TRAIN,UCI
+Parkinsons,TRAIN,UCI
+QSAR Biodegradation,TRAIN,UCI
+Seismic Bumps,TRAIN,UCI
+Spambase,TRAIN,UCI
+Statlog German Credit,TRAIN,UCI
+glass-0-1-2-3_vs_4-5-6,TRAIN,glass_family
+glass-0-1-5_vs_2,TRAIN,glass_family
+glass-0-1-6_vs_2,TRAIN,glass_family
+glass-0-1-6_vs_5,TRAIN,glass_family
+glass0,TRAIN,glass_family
+glass1,TRAIN,glass_family
+glass2,TRAIN,glass_family
+glass4,TRAIN,glass_family
+glass5,TRAIN,glass_family
+glass6,TRAIN,glass_family
+vehicle0,TRAIN,vehicle_family
+vehicle1,TRAIN,vehicle_family
+vehicle2,TRAIN,vehicle_family
+vehicle3,TRAIN,vehicle_family
+yeast-0-5-6-7-9_vs_4,TRAIN,yeast_family
+yeast-1-2-8-9_vs_7,TRAIN,yeast_family
+yeast-1-4-5-8_vs_7,TRAIN,yeast_family
+yeast-1_vs_7,TRAIN,yeast_family
+yeast-2_vs_4,TRAIN,yeast_family
+yeast-2_vs_8,TRAIN,yeast_family
+yeast1,TRAIN,yeast_family
+yeast3,TRAIN,yeast_family
+yeast4,TRAIN,yeast_family
+yeast5,TRAIN,yeast_family
+yeast6,TRAIN,yeast_family
+Credit Card Fraud Detection,VALIDATION,Kaggle
+Mushroom Classification,VALIDATION,Kaggle
+Telco Customer Churn,VALIDATION,Kaggle
+Water Potability,VALIDATION,Kaggle
+MAGIC Gamma Telescope,VALIDATION,UCI
+Mammographic Mass,VALIDATION,UCI
+Phishing Websites,VALIDATION,UCI
+Statlog Australian Credit Approval,VALIDATION,UCI
+Thoracic Surgery Data,VALIDATION,UCI
+abalone19,VALIDATION,abalone_family
+abalone9-18,VALIDATION,abalone_family
+ecoli-0-1-3-7_vs_2-6,VALIDATION,ecoli_family
+ecoli-0-2-3-4_vs_5,VALIDATION,ecoli_family
+ecoli-0-3-4_vs_5,VALIDATION,ecoli_family
+ecoli-0-6-7_vs_3-5,VALIDATION,ecoli_family
+ecoli-0_vs_1,VALIDATION,ecoli_family
+ecoli1,VALIDATION,ecoli_family
+ecoli2,VALIDATION,ecoli_family
+ecoli3,VALIDATION,ecoli_family
+ecoli4,VALIDATION,ecoli_family
+new-thyroid1,VALIDATION,new_thyroid_family
+new-thyroid2,VALIDATION,new_thyroid_family
+page-blocks0,VALIDATION,page_blocks_family
+page-blocks13_vs_2,VALIDATION,page_blocks_family
+shuttle-c0-vs-c4,VALIDATION,shuttle_family
+shuttle-c2-vs-c4,VALIDATION,shuttle_family
