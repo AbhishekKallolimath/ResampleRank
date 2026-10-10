@@ -1,0 +1,8 @@
+dataset,resampling_code,resampling,classifier,samples,features,numeric_features,categorical_features,safe_k_neighbors,tn,fp,fn,tp,accuracy,balanced_accuracy,precision,recall,f1_class_0_math,f1_class_1_math,macro_f1_code,macro_f1_math,metric_error,verification,failure_reason,execution_time_seconds
+Smart Grid Stability,none,No Resampling,random_forest,60000,13,13,0,5,38280,0,0,21720,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,PASS,,45.394838600000185
+Smart Grid Stability,ros,Random Oversampling,random_forest,60000,13,13,0,5,38280,0,0,21720,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,PASS,,53.06830149999996
+Smart Grid Stability,smote,SMOTE,random_forest,60000,13,13,0,5,38280,0,0,21720,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,PASS,,168.68850750000001
+Smart Grid Stability,adasyn,ADASYN,random_forest,60000,13,13,0,5,38280,0,0,21720,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,PASS,,341.0223638000002
+Smart Grid Stability,smote_tomek,SMOTE-Tomek,random_forest,60000,13,13,0,5,38280,0,0,21720,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,PASS,,436.22859459999927
+Smart Grid Stability,rus,Random Undersampling,random_forest,60000,13,13,0,5,38279,1,0,21720,0.9999833333333333,0.9999869383490073,0.9999539616039778,1.0,0.9999869381783983,0.9999769802720931,0.9999819592252457,0.9999819592252457,0.0,PASS,,31.099481299999752
+Smart Grid Stability,smote_enn,SMOTE-ENN,random_forest,60000,13,13,0,5,38276,4,0,21720,0.9999333333333333,0.9999477533960293,0.9998158718468054,1.0,0.999947750666179,0.9999079274468282,0.9999278390565036,0.9999278390565036,0.0,PASS,,710.3111478000001

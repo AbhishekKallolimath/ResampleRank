@@ -1,0 +1,8 @@
+dataset,resampling_code,resampling,classifier,samples,features,numeric_features,categorical_features,safe_k_neighbors,tn,fp,fn,tp,accuracy,balanced_accuracy,precision,recall,f1_class_0_math,f1_class_1_math,macro_f1_code,macro_f1_math,metric_error,verification,failure_reason,execution_time_seconds
+Mushroom Classification,none,No Resampling,decision_tree,8124,22,0,22,5,4208.0,0.0,0.0,3916.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,PASS,,1.0031265000000005
+Mushroom Classification,ros,Random Oversampling,decision_tree,8124,22,0,22,5,4208.0,0.0,0.0,3916.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,PASS,,1.0760675000000006
+Mushroom Classification,rus,Random Undersampling,decision_tree,8124,22,0,22,5,4208.0,0.0,0.0,3916.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,PASS,,1.4533017000000044
+Mushroom Classification,smote,SMOTE,decision_tree,8124,22,0,22,5,4208.0,0.0,0.0,3916.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,PASS,,3.2056850999999966
+Mushroom Classification,smote_tomek,SMOTE-Tomek,decision_tree,8124,22,0,22,5,4208.0,0.0,0.0,3916.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,PASS,,10.284557800000002
+Mushroom Classification,smote_enn,SMOTE-ENN,decision_tree,8124,22,0,22,5,4208.0,0.0,0.0,3916.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,PASS,,11.125184200000007
+Mushroom Classification,adasyn,ADASYN,decision_tree,8124,22,0,22,5,,,,,,,,,,,,,,NOT_APPLICABLE,Not any neigbours belong to the majority class. This case will induce a NaN case with a division by zero. ADASYN is not suited for this specific dataset. Use SMOTE instead.,0.7171512999999976

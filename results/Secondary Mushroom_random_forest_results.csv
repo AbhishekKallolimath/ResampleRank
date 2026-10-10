@@ -1,0 +1,8 @@
+dataset,resampling_code,resampling,classifier,samples,features,numeric_features,categorical_features,safe_k_neighbors,tn,fp,fn,tp,accuracy,balanced_accuracy,precision,recall,f1_class_0_math,f1_class_1_math,macro_f1_code,macro_f1_math,metric_error,verification,failure_reason,execution_time_seconds
+Secondary Mushroom,none,No Resampling,random_forest,61069,20,3,17,5,33888.0,0.0,0.0,27181.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,PASS,,57.70627760000002
+Secondary Mushroom,ros,Random Oversampling,random_forest,61069,20,3,17,5,33888.0,0.0,0.0,27181.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,PASS,,66.02555519999999
+Secondary Mushroom,rus,Random Undersampling,random_forest,61069,20,3,17,5,33888.0,0.0,0.0,27181.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,PASS,,56.23486249999996
+Secondary Mushroom,smote,SMOTE,random_forest,61069,20,3,17,5,,,,,,,,,,,,,,NOT_APPLICABLE,"Unable to allocate 1.00 GiB for an array with shape (6172, 21745) and data type float64",8.340920800000049
+Secondary Mushroom,adasyn,ADASYN,random_forest,61069,20,3,17,5,,,,,,,,,,,,,,NOT_APPLICABLE,Not any neigbours belong to the majority class. This case will induce a NaN case with a division by zero. ADASYN is not suited for this specific dataset. Use SMOTE instead.,160.22830710000017
+Secondary Mushroom,smote_tomek,SMOTE-Tomek,random_forest,61069,20,3,17,5,,,,,,,,,,,,,,NOT_APPLICABLE,"Unable to allocate 1.00 GiB for an array with shape (2475, 54220) and data type int64",32.9678835000002
+Secondary Mushroom,smote_enn,SMOTE-ENN,random_forest,61069,20,3,17,5,,,,,,,,,,,,,,NOT_APPLICABLE,"Unable to allocate 1.00 GiB for an array with shape (6172, 21745) and data type float64",3.923024299999952

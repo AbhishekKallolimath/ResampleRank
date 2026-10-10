@@ -356,14 +356,24 @@ def prepare_keel_dataset(
         target_value
     ).strip()
 
-    if target_column not in X.columns:
+    target_matches = [
+        col
+        for col in X.columns
+        if str(col).strip().lower()
+        == str(target_column).strip().lower()
+    ]
+
+    if len(target_matches) == 1:
+        target_column = target_matches[0]
+    elif len(target_matches) == 0:
         raise ValueError(
-            "Target '{}' not found in KEEL dataset '{}'. "
-            "Columns: {}".format(
-                target_column,
-                dataset_name,
-                list(X.columns),
-            )
+            f"Target '{target_column}' not found in KEEL dataset "
+            f"'{dataset_name}'. Columns: {list(X.columns)}"
+        )
+    else:
+        raise ValueError(
+            f"Multiple target columns match '{target_column}' in KEEL dataset "
+            f"'{dataset_name}': {target_matches}"
         )
 
     y_raw = X[target_column].copy()

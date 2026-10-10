@@ -1,0 +1,5 @@
+Analysis unit: dataset. Four classifier outcomes are averaged within each dataset before pairing policies.
+Effect: mean selected Macro-F1 improvement difference; positive values favor the meta-learning selector.
+Intervals: percentile paired-dataset bootstrap, 10000 resamples, seed 42.
+Tests: two-sided Wilcoxon signed-rank tests; Holm correction across eight comparisons.
+Caution: LODO training folds overlap. Treat p-values and confidence intervals as exploratory rather than definitive independent-fold inference. Runtime savings are not evaluated in this analysis.

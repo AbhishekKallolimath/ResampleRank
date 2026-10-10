@@ -1,0 +1,29 @@
+dataset,resampling_code,resampling,classifier,samples,features,numeric_features,categorical_features,safe_k_neighbors,tn,fp,fn,tp,accuracy,balanced_accuracy,precision,recall,f1_class_0_math,f1_class_1_math,macro_f1_code,macro_f1_math,metric_error,verification,failure_reason,execution_time_seconds
+Mushroom Classification,ros,Random Oversampling,logistic_regression,8124,22,0,22,5,4208.0,0.0,0.0,3916.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,PASS,,2.596265899999999
+Mushroom Classification,none,No Resampling,logistic_regression,8124,22,0,22,5,4208.0,0.0,1.0,3915.0,0.9998769079271295,0.9998723186925433,1.0,0.9997446373850868,0.9998811928240465,0.9998723023879453,0.999876747605996,0.999876747605996,0.0,PASS,,2.3902383999999994
+Mushroom Classification,rus,Random Undersampling,logistic_regression,8124,22,0,22,5,4208.0,0.0,1.0,3915.0,0.9998769079271295,0.9998723186925433,1.0,0.9997446373850868,0.9998811928240465,0.9998723023879453,0.999876747605996,0.999876747605996,0.0,PASS,,2.937585199999999
+Mushroom Classification,smote,SMOTE,logistic_regression,8124,22,0,22,5,4208.0,0.0,1.0,3915.0,0.9998769079271295,0.9998723186925433,1.0,0.9997446373850868,0.9998811928240465,0.9998723023879453,0.999876747605996,0.999876747605996,0.0,PASS,,5.710402300000002
+Mushroom Classification,smote_tomek,SMOTE-Tomek,logistic_regression,8124,22,0,22,5,4208.0,0.0,1.0,3915.0,0.9998769079271295,0.9998723186925433,1.0,0.9997446373850868,0.9998811928240465,0.9998723023879453,0.999876747605996,0.999876747605996,0.0,PASS,,17.8553235
+Mushroom Classification,smote_enn,SMOTE-ENN,logistic_regression,8124,22,0,22,5,4208.0,0.0,1.0,3915.0,0.9998769079271295,0.9998723186925433,1.0,0.9997446373850868,0.9998811928240465,0.9998723023879453,0.999876747605996,0.999876747605996,0.0,PASS,,14.124292499999996
+Mushroom Classification,adasyn,ADASYN,logistic_regression,8124,22,0,22,5,,,,,,,,,,,,,,NOT_APPLICABLE,Not any neigbours belong to the majority class. This case will induce a NaN case with a division by zero. ADASYN is not suited for this specific dataset. Use SMOTE instead.,1.0863207000000017
+Mushroom Classification,none,No Resampling,decision_tree,8124,22,0,22,5,4208.0,0.0,0.0,3916.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,PASS,,1.0031265000000005
+Mushroom Classification,ros,Random Oversampling,decision_tree,8124,22,0,22,5,4208.0,0.0,0.0,3916.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,PASS,,1.0760675000000006
+Mushroom Classification,rus,Random Undersampling,decision_tree,8124,22,0,22,5,4208.0,0.0,0.0,3916.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,PASS,,1.4533017000000044
+Mushroom Classification,smote,SMOTE,decision_tree,8124,22,0,22,5,4208.0,0.0,0.0,3916.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,PASS,,3.2056850999999966
+Mushroom Classification,smote_tomek,SMOTE-Tomek,decision_tree,8124,22,0,22,5,4208.0,0.0,0.0,3916.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,PASS,,10.284557800000002
+Mushroom Classification,smote_enn,SMOTE-ENN,decision_tree,8124,22,0,22,5,4208.0,0.0,0.0,3916.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,PASS,,11.125184200000007
+Mushroom Classification,adasyn,ADASYN,decision_tree,8124,22,0,22,5,,,,,,,,,,,,,,NOT_APPLICABLE,Not any neigbours belong to the majority class. This case will induce a NaN case with a division by zero. ADASYN is not suited for this specific dataset. Use SMOTE instead.,0.7171512999999976
+Mushroom Classification,none,No Resampling,random_forest,8124,22,0,22,5,4208.0,0.0,0.0,3916.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,PASS,,5.155223700000008
+Mushroom Classification,ros,Random Oversampling,random_forest,8124,22,0,22,5,4208.0,0.0,0.0,3916.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,PASS,,4.700841600000004
+Mushroom Classification,rus,Random Undersampling,random_forest,8124,22,0,22,5,4208.0,0.0,0.0,3916.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,PASS,,5.653611700000013
+Mushroom Classification,smote,SMOTE,random_forest,8124,22,0,22,5,4208.0,0.0,0.0,3916.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,PASS,,6.74929379999999
+Mushroom Classification,smote_tomek,SMOTE-Tomek,random_forest,8124,22,0,22,5,4208.0,0.0,0.0,3916.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,PASS,,12.390638499999994
+Mushroom Classification,smote_enn,SMOTE-ENN,random_forest,8124,22,0,22,5,4208.0,0.0,0.0,3916.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,PASS,,12.636357799999985
+Mushroom Classification,adasyn,ADASYN,random_forest,8124,22,0,22,5,,,,,,,,,,,,,,NOT_APPLICABLE,Not any neigbours belong to the majority class. This case will induce a NaN case with a division by zero. ADASYN is not suited for this specific dataset. Use SMOTE instead.,0.6511761999999948
+Mushroom Classification,none,No Resampling,xgboost,8124,22,0,22,5,4208.0,0.0,0.0,3916.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,PASS,,9.766183600000005
+Mushroom Classification,ros,Random Oversampling,xgboost,8124,22,0,22,5,4208.0,0.0,0.0,3916.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,PASS,,7.817979699999995
+Mushroom Classification,rus,Random Undersampling,xgboost,8124,22,0,22,5,4208.0,0.0,0.0,3916.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,PASS,,7.953517599999998
+Mushroom Classification,smote,SMOTE,xgboost,8124,22,0,22,5,4208.0,0.0,0.0,3916.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,PASS,,9.489860299999975
+Mushroom Classification,smote_tomek,SMOTE-Tomek,xgboost,8124,22,0,22,5,4208.0,0.0,0.0,3916.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,PASS,,18.72597479999999
+Mushroom Classification,smote_enn,SMOTE-ENN,xgboost,8124,22,0,22,5,4208.0,0.0,0.0,3916.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,PASS,,18.10784290000001
+Mushroom Classification,adasyn,ADASYN,xgboost,8124,22,0,22,5,,,,,,,,,,,,,,NOT_APPLICABLE,Not any neigbours belong to the majority class. This case will induce a NaN case with a division by zero. ADASYN is not suited for this specific dataset. Use SMOTE instead.,0.6679835000000196

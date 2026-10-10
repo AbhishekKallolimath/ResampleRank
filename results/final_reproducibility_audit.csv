@@ -1,0 +1,320 @@
+check,status,detail
+results/meta_dataset_clean43.csv exists,PASS,File readable
+results/meta_dataset_clean43.csv row count,PASS,Expected 1204; found 1204
+results/meta_dataset_clean43.csv data completeness,PASS,Missing cells outside failure_reason: 0
+results/meta_dataset_clean43.csv failure_reason field,PASS,"All blank, as expected for successful predictions"
+results/meta_dataset_clean43.csv finite numeric values,PASS,"Numeric values checked for NaN/Infinity, excluding the blank failure_reason field"
+Meta-dataset experiment keys,PASS,Duplicate keys: 0
+Meta-dataset contains 43 datasets,PASS,Found 43
+Meta-dataset contains four classifiers,PASS,Found 4
+Meta-dataset contains seven strategies,PASS,Found 7
+Prediction file count,PASS,Found 16
+Ranking file count,PASS,Found 16
+LODO fold file count,PASS,Found 4
+results\meta_model_lodo_clean43\gradient_boosting_decision_tree_predictions.csv exists,PASS,File readable
+results\meta_model_lodo_clean43\gradient_boosting_decision_tree_predictions.csv row count,PASS,Expected 301; found 301
+results\meta_model_lodo_clean43\gradient_boosting_decision_tree_predictions.csv data completeness,PASS,Missing cells outside failure_reason: 0
+results\meta_model_lodo_clean43\gradient_boosting_decision_tree_predictions.csv failure_reason field,PASS,"All blank, as expected for successful predictions"
+results\meta_model_lodo_clean43\gradient_boosting_decision_tree_predictions.csv finite numeric values,PASS,"Numeric values checked for NaN/Infinity, excluding the blank failure_reason field"
+gradient_boosting_decision_tree_predictions.csv experiment keys,PASS,Duplicate keys: 0
+gradient_boosting_decision_tree_predictions.csv metric verification,PASS,All rows must have PASS verification
+gradient_boosting_decision_tree_predictions.csv metric error tolerance,PASS,Maximum absolute metric error: 0.0
+results\meta_model_lodo_clean43\gradient_boosting_logistic_regression_predictions.csv exists,PASS,File readable
+results\meta_model_lodo_clean43\gradient_boosting_logistic_regression_predictions.csv row count,PASS,Expected 301; found 301
+results\meta_model_lodo_clean43\gradient_boosting_logistic_regression_predictions.csv data completeness,PASS,Missing cells outside failure_reason: 0
+results\meta_model_lodo_clean43\gradient_boosting_logistic_regression_predictions.csv failure_reason field,PASS,"All blank, as expected for successful predictions"
+results\meta_model_lodo_clean43\gradient_boosting_logistic_regression_predictions.csv finite numeric values,PASS,"Numeric values checked for NaN/Infinity, excluding the blank failure_reason field"
+gradient_boosting_logistic_regression_predictions.csv experiment keys,PASS,Duplicate keys: 0
+gradient_boosting_logistic_regression_predictions.csv metric verification,PASS,All rows must have PASS verification
+gradient_boosting_logistic_regression_predictions.csv metric error tolerance,PASS,Maximum absolute metric error: 0.0
+results\meta_model_lodo_clean43\gradient_boosting_random_forest_predictions.csv exists,PASS,File readable
+results\meta_model_lodo_clean43\gradient_boosting_random_forest_predictions.csv row count,PASS,Expected 301; found 301
+results\meta_model_lodo_clean43\gradient_boosting_random_forest_predictions.csv data completeness,PASS,Missing cells outside failure_reason: 0
+results\meta_model_lodo_clean43\gradient_boosting_random_forest_predictions.csv failure_reason field,PASS,"All blank, as expected for successful predictions"
+results\meta_model_lodo_clean43\gradient_boosting_random_forest_predictions.csv finite numeric values,PASS,"Numeric values checked for NaN/Infinity, excluding the blank failure_reason field"
+gradient_boosting_random_forest_predictions.csv experiment keys,PASS,Duplicate keys: 0
+gradient_boosting_random_forest_predictions.csv metric verification,PASS,All rows must have PASS verification
+gradient_boosting_random_forest_predictions.csv metric error tolerance,PASS,Maximum absolute metric error: 0.0
+results\meta_model_lodo_clean43\gradient_boosting_xgboost_predictions.csv exists,PASS,File readable
+results\meta_model_lodo_clean43\gradient_boosting_xgboost_predictions.csv row count,PASS,Expected 301; found 301
+results\meta_model_lodo_clean43\gradient_boosting_xgboost_predictions.csv data completeness,PASS,Missing cells outside failure_reason: 0
+results\meta_model_lodo_clean43\gradient_boosting_xgboost_predictions.csv failure_reason field,PASS,"All blank, as expected for successful predictions"
+results\meta_model_lodo_clean43\gradient_boosting_xgboost_predictions.csv finite numeric values,PASS,"Numeric values checked for NaN/Infinity, excluding the blank failure_reason field"
+gradient_boosting_xgboost_predictions.csv experiment keys,PASS,Duplicate keys: 0
+gradient_boosting_xgboost_predictions.csv metric verification,PASS,All rows must have PASS verification
+gradient_boosting_xgboost_predictions.csv metric error tolerance,PASS,Maximum absolute metric error: 0.0
+results\meta_model_lodo_clean43\random_forest_decision_tree_predictions.csv exists,PASS,File readable
+results\meta_model_lodo_clean43\random_forest_decision_tree_predictions.csv row count,PASS,Expected 301; found 301
+results\meta_model_lodo_clean43\random_forest_decision_tree_predictions.csv data completeness,PASS,Missing cells outside failure_reason: 0
+results\meta_model_lodo_clean43\random_forest_decision_tree_predictions.csv failure_reason field,PASS,"All blank, as expected for successful predictions"
+results\meta_model_lodo_clean43\random_forest_decision_tree_predictions.csv finite numeric values,PASS,"Numeric values checked for NaN/Infinity, excluding the blank failure_reason field"
+random_forest_decision_tree_predictions.csv experiment keys,PASS,Duplicate keys: 0
+random_forest_decision_tree_predictions.csv metric verification,PASS,All rows must have PASS verification
+random_forest_decision_tree_predictions.csv metric error tolerance,PASS,Maximum absolute metric error: 0.0
+results\meta_model_lodo_clean43\random_forest_logistic_regression_predictions.csv exists,PASS,File readable
+results\meta_model_lodo_clean43\random_forest_logistic_regression_predictions.csv row count,PASS,Expected 301; found 301
+results\meta_model_lodo_clean43\random_forest_logistic_regression_predictions.csv data completeness,PASS,Missing cells outside failure_reason: 0
+results\meta_model_lodo_clean43\random_forest_logistic_regression_predictions.csv failure_reason field,PASS,"All blank, as expected for successful predictions"
+results\meta_model_lodo_clean43\random_forest_logistic_regression_predictions.csv finite numeric values,PASS,"Numeric values checked for NaN/Infinity, excluding the blank failure_reason field"
+random_forest_logistic_regression_predictions.csv experiment keys,PASS,Duplicate keys: 0
+random_forest_logistic_regression_predictions.csv metric verification,PASS,All rows must have PASS verification
+random_forest_logistic_regression_predictions.csv metric error tolerance,PASS,Maximum absolute metric error: 0.0
+results\meta_model_lodo_clean43\random_forest_random_forest_predictions.csv exists,PASS,File readable
+results\meta_model_lodo_clean43\random_forest_random_forest_predictions.csv row count,PASS,Expected 301; found 301
+results\meta_model_lodo_clean43\random_forest_random_forest_predictions.csv data completeness,PASS,Missing cells outside failure_reason: 0
+results\meta_model_lodo_clean43\random_forest_random_forest_predictions.csv failure_reason field,PASS,"All blank, as expected for successful predictions"
+results\meta_model_lodo_clean43\random_forest_random_forest_predictions.csv finite numeric values,PASS,"Numeric values checked for NaN/Infinity, excluding the blank failure_reason field"
+random_forest_random_forest_predictions.csv experiment keys,PASS,Duplicate keys: 0
+random_forest_random_forest_predictions.csv metric verification,PASS,All rows must have PASS verification
+random_forest_random_forest_predictions.csv metric error tolerance,PASS,Maximum absolute metric error: 0.0
+results\meta_model_lodo_clean43\random_forest_xgboost_predictions.csv exists,PASS,File readable
+results\meta_model_lodo_clean43\random_forest_xgboost_predictions.csv row count,PASS,Expected 301; found 301
+results\meta_model_lodo_clean43\random_forest_xgboost_predictions.csv data completeness,PASS,Missing cells outside failure_reason: 0
+results\meta_model_lodo_clean43\random_forest_xgboost_predictions.csv failure_reason field,PASS,"All blank, as expected for successful predictions"
+results\meta_model_lodo_clean43\random_forest_xgboost_predictions.csv finite numeric values,PASS,"Numeric values checked for NaN/Infinity, excluding the blank failure_reason field"
+random_forest_xgboost_predictions.csv experiment keys,PASS,Duplicate keys: 0
+random_forest_xgboost_predictions.csv metric verification,PASS,All rows must have PASS verification
+random_forest_xgboost_predictions.csv metric error tolerance,PASS,Maximum absolute metric error: 0.0
+results\meta_model_lodo_clean43\ridge_decision_tree_predictions.csv exists,PASS,File readable
+results\meta_model_lodo_clean43\ridge_decision_tree_predictions.csv row count,PASS,Expected 301; found 301
+results\meta_model_lodo_clean43\ridge_decision_tree_predictions.csv data completeness,PASS,Missing cells outside failure_reason: 0
+results\meta_model_lodo_clean43\ridge_decision_tree_predictions.csv failure_reason field,PASS,"All blank, as expected for successful predictions"
+results\meta_model_lodo_clean43\ridge_decision_tree_predictions.csv finite numeric values,PASS,"Numeric values checked for NaN/Infinity, excluding the blank failure_reason field"
+ridge_decision_tree_predictions.csv experiment keys,PASS,Duplicate keys: 0
+ridge_decision_tree_predictions.csv metric verification,PASS,All rows must have PASS verification
+ridge_decision_tree_predictions.csv metric error tolerance,PASS,Maximum absolute metric error: 0.0
+results\meta_model_lodo_clean43\ridge_logistic_regression_predictions.csv exists,PASS,File readable
+results\meta_model_lodo_clean43\ridge_logistic_regression_predictions.csv row count,PASS,Expected 301; found 301
+results\meta_model_lodo_clean43\ridge_logistic_regression_predictions.csv data completeness,PASS,Missing cells outside failure_reason: 0
+results\meta_model_lodo_clean43\ridge_logistic_regression_predictions.csv failure_reason field,PASS,"All blank, as expected for successful predictions"
+results\meta_model_lodo_clean43\ridge_logistic_regression_predictions.csv finite numeric values,PASS,"Numeric values checked for NaN/Infinity, excluding the blank failure_reason field"
+ridge_logistic_regression_predictions.csv experiment keys,PASS,Duplicate keys: 0
+ridge_logistic_regression_predictions.csv metric verification,PASS,All rows must have PASS verification
+ridge_logistic_regression_predictions.csv metric error tolerance,PASS,Maximum absolute metric error: 0.0
+results\meta_model_lodo_clean43\ridge_random_forest_predictions.csv exists,PASS,File readable
+results\meta_model_lodo_clean43\ridge_random_forest_predictions.csv row count,PASS,Expected 301; found 301
+results\meta_model_lodo_clean43\ridge_random_forest_predictions.csv data completeness,PASS,Missing cells outside failure_reason: 0
+results\meta_model_lodo_clean43\ridge_random_forest_predictions.csv failure_reason field,PASS,"All blank, as expected for successful predictions"
+results\meta_model_lodo_clean43\ridge_random_forest_predictions.csv finite numeric values,PASS,"Numeric values checked for NaN/Infinity, excluding the blank failure_reason field"
+ridge_random_forest_predictions.csv experiment keys,PASS,Duplicate keys: 0
+ridge_random_forest_predictions.csv metric verification,PASS,All rows must have PASS verification
+ridge_random_forest_predictions.csv metric error tolerance,PASS,Maximum absolute metric error: 0.0
+results\meta_model_lodo_clean43\ridge_xgboost_predictions.csv exists,PASS,File readable
+results\meta_model_lodo_clean43\ridge_xgboost_predictions.csv row count,PASS,Expected 301; found 301
+results\meta_model_lodo_clean43\ridge_xgboost_predictions.csv data completeness,PASS,Missing cells outside failure_reason: 0
+results\meta_model_lodo_clean43\ridge_xgboost_predictions.csv failure_reason field,PASS,"All blank, as expected for successful predictions"
+results\meta_model_lodo_clean43\ridge_xgboost_predictions.csv finite numeric values,PASS,"Numeric values checked for NaN/Infinity, excluding the blank failure_reason field"
+ridge_xgboost_predictions.csv experiment keys,PASS,Duplicate keys: 0
+ridge_xgboost_predictions.csv metric verification,PASS,All rows must have PASS verification
+ridge_xgboost_predictions.csv metric error tolerance,PASS,Maximum absolute metric error: 0.0
+results\meta_model_lodo_clean43\xgboost_decision_tree_predictions.csv exists,PASS,File readable
+results\meta_model_lodo_clean43\xgboost_decision_tree_predictions.csv row count,PASS,Expected 301; found 301
+results\meta_model_lodo_clean43\xgboost_decision_tree_predictions.csv data completeness,PASS,Missing cells outside failure_reason: 0
+results\meta_model_lodo_clean43\xgboost_decision_tree_predictions.csv failure_reason field,PASS,"All blank, as expected for successful predictions"
+results\meta_model_lodo_clean43\xgboost_decision_tree_predictions.csv finite numeric values,PASS,"Numeric values checked for NaN/Infinity, excluding the blank failure_reason field"
+xgboost_decision_tree_predictions.csv experiment keys,PASS,Duplicate keys: 0
+xgboost_decision_tree_predictions.csv metric verification,PASS,All rows must have PASS verification
+xgboost_decision_tree_predictions.csv metric error tolerance,PASS,Maximum absolute metric error: 0.0
+results\meta_model_lodo_clean43\xgboost_logistic_regression_predictions.csv exists,PASS,File readable
+results\meta_model_lodo_clean43\xgboost_logistic_regression_predictions.csv row count,PASS,Expected 301; found 301
+results\meta_model_lodo_clean43\xgboost_logistic_regression_predictions.csv data completeness,PASS,Missing cells outside failure_reason: 0
+results\meta_model_lodo_clean43\xgboost_logistic_regression_predictions.csv failure_reason field,PASS,"All blank, as expected for successful predictions"
+results\meta_model_lodo_clean43\xgboost_logistic_regression_predictions.csv finite numeric values,PASS,"Numeric values checked for NaN/Infinity, excluding the blank failure_reason field"
+xgboost_logistic_regression_predictions.csv experiment keys,PASS,Duplicate keys: 0
+xgboost_logistic_regression_predictions.csv metric verification,PASS,All rows must have PASS verification
+xgboost_logistic_regression_predictions.csv metric error tolerance,PASS,Maximum absolute metric error: 0.0
+results\meta_model_lodo_clean43\xgboost_random_forest_predictions.csv exists,PASS,File readable
+results\meta_model_lodo_clean43\xgboost_random_forest_predictions.csv row count,PASS,Expected 301; found 301
+results\meta_model_lodo_clean43\xgboost_random_forest_predictions.csv data completeness,PASS,Missing cells outside failure_reason: 0
+results\meta_model_lodo_clean43\xgboost_random_forest_predictions.csv failure_reason field,PASS,"All blank, as expected for successful predictions"
+results\meta_model_lodo_clean43\xgboost_random_forest_predictions.csv finite numeric values,PASS,"Numeric values checked for NaN/Infinity, excluding the blank failure_reason field"
+xgboost_random_forest_predictions.csv experiment keys,PASS,Duplicate keys: 0
+xgboost_random_forest_predictions.csv metric verification,PASS,All rows must have PASS verification
+xgboost_random_forest_predictions.csv metric error tolerance,PASS,Maximum absolute metric error: 0.0
+results\meta_model_lodo_clean43\xgboost_xgboost_predictions.csv exists,PASS,File readable
+results\meta_model_lodo_clean43\xgboost_xgboost_predictions.csv row count,PASS,Expected 301; found 301
+results\meta_model_lodo_clean43\xgboost_xgboost_predictions.csv data completeness,PASS,Missing cells outside failure_reason: 0
+results\meta_model_lodo_clean43\xgboost_xgboost_predictions.csv failure_reason field,PASS,"All blank, as expected for successful predictions"
+results\meta_model_lodo_clean43\xgboost_xgboost_predictions.csv finite numeric values,PASS,"Numeric values checked for NaN/Infinity, excluding the blank failure_reason field"
+xgboost_xgboost_predictions.csv experiment keys,PASS,Duplicate keys: 0
+xgboost_xgboost_predictions.csv metric verification,PASS,All rows must have PASS verification
+xgboost_xgboost_predictions.csv metric error tolerance,PASS,Maximum absolute metric error: 0.0
+results\meta_model_lodo_clean43\gradient_boosting_decision_tree_ranking.csv exists,PASS,File readable
+results\meta_model_lodo_clean43\gradient_boosting_decision_tree_ranking.csv row count,PASS,Expected 43; found 43
+results\meta_model_lodo_clean43\gradient_boosting_decision_tree_ranking.csv missing values,PASS,Missing cells: 0
+results\meta_model_lodo_clean43\gradient_boosting_decision_tree_ranking.csv finite numeric values,PASS,"Numeric values checked for NaN/Infinity, excluding the blank failure_reason field"
+gradient_boosting_decision_tree_ranking.csv ranking correlations,PASS,All Spearman/Kendall values must be present
+results\meta_model_lodo_clean43\gradient_boosting_logistic_regression_ranking.csv exists,PASS,File readable
+results\meta_model_lodo_clean43\gradient_boosting_logistic_regression_ranking.csv row count,PASS,Expected 43; found 43
+results\meta_model_lodo_clean43\gradient_boosting_logistic_regression_ranking.csv missing values,PASS,Missing cells: 0
+results\meta_model_lodo_clean43\gradient_boosting_logistic_regression_ranking.csv finite numeric values,PASS,"Numeric values checked for NaN/Infinity, excluding the blank failure_reason field"
+gradient_boosting_logistic_regression_ranking.csv ranking correlations,PASS,All Spearman/Kendall values must be present
+results\meta_model_lodo_clean43\gradient_boosting_random_forest_ranking.csv exists,PASS,File readable
+results\meta_model_lodo_clean43\gradient_boosting_random_forest_ranking.csv row count,PASS,Expected 43; found 43
+results\meta_model_lodo_clean43\gradient_boosting_random_forest_ranking.csv missing values,PASS,Missing cells: 0
+results\meta_model_lodo_clean43\gradient_boosting_random_forest_ranking.csv finite numeric values,PASS,"Numeric values checked for NaN/Infinity, excluding the blank failure_reason field"
+gradient_boosting_random_forest_ranking.csv ranking correlations,PASS,All Spearman/Kendall values must be present
+results\meta_model_lodo_clean43\gradient_boosting_xgboost_ranking.csv exists,PASS,File readable
+results\meta_model_lodo_clean43\gradient_boosting_xgboost_ranking.csv row count,PASS,Expected 43; found 43
+results\meta_model_lodo_clean43\gradient_boosting_xgboost_ranking.csv missing values,PASS,Missing cells: 0
+results\meta_model_lodo_clean43\gradient_boosting_xgboost_ranking.csv finite numeric values,PASS,"Numeric values checked for NaN/Infinity, excluding the blank failure_reason field"
+gradient_boosting_xgboost_ranking.csv ranking correlations,PASS,All Spearman/Kendall values must be present
+results\meta_model_lodo_clean43\random_forest_decision_tree_ranking.csv exists,PASS,File readable
+results\meta_model_lodo_clean43\random_forest_decision_tree_ranking.csv row count,PASS,Expected 43; found 43
+results\meta_model_lodo_clean43\random_forest_decision_tree_ranking.csv missing values,PASS,Missing cells: 0
+results\meta_model_lodo_clean43\random_forest_decision_tree_ranking.csv finite numeric values,PASS,"Numeric values checked for NaN/Infinity, excluding the blank failure_reason field"
+random_forest_decision_tree_ranking.csv ranking correlations,PASS,All Spearman/Kendall values must be present
+results\meta_model_lodo_clean43\random_forest_logistic_regression_ranking.csv exists,PASS,File readable
+results\meta_model_lodo_clean43\random_forest_logistic_regression_ranking.csv row count,PASS,Expected 43; found 43
+results\meta_model_lodo_clean43\random_forest_logistic_regression_ranking.csv missing values,PASS,Missing cells: 0
+results\meta_model_lodo_clean43\random_forest_logistic_regression_ranking.csv finite numeric values,PASS,"Numeric values checked for NaN/Infinity, excluding the blank failure_reason field"
+random_forest_logistic_regression_ranking.csv ranking correlations,PASS,All Spearman/Kendall values must be present
+results\meta_model_lodo_clean43\random_forest_random_forest_ranking.csv exists,PASS,File readable
+results\meta_model_lodo_clean43\random_forest_random_forest_ranking.csv row count,PASS,Expected 43; found 43
+results\meta_model_lodo_clean43\random_forest_random_forest_ranking.csv missing values,PASS,Missing cells: 0
+results\meta_model_lodo_clean43\random_forest_random_forest_ranking.csv finite numeric values,PASS,"Numeric values checked for NaN/Infinity, excluding the blank failure_reason field"
+random_forest_random_forest_ranking.csv ranking correlations,PASS,All Spearman/Kendall values must be present
+results\meta_model_lodo_clean43\random_forest_xgboost_ranking.csv exists,PASS,File readable
+results\meta_model_lodo_clean43\random_forest_xgboost_ranking.csv row count,PASS,Expected 43; found 43
+results\meta_model_lodo_clean43\random_forest_xgboost_ranking.csv missing values,PASS,Missing cells: 0
+results\meta_model_lodo_clean43\random_forest_xgboost_ranking.csv finite numeric values,PASS,"Numeric values checked for NaN/Infinity, excluding the blank failure_reason field"
+random_forest_xgboost_ranking.csv ranking correlations,PASS,All Spearman/Kendall values must be present
+results\meta_model_lodo_clean43\ridge_decision_tree_ranking.csv exists,PASS,File readable
+results\meta_model_lodo_clean43\ridge_decision_tree_ranking.csv row count,PASS,Expected 43; found 43
+results\meta_model_lodo_clean43\ridge_decision_tree_ranking.csv missing values,PASS,Missing cells: 0
+results\meta_model_lodo_clean43\ridge_decision_tree_ranking.csv finite numeric values,PASS,"Numeric values checked for NaN/Infinity, excluding the blank failure_reason field"
+ridge_decision_tree_ranking.csv ranking correlations,PASS,All Spearman/Kendall values must be present
+results\meta_model_lodo_clean43\ridge_logistic_regression_ranking.csv exists,PASS,File readable
+results\meta_model_lodo_clean43\ridge_logistic_regression_ranking.csv row count,PASS,Expected 43; found 43
+results\meta_model_lodo_clean43\ridge_logistic_regression_ranking.csv missing values,PASS,Missing cells: 0
+results\meta_model_lodo_clean43\ridge_logistic_regression_ranking.csv finite numeric values,PASS,"Numeric values checked for NaN/Infinity, excluding the blank failure_reason field"
+ridge_logistic_regression_ranking.csv ranking correlations,PASS,All Spearman/Kendall values must be present
+results\meta_model_lodo_clean43\ridge_random_forest_ranking.csv exists,PASS,File readable
+results\meta_model_lodo_clean43\ridge_random_forest_ranking.csv row count,PASS,Expected 43; found 43
+results\meta_model_lodo_clean43\ridge_random_forest_ranking.csv missing values,PASS,Missing cells: 0
+results\meta_model_lodo_clean43\ridge_random_forest_ranking.csv finite numeric values,PASS,"Numeric values checked for NaN/Infinity, excluding the blank failure_reason field"
+ridge_random_forest_ranking.csv ranking correlations,PASS,All Spearman/Kendall values must be present
+results\meta_model_lodo_clean43\ridge_xgboost_ranking.csv exists,PASS,File readable
+results\meta_model_lodo_clean43\ridge_xgboost_ranking.csv row count,PASS,Expected 43; found 43
+results\meta_model_lodo_clean43\ridge_xgboost_ranking.csv missing values,PASS,Missing cells: 0
+results\meta_model_lodo_clean43\ridge_xgboost_ranking.csv finite numeric values,PASS,"Numeric values checked for NaN/Infinity, excluding the blank failure_reason field"
+ridge_xgboost_ranking.csv ranking correlations,PASS,All Spearman/Kendall values must be present
+results\meta_model_lodo_clean43\xgboost_decision_tree_ranking.csv exists,PASS,File readable
+results\meta_model_lodo_clean43\xgboost_decision_tree_ranking.csv row count,PASS,Expected 43; found 43
+results\meta_model_lodo_clean43\xgboost_decision_tree_ranking.csv missing values,PASS,Missing cells: 0
+results\meta_model_lodo_clean43\xgboost_decision_tree_ranking.csv finite numeric values,PASS,"Numeric values checked for NaN/Infinity, excluding the blank failure_reason field"
+xgboost_decision_tree_ranking.csv ranking correlations,PASS,All Spearman/Kendall values must be present
+results\meta_model_lodo_clean43\xgboost_logistic_regression_ranking.csv exists,PASS,File readable
+results\meta_model_lodo_clean43\xgboost_logistic_regression_ranking.csv row count,PASS,Expected 43; found 43
+results\meta_model_lodo_clean43\xgboost_logistic_regression_ranking.csv missing values,PASS,Missing cells: 0
+results\meta_model_lodo_clean43\xgboost_logistic_regression_ranking.csv finite numeric values,PASS,"Numeric values checked for NaN/Infinity, excluding the blank failure_reason field"
+xgboost_logistic_regression_ranking.csv ranking correlations,PASS,All Spearman/Kendall values must be present
+results\meta_model_lodo_clean43\xgboost_random_forest_ranking.csv exists,PASS,File readable
+results\meta_model_lodo_clean43\xgboost_random_forest_ranking.csv row count,PASS,Expected 43; found 43
+results\meta_model_lodo_clean43\xgboost_random_forest_ranking.csv missing values,PASS,Missing cells: 0
+results\meta_model_lodo_clean43\xgboost_random_forest_ranking.csv finite numeric values,PASS,"Numeric values checked for NaN/Infinity, excluding the blank failure_reason field"
+xgboost_random_forest_ranking.csv ranking correlations,PASS,All Spearman/Kendall values must be present
+results\meta_model_lodo_clean43\xgboost_xgboost_ranking.csv exists,PASS,File readable
+results\meta_model_lodo_clean43\xgboost_xgboost_ranking.csv row count,PASS,Expected 43; found 43
+results\meta_model_lodo_clean43\xgboost_xgboost_ranking.csv missing values,PASS,Missing cells: 0
+results\meta_model_lodo_clean43\xgboost_xgboost_ranking.csv finite numeric values,PASS,"Numeric values checked for NaN/Infinity, excluding the blank failure_reason field"
+xgboost_xgboost_ranking.csv ranking correlations,PASS,All Spearman/Kendall values must be present
+results\meta_model_lodo_clean43\gradient_boosting_lodo_folds.csv exists,PASS,File readable
+results\meta_model_lodo_clean43\gradient_boosting_lodo_folds.csv row count,PASS,Expected 172; found 172
+results\meta_model_lodo_clean43\gradient_boosting_lodo_folds.csv missing values,PASS,Missing cells: 0
+results\meta_model_lodo_clean43\gradient_boosting_lodo_folds.csv finite numeric values,PASS,"Numeric values checked for NaN/Infinity, excluding the blank failure_reason field"
+gradient_boosting_lodo_folds.csv timing schema,PASS,Required inference timing columns
+gradient_boosting_lodo_folds.csv positive inference times,PASS,All recorded times must be positive
+gradient_boosting_lodo_folds.csv timing repeats,PASS,Observed repeat counts: [30]
+gradient_boosting_lodo_folds.csv held-out dataset mapping,PASS,Each fold must identify exactly one dataset
+results\meta_model_lodo_clean43\random_forest_lodo_folds.csv exists,PASS,File readable
+results\meta_model_lodo_clean43\random_forest_lodo_folds.csv row count,PASS,Expected 172; found 172
+results\meta_model_lodo_clean43\random_forest_lodo_folds.csv missing values,PASS,Missing cells: 0
+results\meta_model_lodo_clean43\random_forest_lodo_folds.csv finite numeric values,PASS,"Numeric values checked for NaN/Infinity, excluding the blank failure_reason field"
+random_forest_lodo_folds.csv timing schema,PASS,Required inference timing columns
+random_forest_lodo_folds.csv positive inference times,PASS,All recorded times must be positive
+random_forest_lodo_folds.csv timing repeats,PASS,Observed repeat counts: [30]
+random_forest_lodo_folds.csv held-out dataset mapping,PASS,Each fold must identify exactly one dataset
+results\meta_model_lodo_clean43\ridge_lodo_folds.csv exists,PASS,File readable
+results\meta_model_lodo_clean43\ridge_lodo_folds.csv row count,PASS,Expected 172; found 172
+results\meta_model_lodo_clean43\ridge_lodo_folds.csv missing values,PASS,Missing cells: 0
+results\meta_model_lodo_clean43\ridge_lodo_folds.csv finite numeric values,PASS,"Numeric values checked for NaN/Infinity, excluding the blank failure_reason field"
+ridge_lodo_folds.csv timing schema,PASS,Required inference timing columns
+ridge_lodo_folds.csv positive inference times,PASS,All recorded times must be positive
+ridge_lodo_folds.csv timing repeats,PASS,Observed repeat counts: [30]
+ridge_lodo_folds.csv held-out dataset mapping,PASS,Each fold must identify exactly one dataset
+results\meta_model_lodo_clean43\xgboost_lodo_folds.csv exists,PASS,File readable
+results\meta_model_lodo_clean43\xgboost_lodo_folds.csv row count,PASS,Expected 172; found 172
+results\meta_model_lodo_clean43\xgboost_lodo_folds.csv missing values,PASS,Missing cells: 0
+results\meta_model_lodo_clean43\xgboost_lodo_folds.csv finite numeric values,PASS,"Numeric values checked for NaN/Infinity, excluding the blank failure_reason field"
+xgboost_lodo_folds.csv timing schema,PASS,Required inference timing columns
+xgboost_lodo_folds.csv positive inference times,PASS,All recorded times must be positive
+xgboost_lodo_folds.csv timing repeats,PASS,Observed repeat counts: [30]
+xgboost_lodo_folds.csv held-out dataset mapping,PASS,Each fold must identify exactly one dataset
+results/meta_model_lodo_clean43/meta_model_summary.csv exists,PASS,File readable
+results/meta_model_lodo_clean43/meta_model_summary.csv row count,PASS,Expected 20; found 20
+results/meta_model_lodo_clean43/meta_model_summary.csv missing values,PASS,Missing cells: 0
+results/meta_model_lodo_clean43/meta_model_summary.csv finite numeric values,PASS,"Numeric values checked for NaN/Infinity, excluding the blank failure_reason field"
+results/meta_model_lodo_clean43/meta_model_overall.csv exists,PASS,File readable
+results/meta_model_lodo_clean43/meta_model_overall.csv row count,PASS,Expected 4; found 4
+results/meta_model_lodo_clean43/meta_model_overall.csv missing values,PASS,Missing cells: 0
+results/meta_model_lodo_clean43/meta_model_overall.csv finite numeric values,PASS,"Numeric values checked for NaN/Infinity, excluding the blank failure_reason field"
+results/selection_baselines_lodo_clean43/lodo_policy_details.csv exists,PASS,File readable
+results/selection_baselines_lodo_clean43/lodo_policy_details.csv row count,PASS,Expected 2752; found 2752
+results/selection_baselines_lodo_clean43/lodo_policy_details.csv missing values,PASS,Missing cells: 0
+results/selection_baselines_lodo_clean43/lodo_policy_details.csv finite numeric values,PASS,"Numeric values checked for NaN/Infinity, excluding the blank failure_reason field"
+results/selection_baselines_lodo_clean43/lodo_policy_summary.csv exists,PASS,File readable
+results/selection_baselines_lodo_clean43/lodo_policy_summary.csv row count,PASS,Expected 80; found 80
+results/selection_baselines_lodo_clean43/lodo_policy_summary.csv missing values,PASS,Missing cells: 0
+results/selection_baselines_lodo_clean43/lodo_policy_summary.csv finite numeric values,PASS,"Numeric values checked for NaN/Infinity, excluding the blank failure_reason field"
+results/selection_baselines_lodo_clean43/lodo_raw_ranking_metrics.csv exists,PASS,File readable
+results/selection_baselines_lodo_clean43/lodo_raw_ranking_metrics.csv row count,PASS,Expected 688; found 688
+results/selection_baselines_lodo_clean43/lodo_raw_ranking_metrics.csv missing values,PASS,Missing cells: 0
+results/selection_baselines_lodo_clean43/lodo_raw_ranking_metrics.csv finite numeric values,PASS,"Numeric values checked for NaN/Infinity, excluding the blank failure_reason field"
+results/selection_baselines_lodo_clean43/lodo_raw_ranking_summary.csv exists,PASS,File readable
+results/selection_baselines_lodo_clean43/lodo_raw_ranking_summary.csv row count,PASS,Expected 20; found 20
+results/selection_baselines_lodo_clean43/lodo_raw_ranking_summary.csv missing values,PASS,Missing cells: 0
+results/selection_baselines_lodo_clean43/lodo_raw_ranking_summary.csv finite numeric values,PASS,"Numeric values checked for NaN/Infinity, excluding the blank failure_reason field"
+results/selection_baselines_lodo_clean43/lodo_global_strategy_choices.csv exists,PASS,File readable
+results/selection_baselines_lodo_clean43/lodo_global_strategy_choices.csv row count,PASS,Expected 172; found 172
+results/selection_baselines_lodo_clean43/lodo_global_strategy_choices.csv missing values,PASS,Missing cells: 0
+results/selection_baselines_lodo_clean43/lodo_global_strategy_choices.csv finite numeric values,PASS,"Numeric values checked for NaN/Infinity, excluding the blank failure_reason field"
+Policy-detail keys,PASS,Duplicate keys: 0
+Policy raw-ranking correlations,PASS,All 688 correlations must be present
+results/statistical_policy_comparison_lodo_clean43/paired_policy_comparisons.csv exists,PASS,File readable
+results/statistical_policy_comparison_lodo_clean43/paired_policy_comparisons.csv row count,PASS,Expected 8; found 8
+results/statistical_policy_comparison_lodo_clean43/paired_policy_comparisons.csv missing values,PASS,Missing cells: 0
+results/statistical_policy_comparison_lodo_clean43/paired_policy_comparisons.csv finite numeric values,PASS,"Numeric values checked for NaN/Infinity, excluding the blank failure_reason field"
+results/statistical_policy_comparison_lodo_clean43/paired_mean_effect_tests.csv exists,PASS,File readable
+results/statistical_policy_comparison_lodo_clean43/paired_mean_effect_tests.csv row count,PASS,Expected 8; found 8
+results/statistical_policy_comparison_lodo_clean43/paired_mean_effect_tests.csv missing values,PASS,Missing cells: 0
+results/statistical_policy_comparison_lodo_clean43/paired_mean_effect_tests.csv finite numeric values,PASS,"Numeric values checked for NaN/Infinity, excluding the blank failure_reason field"
+results/statistical_policy_comparison_lodo_clean43/policy_robustness_by_classifier.csv exists,PASS,File readable
+results/statistical_policy_comparison_lodo_clean43/policy_robustness_by_classifier.csv row count,PASS,Expected 32; found 32
+results/statistical_policy_comparison_lodo_clean43/policy_robustness_by_classifier.csv missing values,PASS,Missing cells: 0
+results/statistical_policy_comparison_lodo_clean43/policy_robustness_by_classifier.csv finite numeric values,PASS,"Numeric values checked for NaN/Infinity, excluding the blank failure_reason field"
+results/statistical_policy_comparison_lodo_clean43/dataset_level_policy_values.csv exists,PASS,File readable
+results/statistical_policy_comparison_lodo_clean43/dataset_level_policy_values.csv row count,PASS,Expected 688; found 688
+results/statistical_policy_comparison_lodo_clean43/dataset_level_policy_values.csv missing values,PASS,Missing cells: 0
+results/statistical_policy_comparison_lodo_clean43/dataset_level_policy_values.csv finite numeric values,PASS,"Numeric values checked for NaN/Infinity, excluding the blank failure_reason field"
+results/statistical_policy_comparison_lodo_clean43/policy_details_adjusted_inference.csv exists,PASS,File readable
+results/statistical_policy_comparison_lodo_clean43/policy_details_adjusted_inference.csv row count,PASS,Expected 2752; found 2752
+results/statistical_policy_comparison_lodo_clean43/policy_details_adjusted_inference.csv missing values,PASS,Missing cells: 0
+results/statistical_policy_comparison_lodo_clean43/policy_details_adjusted_inference.csv finite numeric values,PASS,"Numeric values checked for NaN/Infinity, excluding the blank failure_reason field"
+results/statistical_policy_comparison_lodo_clean43/policy_runtime_summary_adjusted_inference.csv exists,PASS,File readable
+results/statistical_policy_comparison_lodo_clean43/policy_runtime_summary_adjusted_inference.csv row count,PASS,Expected 16; found 16
+results/statistical_policy_comparison_lodo_clean43/policy_runtime_summary_adjusted_inference.csv missing values,PASS,Missing cells: 0
+results/statistical_policy_comparison_lodo_clean43/policy_runtime_summary_adjusted_inference.csv finite numeric values,PASS,"Numeric values checked for NaN/Infinity, excluding the blank failure_reason field"
+results/statistical_policy_comparison_lodo_clean43/policy_runtime_by_classifier_adjusted_inference.csv exists,PASS,File readable
+results/statistical_policy_comparison_lodo_clean43/policy_runtime_by_classifier_adjusted_inference.csv row count,PASS,Expected 64; found 64
+results/statistical_policy_comparison_lodo_clean43/policy_runtime_by_classifier_adjusted_inference.csv missing values,PASS,Missing cells: 0
+results/statistical_policy_comparison_lodo_clean43/policy_runtime_by_classifier_adjusted_inference.csv finite numeric values,PASS,"Numeric values checked for NaN/Infinity, excluding the blank failure_reason field"
+Documentation file method_notes.txt,PASS,Present
+Documentation file runtime_adjustment_notes.txt,PASS,Present
+Paired-test p-value ranges,PASS,"All raw and adjusted p-values must lie in [0, 1]"
+Mean-effect test p-value ranges,PASS,"All raw and adjusted p-values must lie in [0, 1]"
+Inference timing matches policy cases,PASS,Expected 688 unique one-to-one dataset/classifier/model matches
+Adjusted selected-runtime formula,PASS,Maximum error: 4.661201979949681e-15
+Adjusted savings formula,PASS,Maximum error: 7.105427357601002e-15
+Adjusted savings percentage formula,PASS,Maximum error: 2.842170943040401e-14
+Inference overhead applied only to learned selector,PASS,Other policy overhead must remain zero

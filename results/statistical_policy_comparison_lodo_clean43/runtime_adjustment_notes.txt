@@ -1,0 +1,6 @@
+Adjusted runtime = selected strategy runtime + measured meta-model inference overhead for meta_learning_baseline_aware.
+Other policies receive zero meta-model inference overhead; oracle_upper_bound is theoretical.
+Inference timing includes pipeline prediction and preprocessing for seven candidate rows, based on the recorded warm-up and 30-repeat timing procedure.
+These estimates exclude dataset meta-feature extraction, model training, and additional policy-selection logic.
+Timings are hardware- and environment-dependent.
+Negative adjusted savings mean the estimated selected runtime exceeds the full seven-strategy runtime.

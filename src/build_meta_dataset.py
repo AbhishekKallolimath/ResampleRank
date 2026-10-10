@@ -12,33 +12,15 @@ PROFILE_FILE = (
     BASE_DIR
     / "data"
     / "processed"
-    / "dataset_profiles.csv"
+    / "dataset_profiles_clean43.csv"
 )
 
-SPLIT_FILE = (
-    BASE_DIR
-    / "data"
-    / "dataset_splits.csv"
-)
+SPLIT_FILE = BASE_DIR / "data" / "dataset_splits_clean43.csv"
 
-OUTPUT_FILE = RESULTS_DIR / "meta_dataset.csv"
+OUTPUT_FILE = RESULTS_DIR / "meta_dataset_clean43.csv"
 
 
-PRIMARY_DATASETS = [
-    "pima",
-    "glass1",
-    "wisconsin",
-    "yeast1",
-    "haberman",
-    "vehicle2",
-    "iris0",
-    "segment0",
-    "page-blocks0",
-    "vowel0",
-    "shuttle-c0-vs-c4",
-    "ecoli-0_vs_1",
-]
-
+PRIMARY_DATASETS = []
 
 CLASSIFIERS = [
     "logistic_regression",
@@ -155,7 +137,7 @@ def load_dataset_splits():
         raise FileNotFoundError(
             f"Dataset split file not found: "
             f"{SPLIT_FILE}\n\n"
-            "Create data/dataset_splits.csv "
+            "Create data/dataset_splits_clean43.csv "
             "with columns: dataset, split"
         )
 
@@ -231,7 +213,7 @@ def load_dataset_splits():
     if missing_primary_datasets:
         raise ValueError(
             "The following primary datasets are missing "
-            "from data/dataset_splits.csv:\n"
+            "from data/dataset_splits_clean43.csv:\n"
             + "\n".join(
                 sorted(missing_primary_datasets)
             )
@@ -595,6 +577,19 @@ def add_dataset_meta_features(meta_df):
         "minority_count",
         "minority_proportion",
         "imbalance_ratio",
+        "class_entropy",
+        "mean_feature_variance",
+        "mean_feature_std",
+        "mean_abs_feature_skewness",
+        "mean_unique_value_ratio",
+        "mean_abs_correlation",
+        "max_abs_correlation",
+        "mean_zero_proportion",
+        "mean_mutual_information",
+        "max_mutual_information",
+        "one_nn_error_rate",
+        "minority_majority_neighbor_ratio",
+        "minority_mean_neighbor_distance",
     ]
 
     missing_profile_columns = [
@@ -648,7 +643,7 @@ def add_dataset_meta_features(meta_df):
         suffixes=("", "_profile"),
     )
 
-    for column in [
+    profile_value_columns = [
         "samples",
         "features",
         "feature_sample_ratio",
@@ -660,18 +655,31 @@ def add_dataset_meta_features(meta_df):
         "minority_count",
         "minority_proportion",
         "imbalance_ratio",
-    ]:
+        "class_entropy",
+        "mean_feature_variance",
+        "mean_feature_std",
+        "mean_abs_feature_skewness",
+        "mean_unique_value_ratio",
+        "mean_abs_correlation",
+        "max_abs_correlation",
+        "mean_zero_proportion",
+        "mean_mutual_information",
+        "max_mutual_information",
+        "one_nn_error_rate",
+        "minority_majority_neighbor_ratio",
+        "minority_mean_neighbor_distance",
+    ]
+
+    for column in profile_value_columns:
 
         if column not in meta_df.columns:
             raise ValueError(
-                f"Missing merged meta-feature: "
-                f"{column}"
+                f"Missing merged meta-feature: {column}"
             )
 
         if meta_df[column].isna().any():
             raise ValueError(
-                f"Missing meta-feature values in "
-                f"column '{column}'."
+                f"Missing meta-feature values in column '{column}'."
             )
 
     print(
@@ -799,10 +807,29 @@ def select_columns(meta_df):
         "categorical_features",
         "missing_values",
         "duplicates",
-        "majority_count",
+                "majority_count",
         "minority_count",
         "minority_proportion",
         "imbalance_ratio",
+
+        "class_entropy",
+
+        "mean_feature_variance",
+        "mean_feature_std",
+        "mean_abs_feature_skewness",
+
+        "mean_unique_value_ratio",
+        "mean_abs_correlation",
+        "max_abs_correlation",
+        "mean_zero_proportion",
+
+        "mean_mutual_information",
+        "max_mutual_information",
+
+        "one_nn_error_rate",
+
+        "minority_majority_neighbor_ratio",
+        "minority_mean_neighbor_distance",
 
         "resampling_code",
         "resampling",
@@ -1137,6 +1164,58 @@ def print_summary(meta_df, original_df):
 
 
 def main():
+    global PRIMARY_DATASETS
+
+    if not PROFILE_FILE.exists():
+        raise FileNotFoundError(
+            "Dataset profile not found: {}".format(
+                PROFILE_FILE
+            )
+        )
+
+    profiles = pd.read_csv(
+        PROFILE_FILE
+    )
+
+    if "dataset" not in profiles.columns:
+        raise ValueError(
+            "Dataset profile is missing the "
+            "'dataset' column."
+        )
+
+    if "split" not in profiles.columns:
+        raise ValueError(
+            "Dataset profile is missing the "
+            "'split' column."
+        )
+
+    PRIMARY_DATASETS = sorted(
+        profiles["dataset"]
+        .astype(str)
+        .str.strip()
+        .unique()
+        .tolist()
+    )
+    
+    global DATASET_RESULT_FILES
+
+    DATASET_RESULT_FILES = get_result_files()
+
+    print(
+        "\nUsing {} clean benchmark datasets "
+        "from dataset_profiles_clean43.csv.".format(
+            len(PRIMARY_DATASETS)
+        )
+    )
+
+
+    if len(PRIMARY_DATASETS) != 43:
+        raise ValueError(
+            "Expected 43 clean benchmark datasets, "
+            "found {}.".format(
+                len(PRIMARY_DATASETS)
+            )
+        )
 
     print("=" * 75)
     print(

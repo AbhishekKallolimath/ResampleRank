@@ -1,0 +1,5 @@
+classifier,resampling_code,training_mean_macro_f1
+decision_tree,smote,0.7304183480144684
+logistic_regression,ros,0.7038251931540682
+random_forest,smote,0.7733276088728873
+xgboost,ros,0.7743847612607783
