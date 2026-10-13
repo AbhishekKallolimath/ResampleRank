@@ -1,0 +1,57 @@
+fold,test_parent_group,test_datasets,train_rows,test_rows,inference_rows,inference_repeats,total_inference_time_seconds,mean_inference_time_seconds,model,classifier
+1,Abalone,abalone19|abalone9-18,287,14,14,30,0.39840240000000904,0.013280080000000302,gradient_boosting,logistic_regression
+2,Ecoli,ecoli-0-1-3-7_vs_2-6|ecoli-0-2-3-4_vs_5|ecoli-0-3-4_vs_5|ecoli-0-6-7_vs_3-5|ecoli-0_vs_1|ecoli1|ecoli2|ecoli3|ecoli4,238,63,63,30,0.2641537999999741,0.008805126666665804,gradient_boosting,logistic_regression
+3,Glass,glass-0-1-5_vs_2|glass-0-1-6_vs_5|glass0|glass1|glass2|glass4|glass5|glass6,245,56,56,30,0.18412189999997963,0.006137396666665988,gradient_boosting,logistic_regression
+4,IBM Employee Attrition,IBM Employee Attrition,294,7,7,30,0.19755010000000084,0.006585003333333362,gradient_boosting,logistic_regression
+5,New-Thyroid,new-thyroid1|new-thyroid2,287,14,14,30,0.17655250000001388,0.005885083333333796,gradient_boosting,logistic_regression
+6,Vehicle,vehicle0|vehicle1|vehicle2|vehicle3,273,28,28,30,0.18711139999999205,0.006237046666666401,gradient_boosting,logistic_regression
+7,Yeast,yeast-0-5-6-7-9_vs_4|yeast-1-2-8-9_vs_7|yeast-1-4-5-8_vs_7|yeast-1_vs_7|yeast-2_vs_4|yeast-2_vs_8|yeast1|yeast4|yeast5|yeast6,231,70,70,30,0.1690373000000136,0.0056345766666671205,gradient_boosting,logistic_regression
+8,haberman,haberman,294,7,7,30,0.16132300000003852,0.005377433333334617,gradient_boosting,logistic_regression
+9,page-blocks0,page-blocks0,294,7,7,30,0.16799359999998842,0.005599786666666281,gradient_boosting,logistic_regression
+10,pima,pima,294,7,7,30,0.16511269999995193,0.005503756666665065,gradient_boosting,logistic_regression
+11,segment0,segment0,294,7,7,30,0.16149419999999282,0.00538313999999976,gradient_boosting,logistic_regression
+12,vowel0,vowel0,294,7,7,30,0.16446279999996705,0.005482093333332235,gradient_boosting,logistic_regression
+13,wisconsin,wisconsin,294,7,7,30,0.14651370000001407,0.004883790000000469,gradient_boosting,logistic_regression
+14,zoo-3,zoo-3,294,7,7,30,0.1448085999999762,0.00482695333333254,gradient_boosting,logistic_regression
+1,Abalone,abalone19|abalone9-18,287,14,14,30,0.20505520000000388,0.006835173333333462,gradient_boosting,decision_tree
+2,Ecoli,ecoli-0-1-3-7_vs_2-6|ecoli-0-2-3-4_vs_5|ecoli-0-3-4_vs_5|ecoli-0-6-7_vs_3-5|ecoli-0_vs_1|ecoli1|ecoli2|ecoli3|ecoli4,238,63,63,30,0.18656370000002198,0.006218790000000733,gradient_boosting,decision_tree
+3,Glass,glass-0-1-5_vs_2|glass-0-1-6_vs_5|glass0|glass1|glass2|glass4|glass5|glass6,245,56,56,30,0.2212366999999631,0.007374556666665436,gradient_boosting,decision_tree
+4,IBM Employee Attrition,IBM Employee Attrition,294,7,7,30,0.3986610999999698,0.013288703333332326,gradient_boosting,decision_tree
+5,New-Thyroid,new-thyroid1|new-thyroid2,287,14,14,30,0.2936803999999711,0.009789346666665703,gradient_boosting,decision_tree
+6,Vehicle,vehicle0|vehicle1|vehicle2|vehicle3,273,28,28,30,0.2293219000000022,0.0076440633333334064,gradient_boosting,decision_tree
+7,Yeast,yeast-0-5-6-7-9_vs_4|yeast-1-2-8-9_vs_7|yeast-1-4-5-8_vs_7|yeast-1_vs_7|yeast-2_vs_4|yeast-2_vs_8|yeast1|yeast4|yeast5|yeast6,231,70,70,30,0.2204488000000424,0.007348293333334747,gradient_boosting,decision_tree
+8,haberman,haberman,294,7,7,30,0.16843359999995755,0.005614453333331919,gradient_boosting,decision_tree
+9,page-blocks0,page-blocks0,294,7,7,30,0.15574589999999944,0.0051915299999999815,gradient_boosting,decision_tree
+10,pima,pima,294,7,7,30,0.14313779999997678,0.004771259999999226,gradient_boosting,decision_tree
+11,segment0,segment0,294,7,7,30,0.14400440000002845,0.004800146666667615,gradient_boosting,decision_tree
+12,vowel0,vowel0,294,7,7,30,0.14330949999998666,0.0047769833333328885,gradient_boosting,decision_tree
+13,wisconsin,wisconsin,294,7,7,30,0.14293850000001385,0.004764616666667128,gradient_boosting,decision_tree
+14,zoo-3,zoo-3,294,7,7,30,0.14180369999996856,0.004726789999998952,gradient_boosting,decision_tree
+1,Abalone,abalone19|abalone9-18,287,14,14,30,0.22141730000004145,0.007380576666668049,gradient_boosting,random_forest
+2,Ecoli,ecoli-0-1-3-7_vs_2-6|ecoli-0-2-3-4_vs_5|ecoli-0-3-4_vs_5|ecoli-0-6-7_vs_3-5|ecoli-0_vs_1|ecoli1|ecoli2|ecoli3|ecoli4,238,63,63,30,0.22714729999995598,0.0075715766666652,gradient_boosting,random_forest
+3,Glass,glass-0-1-5_vs_2|glass-0-1-6_vs_5|glass0|glass1|glass2|glass4|glass5|glass6,245,56,56,30,0.16675290000000587,0.005558430000000196,gradient_boosting,random_forest
+4,IBM Employee Attrition,IBM Employee Attrition,294,7,7,30,0.15060049999999592,0.0050200166666665305,gradient_boosting,random_forest
+5,New-Thyroid,new-thyroid1|new-thyroid2,287,14,14,30,0.2966045000000008,0.009886816666666694,gradient_boosting,random_forest
+6,Vehicle,vehicle0|vehicle1|vehicle2|vehicle3,273,28,28,30,0.14792319999997972,0.004930773333332657,gradient_boosting,random_forest
+7,Yeast,yeast-0-5-6-7-9_vs_4|yeast-1-2-8-9_vs_7|yeast-1-4-5-8_vs_7|yeast-1_vs_7|yeast-2_vs_4|yeast-2_vs_8|yeast1|yeast4|yeast5|yeast6,231,70,70,30,0.16123980000003257,0.005374660000001086,gradient_boosting,random_forest
+8,haberman,haberman,294,7,7,30,0.14458490000004076,0.004819496666668025,gradient_boosting,random_forest
+9,page-blocks0,page-blocks0,294,7,7,30,0.1465793999999505,0.00488597999999835,gradient_boosting,random_forest
+10,pima,pima,294,7,7,30,0.1425922999999898,0.0047530766666663265,gradient_boosting,random_forest
+11,segment0,segment0,294,7,7,30,0.14413339999998698,0.004804446666666232,gradient_boosting,random_forest
+12,vowel0,vowel0,294,7,7,30,0.14172160000003942,0.004724053333334647,gradient_boosting,random_forest
+13,wisconsin,wisconsin,294,7,7,30,0.1434911999999713,0.004783039999999043,gradient_boosting,random_forest
+14,zoo-3,zoo-3,294,7,7,30,0.14435489999999618,0.004811829999999873,gradient_boosting,random_forest
+1,Abalone,abalone19|abalone9-18,287,14,14,30,0.21292970000001787,0.007097656666667262,gradient_boosting,xgboost
+2,Ecoli,ecoli-0-1-3-7_vs_2-6|ecoli-0-2-3-4_vs_5|ecoli-0-3-4_vs_5|ecoli-0-6-7_vs_3-5|ecoli-0_vs_1|ecoli1|ecoli2|ecoli3|ecoli4,238,63,63,30,0.2219667999999615,0.00739889333333205,gradient_boosting,xgboost
+3,Glass,glass-0-1-5_vs_2|glass-0-1-6_vs_5|glass0|glass1|glass2|glass4|glass5|glass6,245,56,56,30,0.24501800000001595,0.008167266666667198,gradient_boosting,xgboost
+4,IBM Employee Attrition,IBM Employee Attrition,294,7,7,30,0.19341969999999264,0.006447323333333088,gradient_boosting,xgboost
+5,New-Thyroid,new-thyroid1|new-thyroid2,287,14,14,30,0.17743899999999257,0.005914633333333086,gradient_boosting,xgboost
+6,Vehicle,vehicle0|vehicle1|vehicle2|vehicle3,273,28,28,30,0.1453255999999783,0.004844186666665943,gradient_boosting,xgboost
+7,Yeast,yeast-0-5-6-7-9_vs_4|yeast-1-2-8-9_vs_7|yeast-1-4-5-8_vs_7|yeast-1_vs_7|yeast-2_vs_4|yeast-2_vs_8|yeast1|yeast4|yeast5|yeast6,231,70,70,30,0.15353920000001153,0.005117973333333718,gradient_boosting,xgboost
+8,haberman,haberman,294,7,7,30,0.2202957000000083,0.007343190000000277,gradient_boosting,xgboost
+9,page-blocks0,page-blocks0,294,7,7,30,0.1484163999999737,0.004947213333332456,gradient_boosting,xgboost
+10,pima,pima,294,7,7,30,0.19441570000003594,0.006480523333334531,gradient_boosting,xgboost
+11,segment0,segment0,294,7,7,30,0.1512728000000152,0.005042426666667173,gradient_boosting,xgboost
+12,vowel0,vowel0,294,7,7,30,0.14171989999999823,0.004723996666666608,gradient_boosting,xgboost
+13,wisconsin,wisconsin,294,7,7,30,0.14293689999999515,0.004764563333333171,gradient_boosting,xgboost
+14,zoo-3,zoo-3,294,7,7,30,0.14579149999997298,0.004859716666665766,gradient_boosting,xgboost

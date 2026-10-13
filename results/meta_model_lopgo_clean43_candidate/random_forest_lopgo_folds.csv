@@ -1,0 +1,57 @@
+fold,test_parent_group,test_datasets,train_rows,test_rows,inference_rows,inference_repeats,total_inference_time_seconds,mean_inference_time_seconds,model,classifier
+1,Abalone,abalone19|abalone9-18,287,14,14,30,4.2594159999999945,0.14198053333333316,random_forest,logistic_regression
+2,Ecoli,ecoli-0-1-3-7_vs_2-6|ecoli-0-2-3-4_vs_5|ecoli-0-3-4_vs_5|ecoli-0-6-7_vs_3-5|ecoli-0_vs_1|ecoli1|ecoli2|ecoli3|ecoli4,238,63,63,30,4.012394599999993,0.13374648666666644,random_forest,logistic_regression
+3,Glass,glass-0-1-5_vs_2|glass-0-1-6_vs_5|glass0|glass1|glass2|glass4|glass5|glass6,245,56,56,30,3.760848799999998,0.1253616266666666,random_forest,logistic_regression
+4,IBM Employee Attrition,IBM Employee Attrition,294,7,7,30,3.7322083000000035,0.12440694333333345,random_forest,logistic_regression
+5,New-Thyroid,new-thyroid1|new-thyroid2,287,14,14,30,3.7930224999999993,0.1264340833333333,random_forest,logistic_regression
+6,Vehicle,vehicle0|vehicle1|vehicle2|vehicle3,273,28,28,30,3.7942442000000014,0.12647480666666672,random_forest,logistic_regression
+7,Yeast,yeast-0-5-6-7-9_vs_4|yeast-1-2-8-9_vs_7|yeast-1-4-5-8_vs_7|yeast-1_vs_7|yeast-2_vs_4|yeast-2_vs_8|yeast1|yeast4|yeast5|yeast6,231,70,70,30,3.737293599999994,0.12457645333333313,random_forest,logistic_regression
+8,haberman,haberman,294,7,7,30,3.7330512000000056,0.12443504000000019,random_forest,logistic_regression
+9,page-blocks0,page-blocks0,294,7,7,30,3.88748249999999,0.12958274999999966,random_forest,logistic_regression
+10,pima,pima,294,7,7,30,4.017059200000006,0.1339019733333335,random_forest,logistic_regression
+11,segment0,segment0,294,7,7,30,4.373369100000005,0.14577897000000017,random_forest,logistic_regression
+12,vowel0,vowel0,294,7,7,30,3.7615976000000018,0.12538658666666672,random_forest,logistic_regression
+13,wisconsin,wisconsin,294,7,7,30,3.7756994000000077,0.12585664666666693,random_forest,logistic_regression
+14,zoo-3,zoo-3,294,7,7,30,3.777519699999999,0.1259173233333333,random_forest,logistic_regression
+1,Abalone,abalone19|abalone9-18,287,14,14,30,3.7818930999999907,0.126063103333333,random_forest,decision_tree
+2,Ecoli,ecoli-0-1-3-7_vs_2-6|ecoli-0-2-3-4_vs_5|ecoli-0-3-4_vs_5|ecoli-0-6-7_vs_3-5|ecoli-0_vs_1|ecoli1|ecoli2|ecoli3|ecoli4,238,63,63,30,3.793114199999991,0.1264371399999997,random_forest,decision_tree
+3,Glass,glass-0-1-5_vs_2|glass-0-1-6_vs_5|glass0|glass1|glass2|glass4|glass5|glass6,245,56,56,30,3.7609415999999953,0.12536471999999985,random_forest,decision_tree
+4,IBM Employee Attrition,IBM Employee Attrition,294,7,7,30,3.8094516999999968,0.1269817233333332,random_forest,decision_tree
+5,New-Thyroid,new-thyroid1|new-thyroid2,287,14,14,30,3.7993206000000015,0.12664402000000005,random_forest,decision_tree
+6,Vehicle,vehicle0|vehicle1|vehicle2|vehicle3,273,28,28,30,3.7460780000000113,0.12486926666666705,random_forest,decision_tree
+7,Yeast,yeast-0-5-6-7-9_vs_4|yeast-1-2-8-9_vs_7|yeast-1-4-5-8_vs_7|yeast-1_vs_7|yeast-2_vs_4|yeast-2_vs_8|yeast1|yeast4|yeast5|yeast6,231,70,70,30,3.778043999999994,0.12593479999999982,random_forest,decision_tree
+8,haberman,haberman,294,7,7,30,3.763462199999992,0.12544873999999975,random_forest,decision_tree
+9,page-blocks0,page-blocks0,294,7,7,30,3.7549965999999984,0.1251665533333333,random_forest,decision_tree
+10,pima,pima,294,7,7,30,3.7569262000000094,0.12523087333333366,random_forest,decision_tree
+11,segment0,segment0,294,7,7,30,3.7758685000000014,0.12586228333333338,random_forest,decision_tree
+12,vowel0,vowel0,294,7,7,30,3.7324819000000105,0.12441606333333369,random_forest,decision_tree
+13,wisconsin,wisconsin,294,7,7,30,3.7622585999999956,0.12540861999999986,random_forest,decision_tree
+14,zoo-3,zoo-3,294,7,7,30,3.9333182999999963,0.13111060999999988,random_forest,decision_tree
+1,Abalone,abalone19|abalone9-18,287,14,14,30,3.86584000000002,0.128861333333334,random_forest,random_forest
+2,Ecoli,ecoli-0-1-3-7_vs_2-6|ecoli-0-2-3-4_vs_5|ecoli-0-3-4_vs_5|ecoli-0-6-7_vs_3-5|ecoli-0_vs_1|ecoli1|ecoli2|ecoli3|ecoli4,238,63,63,30,3.704800399999982,0.12349334666666607,random_forest,random_forest
+3,Glass,glass-0-1-5_vs_2|glass-0-1-6_vs_5|glass0|glass1|glass2|glass4|glass5|glass6,245,56,56,30,3.8109580999999935,0.12703193666666646,random_forest,random_forest
+4,IBM Employee Attrition,IBM Employee Attrition,294,7,7,30,3.7613421000000073,0.12537807000000026,random_forest,random_forest
+5,New-Thyroid,new-thyroid1|new-thyroid2,287,14,14,30,3.763160699999986,0.12543868999999955,random_forest,random_forest
+6,Vehicle,vehicle0|vehicle1|vehicle2|vehicle3,273,28,28,30,3.757238399999977,0.12524127999999923,random_forest,random_forest
+7,Yeast,yeast-0-5-6-7-9_vs_4|yeast-1-2-8-9_vs_7|yeast-1-4-5-8_vs_7|yeast-1_vs_7|yeast-2_vs_4|yeast-2_vs_8|yeast1|yeast4|yeast5|yeast6,231,70,70,30,3.7455558999999994,0.12485186333333331,random_forest,random_forest
+8,haberman,haberman,294,7,7,30,3.9186980000000062,0.13062326666666688,random_forest,random_forest
+9,page-blocks0,page-blocks0,294,7,7,30,3.7462825000000066,0.12487608333333355,random_forest,random_forest
+10,pima,pima,294,7,7,30,3.7445460999999796,0.12481820333333266,random_forest,random_forest
+11,segment0,segment0,294,7,7,30,3.746897099999984,0.12489656999999947,random_forest,random_forest
+12,vowel0,vowel0,294,7,7,30,3.746602899999999,0.1248867633333333,random_forest,random_forest
+13,wisconsin,wisconsin,294,7,7,30,3.762769200000008,0.12542564000000028,random_forest,random_forest
+14,zoo-3,zoo-3,294,7,7,30,3.762313699999993,0.12541045666666642,random_forest,random_forest
+1,Abalone,abalone19|abalone9-18,287,14,14,30,3.824363599999998,0.1274787866666666,random_forest,xgboost
+2,Ecoli,ecoli-0-1-3-7_vs_2-6|ecoli-0-2-3-4_vs_5|ecoli-0-3-4_vs_5|ecoli-0-6-7_vs_3-5|ecoli-0_vs_1|ecoli1|ecoli2|ecoli3|ecoli4,238,63,63,30,3.745914599999992,0.12486381999999972,random_forest,xgboost
+3,Glass,glass-0-1-5_vs_2|glass-0-1-6_vs_5|glass0|glass1|glass2|glass4|glass5|glass6,245,56,56,30,3.7293414999999754,0.12431138333333251,random_forest,xgboost
+4,IBM Employee Attrition,IBM Employee Attrition,294,7,7,30,3.7462433999999973,0.12487477999999991,random_forest,xgboost
+5,New-Thyroid,new-thyroid1|new-thyroid2,287,14,14,30,3.762191900000005,0.12540639666666684,random_forest,xgboost
+6,Vehicle,vehicle0|vehicle1|vehicle2|vehicle3,273,28,28,30,3.7606703000000152,0.12535567666666717,random_forest,xgboost
+7,Yeast,yeast-0-5-6-7-9_vs_4|yeast-1-2-8-9_vs_7|yeast-1-4-5-8_vs_7|yeast-1_vs_7|yeast-2_vs_4|yeast-2_vs_8|yeast1|yeast4|yeast5|yeast6,231,70,70,30,3.8391801000000214,0.1279726700000007,random_forest,xgboost
+8,haberman,haberman,294,7,7,30,3.842526599999985,0.1280842199999995,random_forest,xgboost
+9,page-blocks0,page-blocks0,294,7,7,30,3.7457110000000284,0.12485703333333428,random_forest,xgboost
+10,pima,pima,294,7,7,30,3.748455100000001,0.12494850333333336,random_forest,xgboost
+11,segment0,segment0,294,7,7,30,3.7921343000000434,0.12640447666666813,random_forest,xgboost
+12,vowel0,vowel0,294,7,7,30,3.7764602999999966,0.12588200999999988,random_forest,xgboost
+13,wisconsin,wisconsin,294,7,7,30,3.7751963999999703,0.12583987999999902,random_forest,xgboost
+14,zoo-3,zoo-3,294,7,7,30,3.7928392999999687,0.12642797666666564,random_forest,xgboost
